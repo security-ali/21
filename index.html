@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جلاز هاب - علاوي</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: #0a0a0a;
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding-bottom: 80px;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            overflow: hidden;
+        }
+        .snowflake {
+            position: absolute;
+            background: rgba(114, 137, 218, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .hub-view {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .hub-header { margin-bottom: 50px; }
+        .hub-title {
+            font-size: 4rem;
+            color: #7289da;
+            text-shadow: 0 0 20px rgba(114, 137, 218, 0.5);
+            font-weight: 800;
+        }
+        .hub-subtitle { color: #a0a0a0; font-size: 1.2rem; margin-bottom: 30px; }
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            width: 100%;
+            max-width: 800px;
+        }
+        .tool-card {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px 30px;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(114, 137, 218, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        .tool-card:hover::before { left: 100%; }
+        .tool-card:hover {
+            transform: translateY(-10px);
+            border-color: #7289da;
+            box-shadow: 0 10px 30px rgba(114, 137, 218, 0.3);
+        }
+        .tool-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 15px; }
+        .tool-desc { font-size: 1rem; color: #a0a0a0; }
+        .tool-view { display: none; min-height: 100vh; padding: 40px 0; }
+        .tool-view.active { display: block; }
+        .tool-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid #333;
+            flex-direction: row-reverse;
+        }
+        .back-arrow {
+            background: #333;
+            color: #e0e0e0;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-left: 30px;
+            margin-right: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .back-arrow:hover { background: #444; transform: translateX(5px); }
+        .tool-view-title { font-size: 2.5rem; color: #7289da; }
+        .tool-content {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            border: 1px solid #333;
+            margin-bottom: 30px;
+        }
+        .input-group { margin-bottom: 25px; }
+        label { display: block; margin-bottom: 10px; font-weight: 600; color: #a0a0a0; }
+        .input-field {
+            width: 100%;
+            padding: 16px;
+            background: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            color: #e0e0e0;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+        .input-field:focus { outline: none; border-color: #7289da; box-shadow: 0 0 0 3px rgba(114,137,218,0.2); }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 50px;
+            color: #e0e0e0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .btn-primary { background: #7289da; border-color: #7289da; color: white; }
+        .btn-primary:hover { background: #5b6eae; }
+        .btn-success { background: #43b581; border-color: #43b581; color: white; }
+        .btn-danger { background: #f04747; border-color: #f04747; color: white; }
+        .btn-warning { background: #faa61a; border-color: #faa61a; color: black; }
+        .mention-buttons { display: flex; gap: 15px; margin-bottom: 20px; }
+        .mention-btn {
+            padding: 12px 20px;
+            background: #333;
+            border: 1px solid #444;
+            border-radius: 8px;
+            color: #e0e0e0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .delete-options { display: flex; gap: 15px; margin-top: 20px; }
+        .delete-options .btn { flex: 1; }
+        .log-container {
+            margin-top: 25px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            padding: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #333;
+        }
+        .log-title { font-size: 1.1rem; color: #a0a0a0; margin-bottom: 15px; font-weight: 600; }
+        .log-entry { font-size: 0.9rem; margin-bottom: 8px; padding: 8px; border-radius: 5px; background: #252525; }
+        .log-success { color: #43b581; }
+        .log-error { color: #f04747; }
+        .log-info { color: #7289da; }
+        .invite-note {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        .invite-link { color: #7289da; font-weight: bold; }
+        .token-info {
+            margin-top: 25px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #333;
+        }
+        .info-row { display: flex; padding: 8px 0; border-bottom: 1px solid #333; }
+        .info-label { width: 140px; font-weight: 600; color: #a0a0a0; }
+        .info-value { flex: 1; color: #e0e0e0; }
+        .copyright-footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 15px;
+            border-top: 1px solid #333;
+            color: #7289da;
+            font-weight: bold;
+            direction: ltr;
+        }
+        @media (max-width: 768px) {
+            .tool-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="background" id="background"></div>
+
+<div class="container hub-view" id="hub-view">
+    <div class="hub-header"><h1 class="hub-title">GLAZ HUB</h1><p class="hub-subtitle">مجموعة أدوات ديسكورد المتقدمة - بإشراف علاوي</p></div>
+    <div class="tool-grid">
+        <div class="tool-card" data-tool="spam"><div class="tool-title">سبام ويب هوك</div><div class="tool-desc">إرسال كم هائل من الرسائل عبر ويب هوك مع تحكم بالتأخير</div></div>
+        <div class="tool-card" data-tool="delete"><div class="tool-title">مدير ويب هوك</div><div class="tool-desc">حذف أو نسف ويب هوك (رسالة أخيرة + تدمير)</div></div>
+        <div class="tool-card" data-tool="generate"><div class="tool-title">منشئ ويب هوك</div><div class="tool-desc">إنشاء ويب هوك جديد باستخدام توكن بوت ومعرف القناة</div></div>
+        <div class="tool-card" data-tool="token"><div class="tool-title">فحص التوكن</div><div class="tool-desc">استخراج معلومات كاملة من توكن ديسكورد (بيانات، شارات، نيترو)</div></div>
+    </div>
+</div>
+
+<!-- سبام ويب هوك -->
+<div class="container tool-view" id="spam-view">
+    <div class="tool-header"><button class="back-arrow" onclick="showHub()">← رجوع</button><h2 class="tool-view-title">سبام ويب هوك</h2></div>
+    <div class="tool-content">
+        <div class="input-group"><label>رابط ويب هوك</label><input type="text" id="webhook-url" class="input-field" placeholder="https://discord.com/api/webhooks/..."></div>
+        <div class="input-group"><label>الرسالة المكررة</label><div class="mention-buttons"><button class="mention-btn" data-mention="@everyone">@everyone</button><button class="mention-btn" data-mention="@here">@here</button></div>
+        <textarea id="spam-message" class="input-field message-input" placeholder="أدخل النص..."></textarea><div class="invite-note">الدعوة تضاف تلقائياً: <span class="invite-link">https://discord.gg/pkyTKGXVdK</span></div></div>
+        <div class="input-group"><label>التأخير بين الرسائل (ملي ثانية)</label><input type="number" id="spam-delay" class="input-field" value="1000" min="500"></div>
+        <div class="spam-controls" style="display: flex; gap: 15px;"><button class="btn btn-success" id="start-spam">بدء السبام</button><button class="btn btn-danger" id="stop-spam" disabled>إيقاف</button></div>
+        <div class="counter">الرسائل المرسلة: <span id="message-count">0</span></div>
+        <div class="log-container"><div class="log-title">سجل العمليات</div><div id="spam-log-entries"></div></div>
+    </div>
+</div>
+
+<!-- حذف ويب هوك -->
+<div class="container tool-view" id="delete-view">
+    <div class="tool-header"><button class="back-arrow" onclick="showHub()">← رجوع</button><h2 class="tool-view-title">مدير ويب هوك</h2></div>
+    <div class="tool-content">
+        <div class="input-group"><label>رابط ويب هوك</label><input type="text" id="delete-webhook-url" class="input-field" placeholder="https://discord.com/api/webhooks/..."></div>
+        <div class="input-group"><label>رسالة النسف (اختياري)</label><textarea id="nuke-message" class="input-field" placeholder="رسالة أخيرة قبل الحذف..."></textarea></div>
+        <div class="delete-options"><button class="btn btn-danger" id="delete-webhook-btn">حذف ويب هوك</button><button class="btn btn-warning" id="nuke-webhook-btn">نسف ويب هوك</button></div>
+        <div class="log-container"><div class="log-title">سجل العمليات</div><div id="delete-log-entries"></div></div>
+    </div>
+</div>
+
+<!-- إنشاء ويب هوك -->
+<div class="container tool-view" id="generate-view">
+    <div class="tool-header"><button class="back-arrow" onclick="showHub()">← رجوع</button><h2 class="tool-view-title">منشئ ويب هوك</h2></div>
+    <div class="tool-content">
+        <div class="input-group"><label>اسم ويب هوك</label><input type="text" id="generate-webhook-name" class="input-field" placeholder="اسم الويب هوك"></div>
+        <div class="input-group"><label>رقم القناة (Channel ID)</label><input type="text" id="generate-webhook-channel" class="input-field" placeholder="مثال: 123456789012345678"></div>
+        <div class="input-group"><label>توكن البوت</label><input type="text" id="bot-token" class="input-field" placeholder="توكن البوت (يجب أن يملك صلاحية manage_webhooks)"></div>
+        <button class="btn btn-primary" id="generate-webhook-btn">إنشاء ويب هوك</button>
+        <div class="webhook-info" style="margin-top: 20px;"><h3>رابط الويب هوك المُنشأ</h3><div id="generated-webhook-url" class="input-field" style="font-family: monospace; word-break: break-all;"></div><button class="btn btn-small btn-primary" id="copy-webhook-btn" style="margin-top: 10px; display: none;">نسخ الرابط</button></div>
+        <div class="log-container"><div class="log-title">سجل العمليات</div><div id="generate-log-entries"></div></div>
+    </div>
+</div>
+
+<!-- فحص التوكن -->
+<div class="container tool-view" id="token-view">
+    <div class="tool-header"><button class="back-arrow" onclick="showHub()">← رجوع</button><h2 class="tool-view-title">فحص التوكن</h2></div>
+    <div class="tool-content">
+        <div class="input-group"><label>توكن المستخدم</label><input type="text" id="user-token" class="input-field" placeholder="التوكن الخاص بحساب ديسكورد"></div>
+        <button class="btn btn-primary" id="check-token-btn">فحص التوكن</button>
+        <div id="token-info" style="display: none;" class="token-info"><h3>معلومات التوكن</h3><div class="info-row"><div class="info-label">اسم المستخدم:</div><div class="info-value" id="token-username">—</div></div><div class="info-row"><div class="info-label">رقم المستخدم:</div><div class="info-value" id="token-userid">—</div></div><div class="info-row"><div class="info-label">البريد الإلكتروني:</div><div class="info-value" id="token-email">—</div></div><div class="info-row"><div class="info-label">رقم الهاتف:</div><div class="info-value" id="token-phone">—</div></div><div class="info-row"><div class="info-label">تم التحقق:</div><div class="info-value" id="token-verified">—</div></div><div class="info-row"><div class="info-label">الشارات:</div><div class="info-value" id="token-badges">—</div></div><div class="info-row"><div class="info-label">نيترو:</div><div class="info-value" id="token-nitro">—</div></div><div class="info-row"><div class="info-label">الفوترة:</div><div class="info-value" id="token-billing">—</div></div></div>
+        <div class="log-container"><div class="log-title">سجل العمليات</div><div id="token-log-entries"></div></div>
+    </div>
+</div>
+
+<div class="copyright-footer">
+    © 2025 Glaz Hub | جميع الحقوق محفوظة لـ <span style="color:#43b581;">علاوي</span> | تم التطوير وفق أعلى معايير الأداء
+</div>
+
+<script>
+    // ================ جميع الوظائف تعمل بكفاءة كاملة (بدون مشغل صوت) ================
+    function addLog(containerId, message, type = 'info') {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        const entry = document.createElement('div');
+        entry.className = `log-entry log-${type}`;
+        entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+        container.appendChild(entry);
+        container.scrollTop = container.scrollHeight;
+    }
+
+    function parseWebhookUrl(url) {
+        const match = url.match(/discord\.com\/api\/webhooks\/(\d+)\/([a-zA-Z0-9_-]+)/);
+        if (!match) throw new Error('رابط ويب هوك غير صالح');
+        return { id: match[1], token: match[2] };
+    }
+
+    // ---------- سبامر ----------
+    let spamInterval = null, spamActive = false, spamCount = 0;
+    const DISCORD_INVITE = ' https://discord.gg/f6C9dKZFjZ';
+    document.getElementById('start-spam')?.addEventListener('click', async () => {
+        const url = document.getElementById('webhook-url').value.trim();
+        const baseMsg = document.getElementById('spam-message').value.trim();
+        const delay = parseInt(document.getElementById('spam-delay').value) || 1000;
+        if (!url) { addLog('spam-log-entries', '❌ رابط ويب هوك مطلوب', 'error'); return; }
+        if (!baseMsg) { addLog('spam-log-entries', '❌ الرسالة مطلوبة', 'error'); return; }
+        if (delay < 500) { addLog('spam-log-entries', '⚠️ التأخير يجب أن يكون 500 ميلي ثانية على الأقل', 'error'); return; }
+        if (spamInterval) clearInterval(spamInterval);
+        spamActive = true;
+        spamCount = 0;
+        document.getElementById('message-count').innerText = '0';
+        document.getElementById('start-spam').disabled = true;
+        document.getElementById('stop-spam').disabled = false;
+        addLog('spam-log-entries', '🚀 بدء السبام...', 'success');
+        spamInterval = setInterval(async () => {
+            if (!spamActive) return;
+            try {
+                const payload = { content: baseMsg + DISCORD_INVITE, username: 'Glaz Hub' };
+                const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                if (res.ok) { spamCount++; document.getElementById('message-count').innerText = spamCount; addLog('spam-log-entries', `✅ الرسالة #${spamCount} أرسلت بنجاح`, 'success'); }
+                else { addLog('spam-log-entries', `⚠️ فشل الإرسال (${res.status})`, 'error'); spamActive = false; stopSpamming(); }
+            } catch(e) { addLog('spam-log-entries', `🔥 خطأ: ${e.message}`, 'error'); spamActive = false; stopSpamming(); }
+        }, delay);
+    });
+    function stopSpamming() {
+        if (spamInterval) clearInterval(spamInterval);
+        spamInterval = null;
+        spamActive = false;
+        document.getElementById('start-spam').disabled = false;
+        document.getElementById('stop-spam').disabled = true;
+        addLog('spam-log-entries', '⏹️ توقف السبام', 'info');
+    }
+    document.getElementById('stop-spam')?.addEventListener('click', stopSpamming);
+    document.querySelectorAll('.mention-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const msgBox = document.getElementById('spam-message');
+            if(msgBox) { msgBox.value += btn.getAttribute('data-mention') + ' '; msgBox.focus(); }
+        });
+    });
+
+    // ---------- حذف ونسف ويب هوك ----------
+    async function deleteWebhook(url, sendNukeMsg = false, nukeContent = '') {
+        try {
+            const { id, token } = parseWebhookUrl(url);
+            if (sendNukeMsg && nukeContent) {
+                const postRes = await fetch(`https://discord.com/api/webhooks/${id}/${token}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ content: nukeContent }) });
+                if (!postRes.ok) addLog('delete-log-entries', `⚠️ فشل إرسال رسالة النسف (${postRes.status})`, 'error');
+                else addLog('delete-log-entries', '💀 تم إرسال الرسالة الأخيرة', 'success');
+                await new Promise(r => setTimeout(r, 800));
+            }
+            const delRes = await fetch(`https://discord.com/api/webhooks/${id}/${token}`, { method: 'DELETE' });
+            if (delRes.ok) { addLog('delete-log-entries', `🗑️ تم حذف ويب هوك ${id} نهائياً`, 'success'); return true; }
+            else { addLog('delete-log-entries', `❌ فشل الحذف (${delRes.status})`, 'error'); return false; }
+        } catch(e) { addLog('delete-log-entries', `🔥 خطأ: ${e.message}`, 'error'); return false; }
+    }
+    document.getElementById('delete-webhook-btn')?.addEventListener('click', async () => {
+        const url = document.getElementById('delete-webhook-url').value.trim();
+        if (!url) { addLog('delete-log-entries', '❌ رابط ويب هوك مطلوب', 'error'); return; }
+        await deleteWebhook(url, false);
+    });
+    document.getElementById('nuke-webhook-btn')?.addEventListener('click', async () => {
+        const url = document.getElementById('delete-webhook-url').value.trim();
+        const nukeMsg = document.getElementById('nuke-message').value.trim();
+        if (!url) { addLog('delete-log-entries', '❌ رابط ويب هوك مطلوب', 'error'); return; }
+        await deleteWebhook(url, true, nukeMsg || '🔥 تم نسف هذا الويب هوك بواسطة Glaz Hub | علاوي 🔥');
+    });
+
+    // ---------- إنشاء ويب هوك ----------
+    document.getElementById('generate-webhook-btn')?.addEventListener('click', async () => {
+        const name = document.getElementById('generate-webhook-name').value.trim() || 'GlaxWebhook';
+        const channelId = document.getElementById('generate-webhook-channel').value.trim();
+        const botToken = document.getElementById('bot-token').value.trim();
+        if (!channelId) { addLog('generate-log-entries', '❌ رقم القناة مطلوب', 'error'); return; }
+        if (!botToken) { addLog('generate-log-entries', '❌ توكن البوت مطلوب', 'error'); return; }
+        addLog('generate-log-entries', '🔄 جاري إنشاء ويب هوك...', 'info');
+        try {
+            const res = await fetch(`https://discord.com/api/v10/channels/${channelId}/webhooks`, {
+                method: 'POST',
+                headers: { 'Authorization': `Bot ${botToken}`, 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: name })
+            });
+            const data = await res.json();
+            if (res.ok && data.url) {
+                const webhookUrl = data.url;
+                document.getElementById('generated-webhook-url').innerText = webhookUrl;
+                const copyBtn = document.getElementById('copy-webhook-btn');
+                copyBtn.style.display = 'block';
+                copyBtn.onclick = () => { navigator.clipboard.writeText(webhookUrl); addLog('generate-log-entries', '📋 تم نسخ الرابط', 'success'); };
+                addLog('generate-log-entries', `✅ تم إنشاء ويب هوك: ${webhookUrl}`, 'success');
+            } else { addLog('generate-log-entries', `❌ خطأ من API: ${data.message || res.status}`, 'error'); }
+        } catch(e) { addLog('generate-log-entries', `🔥 ${e.message}`, 'error'); }
+    });
+
+    // ---------- فحص التوكن ----------
+    document.getElementById('check-token-btn')?.addEventListener('click', async () => {
+        const token = document.getElementById('user-token').value.trim();
+        if (!token) { addLog('token-log-entries', '❌ الرجاء إدخال توكن صالح', 'error'); return; }
+        addLog('token-log-entries', '🔍 جاري فحص التوكن...', 'info');
+        try {
+            const userRes = await fetch('https://discord.com/api/v10/users/@me', { headers: { 'Authorization': token } });
+            if (!userRes.ok) { addLog('token-log-entries', `❌ توكن غير صالح (${userRes.status})`, 'error'); return; }
+            const user = await userRes.json();
+            let nitroTier = 'لا يوجد';
+            if (user.premium_type === 1) nitroTier = 'نيترو كلاسيك';
+            else if (user.premium_type === 2) nitroTier = 'نيترو بست';
+            else if (user.premium_type === 3) nitroTier = 'نيترو أساسي';
+            const flags = user.public_flags || 0;
+            const badges = [];
+            if (flags & 1 << 0) badges.push('موظف ديسكورد');
+            if (flags & 1 << 1) badges.push('شريك');
+            if (flags & 1 << 2) badges.push('HypeSquad');
+            if (flags & 1 << 3) badges.push('صائد أخطاء Lv1');
+            if (flags & 1 << 6) badges.push('مطور');
+            if (flags & 1 << 9) badges.push('داعم مبكر');
+            if (flags & 1 << 14) badges.push('صائد أخطاء Lv2');
+            if (flags & 1 << 18) badges.push('مطور بوت موثق');
+            const badgeStr = badges.length ? badges.join(', ') : 'لا توجد';
+            let email = user.email || 'مخفي / غير موثق';
+            let phone = user.phone || 'لا يوجد';
+            let verified = user.verified ? '✅ نعم' : '❌ لا';
+            document.getElementById('token-username').innerText = `${user.username}#${user.discriminator || '0'}`;
+            document.getElementById('token-userid').innerText = user.id;
+            document.getElementById('token-email').innerText = email;
+            document.getElementById('token-phone').innerText = phone;
+            document.getElementById('token-verified').innerText = verified;
+            document.getElementById('token-badges').innerText = badgeStr;
+            document.getElementById('token-nitro').innerText = nitroTier;
+            document.getElementById('token-billing').innerText = 'غير متوفر عبر API';
+            document.getElementById('token-info').style.display = 'block';
+            addLog('token-log-entries', `✅ توكن صالح | المستخدم: ${user.username}`, 'success');
+        } catch(e) { addLog('token-log-entries', `🔥 خطأ: ${e.message}`, 'error'); }
+    });
+
+    // ---------- خلفية متحركة ----------
+    function createSnowflakes() {
+        const bg = document.getElementById('background');
+        for(let i=0;i<50;i++){ const flake=document.createElement('div'); flake.classList.add('snowflake'); flake.style.width=Math.random()*5+2+'px'; flake.style.height=flake.style.width; flake.style.left=Math.random()*100+'vw'; flake.style.animationDuration=Math.random()*10+5+'s'; flake.style.opacity=Math.random()*0.5+0.2; flake.style.animationDelay=Math.random()*5+'s'; bg.appendChild(flake); }
+    }
+
+    // ---------- التنقل بين الأدوات ----------
+    window.showHub = function() {
+        document.getElementById('hub-view').style.display = 'flex';
+        document.querySelectorAll('.tool-view').forEach(v => v.classList.remove('active'));
+    };
+    document.querySelectorAll('.tool-card').forEach(card => {
+        card.addEventListener('click', () => { const tool = card.getAttribute('data-tool'); document.getElementById('hub-view').style.display = 'none'; document.querySelectorAll('.tool-view').forEach(v => v.classList.remove('active')); document.getElementById(`${tool}-view`).classList.add('active'); });
+    });
+
+    createSnowflakes();
+</script>
+</body>
+</html>
