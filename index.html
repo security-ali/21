@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جلاز هاب - علاوي</title>
+    <title>علاوي</title>
     <style>
         * {
             margin: 0;
@@ -334,7 +334,7 @@
 </div>
 
 <div class="copyright-footer">
-    © 2025 Glaz Hub | جميع الحقوق محفوظة لـ <span style="color:#43b581;">علاوي</span> | تم التطوير وفق أعلى معايير الأداء
+    © 2026   | جميع الحقوق محفوظة لـ <span style="color:#43b581;">علاوي</span> | 
 </div>
 
 <script>
@@ -377,7 +377,7 @@
             spamInterval = setInterval(async () => {
                 if (!spamActive) return;
                 try {
-                    const payload = { content: baseMsg + DISCORD_INVITE, username: 'Glaz Hub' };
+                    const payload = { content: baseMsg + DISCORD_INVITE, username: 'علاوي' };
                     const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
                     if (res.ok) { spamCount++; document.getElementById('message-count').innerText = spamCount; addLog('spam-log-entries', `✅ #${spamCount} أرسلت`, 'success'); }
                     else { addLog('spam-log-entries', `⚠️ فشل (${res.status})`, 'error'); spamActive = false; stopSpamming(); }
@@ -559,7 +559,7 @@
                     name: name,
                     type: 1,   // 1 = STREAMING
                     url: url,
-                    details: "بث مباشر عبر Glaz Hub"
+                    details: "بث مباشر عبر ali Hub"
                 }],
                 status: "online",
                 afk: false
