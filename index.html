@@ -1,632 +1,655 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>علاوي</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-            background: #0a0a0a;
-            color: #e0e0e0;
-            min-height: 100vh;
-            overflow-x: hidden;
-            padding-bottom: 80px;
-        }
-        .background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            overflow: hidden;
-        }
-        .snowflake {
-            position: absolute;
-            background: rgba(114, 137, 218, 0.3);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: fall linear infinite;
-        }
-        @keyframes fall {
-            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-        }
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .hub-view {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-        .hub-header { margin-bottom: 50px; }
-        .hub-title {
-            font-size: 4rem;
-            color: #7289da;
-            text-shadow: 0 0 20px rgba(114, 137, 218, 0.5);
-            font-weight: 800;
-        }
-        .hub-subtitle { color: #a0a0a0; font-size: 1.2rem; margin-bottom: 30px; }
-        .tool-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            width: 100%;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .tool-card {
-            background: rgba(26, 26, 26, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 40px 30px;
-            border: 1px solid #333;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-        .tool-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(114, 137, 218, 0.1), transparent);
-            transition: left 0.5s;
-        }
-        .tool-card:hover::before { left: 100%; }
-        .tool-card:hover {
-            transform: translateY(-10px);
-            border-color: #7289da;
-            box-shadow: 0 10px 30px rgba(114, 137, 218, 0.3);
-        }
-        .tool-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 15px; }
-        .tool-desc { font-size: 1rem; color: #a0a0a0; }
-        .tool-view { display: none; min-height: 100vh; padding: 40px 0; }
-        .tool-view.active { display: block; }
-        .tool-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 40px;
-            padding: 20px;
-            background: rgba(26, 26, 26, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            border: 1px solid #333;
-            flex-direction: row-reverse;
-        }
-        .back-arrow {
-            background: #333;
-            color: #e0e0e0;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-left: 30px;
-            margin-right: 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-        .back-arrow:hover { background: #444; transform: translateX(5px); }
-        .tool-view-title { font-size: 2.5rem; color: #7289da; }
-        .tool-content {
-            background: rgba(26, 26, 26, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 40px;
-            border: 1px solid #333;
-            margin-bottom: 30px;
-        }
-        .input-group { margin-bottom: 25px; }
-        label { display: block; margin-bottom: 10px; font-weight: 600; color: #a0a0a0; }
-        .input-field {
-            width: 100%;
-            padding: 16px;
-            background: #1e1e1e;
-            border: 1px solid #333;
-            border-radius: 10px;
-            color: #e0e0e0;
-            font-size: 1rem;
-            transition: 0.3s;
-        }
-        .input-field:focus { outline: none; border-color: #7289da; box-shadow: 0 0 0 3px rgba(114,137,218,0.2); }
-        .btn {
-            display: block;
-            width: 100%;
-            padding: 16px;
-            background: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 50px;
-            color: #e0e0e0;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-            text-align: center;
-            margin-top: 10px;
-        }
-        .btn-primary { background: #7289da; border-color: #7289da; color: white; }
-        .btn-primary:hover { background: #5b6eae; }
-        .btn-success { background: #43b581; border-color: #43b581; color: white; }
-        .btn-danger { background: #f04747; border-color: #f04747; color: white; }
-        .btn-warning { background: #faa61a; border-color: #faa61a; color: black; }
-        .mention-buttons { display: flex; gap: 15px; margin-bottom: 20px; }
-        .mention-btn {
-            padding: 12px 20px;
-            background: #333;
-            border: 1px solid #444;
-            border-radius: 8px;
-            color: #e0e0e0;
-            cursor: pointer;
-            font-weight: 600;
-        }
-        .inline-buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-        }
-        .inline-buttons .btn {
-            flex: 1;
-            margin-top: 0;
-        }
-        .delete-options { display: flex; gap: 15px; margin-top: 20px; }
-        .delete-options .btn { flex: 1; }
-        .log-container {
-            margin-top: 25px;
-            background: #1a1a1a;
-            border-radius: 10px;
-            padding: 20px;
-            max-height: 200px;
-            overflow-y: auto;
-            border: 1px solid #333;
-        }
-        .log-title { font-size: 1.1rem; color: #a0a0a0; margin-bottom: 15px; font-weight: 600; }
-        .log-entry { font-size: 0.9rem; margin-bottom: 8px; padding: 8px; border-radius: 5px; background: #252525; }
-        .log-success { color: #43b581; }
-        .log-error { color: #f04747; }
-        .log-info { color: #7289da; }
-        .invite-note {
-            background: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 8px;
-            padding: 15px;
-            margin-top: 15px;
-            font-size: 0.9rem;
-            text-align: center;
-        }
-        .invite-link { color: #7289da; font-weight: bold; }
-        .token-info {
-            margin-top: 25px;
-            background: #1a1a1a;
-            border-radius: 10px;
-            padding: 20px;
-            border: 1px solid #333;
-        }
-        .info-row { display: flex; padding: 8px 0; border-bottom: 1px solid #333; }
-        .info-label { width: 140px; font-weight: 600; color: #a0a0a0; }
-        .info-value { flex: 1; color: #e0e0e0; }
-        .copyright-footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 15px;
-            border-top: 1px solid #333;
-            color: #7289da;
-            font-weight: bold;
-            direction: ltr;
-        }
-        @media (max-width: 768px) {
-            .tool-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+<meta http-equiv="X-XSS-Protection" content="1; mode=block">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="description" content="مجتمع Trx - المجتمع الأمثل لعشاق الألعاب مع فعاليات يومية وجوائز قيّمة">
+<meta name="theme-color" content="#c0294a">
+<meta name="color-scheme" content="dark">
+<title>Trx Community - مجتمع الألعاب العربي</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" crossorigin="anonymous">
+<style>
+:root{
+  --r:#c0294a;--rl:#ff3d65;--rd:#7a1028;
+  --g:#e8b84b;--g2:#ffd060;
+  --bg:#06030b;--bg2:#0d080f;--bg3:#110a13;
+  --card:#130b15;--card2:#180d1a;
+  --border:rgba(192,41,74,0.18);
+  --text:#f0e4ee;--muted:#907080;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Tajawal',sans-serif;
+  overflow-x:hidden;line-height:1.6;
+}
+
+/* ORBS */
+.orb{position:fixed;border-radius:50%;filter:blur(110px);pointer-events:none;z-index:0;}
+.o1{width:800px;height:600px;top:-20%;left:50%;transform:translateX(-50%);
+  background:radial-gradient(ellipse,rgba(192,41,74,0.18),transparent 70%);
+  animation:oA 9s ease-in-out infinite alternate;}
+.o2{width:450px;height:450px;bottom:5%;right:-8%;
+  background:radial-gradient(ellipse,rgba(107,15,40,0.14),transparent 70%);
+  animation:oB 11s ease-in-out infinite alternate;}
+.o3{width:350px;height:350px;top:35%;left:-8%;
+  background:radial-gradient(ellipse,rgba(232,184,75,0.06),transparent 70%);
+  animation:oA 14s ease-in-out infinite alternate-reverse;}
+@keyframes oA{0%{transform:translateX(-50%) translateY(0)}100%{transform:translateX(-50%) translateY(-35px)}}
+@keyframes oB{0%{transform:translateY(0)}100%{transform:translateY(-28px)}}
+
+.wrap{position:relative;z-index:2;}
+
+/* NAV */
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 6vw;
+  background:rgba(6,3,11,0.82);
+  backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:100;
+}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo{width:36px;height:36px;object-fit:contain;filter:drop-shadow(0 0 8px rgba(192,41,74,.7));}
+.nav-name{font-family:'Cairo',sans-serif;font-weight:900;font-size:1.3rem;
+  background:linear-gradient(135deg,#fff,var(--rl),var(--g));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.live{width:7px;height:7px;border-radius:50%;background:var(--rl);
+  box-shadow:0 0 10px var(--rl);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.15}}
+
+.nav-links{display:flex;gap:4px;}
+.nl{color:var(--muted);text-decoration:none;font-size:.87rem;font-weight:600;
+  padding:7px 15px;border-radius:50px;transition:all .25s;}
+.nl:hover{color:var(--text);background:rgba(192,41,74,.1);}
+
+.nav-cta{
+  display:flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,var(--rl),var(--rd));
+  color:#fff;text-decoration:none;
+  padding:9px 22px;border-radius:50px;
+  font-size:.88rem;font-weight:700;
+  box-shadow:0 4px 18px rgba(192,41,74,.4);
+  transition:all .25s;
+}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(192,41,74,.6);}
+
+/* SVG DISCORD */
+.di{width:18px;height:18px;fill:currentColor;flex-shrink:0;}
+
+/* HERO */
+.hero{
+  text-align:center;padding:100px 6vw 80px;
+  position:relative;
+}
+.hero-grid-bg{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;
+  background-image:
+    linear-gradient(rgba(192,41,74,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(192,41,74,.03) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%);
+}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(192,41,74,.1);border:1px solid rgba(192,41,74,.3);
+  padding:6px 20px;border-radius:50px;
+  font-size:.78rem;font-weight:700;color:var(--rl);
+  margin-bottom:34px;letter-spacing:.5px;
+  animation:fadeD .7s ease both;
+}
+.pill-dot{width:6px;height:6px;border-radius:50%;background:var(--rl);
+  box-shadow:0 0 8px var(--rl);animation:blink 1.5s infinite;}
+
+.logo-wrap{
+  position:relative;display:inline-block;
+  margin-bottom:30px;
+  animation:floatY 4.5s ease-in-out infinite, fadeU .8s ease .1s both;
+}
+.logo-glow{
+  position:absolute;inset:-25px;border-radius:50%;
+  background:radial-gradient(ellipse,rgba(192,41,74,.3),transparent 70%);
+  animation:pulse 3.5s ease-in-out infinite alternate;
+}
+@keyframes pulse{0%{opacity:.5;transform:scale(.85)}100%{opacity:1;transform:scale(1.1)}}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
+.ring{
+  position:absolute;inset:-28px;border-radius:50%;
+  border:1px solid rgba(192,41,74,.22);
+  animation:spin 14s linear infinite;
+}
+.ring-dot{
+  position:absolute;top:-4px;left:50%;
+  width:8px;height:8px;border-radius:50%;
+  background:var(--rl);box-shadow:0 0 12px var(--rl);
+  transform:translateX(-50%);
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-img{
+  width:190px;height:190px;object-fit:contain;position:relative;z-index:1;
+  filter:drop-shadow(0 0 36px rgba(192,41,74,.75)) drop-shadow(0 0 70px rgba(192,41,74,.25));
+}
+h1.title{
+  font-family:'Cairo',sans-serif;
+  font-size:clamp(2.8rem,6.5vw,5.5rem);
+  font-weight:900;line-height:1.05;
+  margin-bottom:18px;
+  animation:fadeU .8s ease .2s both;
+}
+h1.title em{
+  font-style:normal;
+  background:linear-gradient(135deg,#fff 0%,var(--rl) 45%,var(--g) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-sub{
+  font-size:1.12rem;color:var(--muted);
+  max-width:560px;margin:0 auto 42px;line-height:2;
+  animation:fadeU .8s ease .3s both;
+}
+.btns{
+  display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+  margin-bottom:68px;
+  animation:fadeU .8s ease .4s both;
+}
+.btn-p{
+  display:flex;align-items:center;gap:9px;
+  background:linear-gradient(135deg,var(--rl),var(--rd));
+  color:#fff;text-decoration:none;
+  padding:15px 40px;border-radius:50px;
+  font-size:1rem;font-weight:700;
+  box-shadow:0 6px 28px rgba(192,41,74,.48),inset 0 1px 0 rgba(255,255,255,.1);
+  transition:all .25s;
+  border:none;cursor:pointer;
+}
+.btn-p:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 12px 40px rgba(192,41,74,.65);}
+.btn-p:focus{outline:2px solid var(--rl);outline-offset:2px;}
+.btn-g{
+  display:flex;align-items:center;gap:9px;
+  background:transparent;border:1px solid rgba(192,41,74,.35);
+  color:var(--rl);text-decoration:none;
+  padding:15px 40px;border-radius:50px;
+  font-size:1rem;font-weight:700;
+  transition:all .25s;
+  cursor:pointer;
+}
+.btn-g:hover{background:rgba(192,41,74,.1);border-color:var(--rl);transform:translateY(-3px);}
+.btn-g:focus{outline:2px solid var(--rl);outline-offset:2px;}
+
+/* STATS */
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border:1px solid var(--border);border-radius:20px;
+  overflow:hidden;max-width:820px;margin:0 auto;
+  animation:fadeU .8s ease .5s both;
+}
+.st{
+  background:var(--card);padding:26px 12px;text-align:center;
+  border-left:1px solid var(--border);transition:background .25s;
+}
+.st:last-child{border-left:none;}
+.st:hover{background:rgba(192,41,74,.07);}
+.sn{
+  font-family:'Cairo',sans-serif;font-size:1.9rem;font-weight:900;
+  background:linear-gradient(135deg,#fff,var(--rl));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.sl{font-size:.8rem;color:var(--muted);margin-top:4px;font-weight:600;}
+
+/* SECTION */
+section{padding:88px 6vw;}
+.tag{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(192,41,74,.09);border:1px solid rgba(192,41,74,.22);
+  color:var(--rl);font-size:.73rem;font-weight:800;
+  padding:5px 15px;border-radius:50px;
+  margin-bottom:15px;letter-spacing:1.5px;text-transform:uppercase;
+}
+.stitle{
+  font-family:'Cairo',sans-serif;
+  font-size:clamp(1.85rem,3.8vw,2.8rem);font-weight:900;margin-bottom:12px;
+}
+.stitle span{
+  background:linear-gradient(135deg,#fff,var(--rl));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.sdesc{color:var(--muted);font-size:.98rem;line-height:1.9;max-width:500px;}
+.div{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 6vw;}
+
+/* FEATURES */
+.fg{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;
+}
+.fc{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:20px;padding:30px 24px;
+  position:relative;overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s;
+}
+.fc::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(192,41,74,.07),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.fc:hover{transform:translateY(-7px);border-color:rgba(192,41,74,.4);
+  box-shadow:0 18px 45px rgba(192,41,74,.13);}
+.fc:hover::before{opacity:1;}
+.fi{
+  width:52px;height:52px;border-radius:14px;
+  background:rgba(192,41,74,.11);border:1px solid rgba(192,41,74,.18);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;margin-bottom:20px;
+}
+.fc h3{font-family:'Cairo',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:8px;}
+.fc p{color:var(--muted);font-size:.88rem;line-height:1.8;}
+
+/* EVENTS */
+.esec{background:var(--bg3);}
+.eg{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:48px;}
+.ec{
+  background:var(--card2);border:1px solid var(--border);
+  border-radius:20px;overflow:hidden;display:flex;
+  transition:transform .3s,border-color .3s,box-shadow .3s;
+}
+.ec:hover{transform:translateY(-5px);border-color:rgba(232,184,75,.28);
+  box-shadow:0 14px 36px rgba(0,0,0,.35);}
+.estr{width:5px;flex-shrink:0;}
+.estr.r{background:linear-gradient(180deg,var(--rl),var(--rd));}
+.estr.y{background:linear-gradient(180deg,var(--g2),var(--g));}
+.estr.gr{background:linear-gradient(180deg,#4ade80,#16a34a);}
+.estr.b{background:linear-gradient(180deg,#60a5fa,#2563eb);}
+.eb{padding:24px;}
+.ebadge{
+  display:inline-block;font-size:.7rem;font-weight:800;
+  padding:3px 12px;border-radius:50px;margin-bottom:10px;letter-spacing:.5px;
+}
+.ebadge.r{background:rgba(192,41,74,.12);border:1px solid rgba(192,41,74,.28);color:var(--rl);}
+.ebadge.y{background:rgba(232,184,75,.12);border:1px solid rgba(232,184,75,.28);color:var(--g2);}
+.ebadge.gr{background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.28);color:#4ade80;}
+.ebadge.b{background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.28);color:#60a5fa;}
+.ec h3{font-family:'Cairo',sans-serif;font-weight:700;font-size:1.05rem;margin-bottom:7px;}
+.ec p{color:var(--muted);font-size:.86rem;line-height:1.75;}
+.eico{font-size:2.2rem;float:left;margin-left:14px;margin-top:2px;}
+
+/* GAMES */
+.gg{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));
+  gap:13px;margin-top:48px;
+}
+.gc{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:16px;padding:24px 10px;text-align:center;
+  transition:all .25s;cursor:default;
+}
+.gc:hover{background:rgba(192,41,74,.09);border-color:rgba(192,41,74,.4);transform:translateY(-5px);}
+.gico{font-size:2rem;display:block;margin-bottom:10px;}
+.gn{font-size:.85rem;font-weight:700;}
+.gt{font-size:.72rem;color:var(--muted);margin-top:3px;}
+
+/* APPLY SECTION */
+.apply-sec{background:var(--bg2);}
+.apply-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;
+}
+.apply-steps{display:flex;flex-direction:column;gap:14px;margin-top:30px;}
+.astep{
+  display:flex;align-items:center;gap:14px;
+  background:var(--card2);border:1px solid var(--border);
+  border-radius:14px;padding:17px 18px;
+  transition:all .25s;
+}
+.astep:hover{border-color:rgba(192,41,74,.35);transform:translateX(-4px);}
+.anum{
+  width:34px;height:34px;border-radius:9px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--r),var(--rd));
+  color:#fff;font-weight:900;font-size:.9rem;
+  display:flex;align-items:center;justify-content:center;
+}
+.at{font-weight:700;font-size:.93rem;margin-bottom:3px;}
+.ad{color:var(--muted);font-size:.82rem;}
+.apply-card{
+  background:linear-gradient(145deg,var(--card2),rgba(192,41,74,.05));
+  border:1px solid rgba(192,41,74,.28);
+  border-radius:26px;padding:46px 38px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.apply-card::before{
+  content:'';position:absolute;top:-50px;left:50%;transform:translateX(-50%);
+  width:280px;height:280px;
+  background:radial-gradient(ellipse,rgba(192,41,74,.09),transparent 70%);
+  pointer-events:none;
+}
+.apply-card .aico{font-size:4.5rem;display:block;margin-bottom:18px;
+  filter:drop-shadow(0 4px 16px rgba(192,41,74,.45));}
+.apply-card h3{font-family:'Cairo',sans-serif;font-size:1.75rem;font-weight:900;margin-bottom:12px;}
+.apply-card p{color:var(--muted);font-size:.95rem;line-height:1.85;margin-bottom:28px;}
+
+/* ADMIN */
+.admin-sec{background:var(--bg3);}
+.adg{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-top:48px;}
+.adf{display:flex;flex-direction:column;gap:14px;}
+.af{
+  display:flex;align-items:flex-start;gap:14px;
+  background:var(--card2);border:1px solid var(--border);
+  border-radius:15px;padding:18px;
+  transition:all .25s;
+}
+.af:hover{border-color:rgba(192,41,74,.32);transform:translateX(-4px);}
+.afic{
+  width:42px;height:42px;border-radius:11px;flex-shrink:0;
+  background:rgba(192,41,74,.11);
+  display:flex;align-items:center;justify-content:center;font-size:1.2rem;
+}
+.af h4{font-weight:700;font-size:.94rem;margin-bottom:5px;}
+.af p{color:var(--muted);font-size:.85rem;line-height:1.7;}
+.admin-vis{
+  background:linear-gradient(145deg,var(--card),rgba(192,41,74,.06));
+  border:1px solid rgba(192,41,74,.22);
+  border-radius:26px;padding:42px 34px;text-align:center;
+}
+.abadge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(232,184,75,.09);border:1px solid rgba(232,184,75,.28);
+  color:var(--g2);font-weight:800;font-size:.83rem;
+  padding:7px 20px;border-radius:50px;margin-bottom:18px;
+}
+.admin-vis h3{font-family:'Cairo',sans-serif;font-size:1.55rem;font-weight:900;margin-bottom:12px;}
+.admin-vis p{color:var(--muted);font-size:.93rem;line-height:1.85;margin-bottom:8px;}
+
+/* CTA */
+.cta{
+  text-align:center;padding:110px 6vw;
+  background:linear-gradient(180deg,var(--bg) 0%,#140b16 50%,var(--bg) 100%);
+  position:relative;overflow:hidden;
+}
+.cta-glow{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:650px;height:480px;
+  background:radial-gradient(ellipse,rgba(192,41,74,.17),transparent 65%);
+  pointer-events:none;
+}
+.cta h2{
+  font-family:'Cairo',sans-serif;
+  font-size:clamp(2rem,4.5vw,3.7rem);font-weight:900;margin-bottom:16px;
+}
+.cta p{color:var(--muted);font-size:1.05rem;max-width:500px;margin:0 auto 42px;line-height:1.9;}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--border);
+  padding:34px 6vw;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;
+}
+.fb{
+  font-family:'Cairo',sans-serif;font-weight:900;font-size:1.15rem;
+  background:linear-gradient(135deg,#fff,var(--rl));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.fc2{color:var(--muted);font-size:.82rem;}
+
+/* ANIMATIONS */
+@keyframes fadeD{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeU{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.rv{opacity:0;transform:translateY(38px);transition:opacity .65s ease,transform .65s ease;}
+.rv.vi{opacity:1;transform:translateY(0);}
+.rv2{opacity:0;transform:translateY(38px);transition:opacity .65s ease .14s,transform .65s ease .14s;}
+.rv2.vi{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:880px){
+  .fg{grid-template-columns:1fr 1fr;}
+  .apply-inner,.adg{grid-template-columns:1fr;}
+}
+@media(max-width:620px){
+  .stats{grid-template-columns:1fr 1fr;}
+  .st{border-left:none;border-top:1px solid var(--border);}
+  .st:nth-child(-n+2){border-top:none;}
+  .fg{grid-template-columns:1fr;}
+  .eg{grid-template-columns:1fr;}
+  nav .nav-links{display:none;}
+  .gg{grid-template-columns:repeat(auto-fill,minmax(110px,1fr));}
+}
+
+/* ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+  *,*::before,*::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* SKIP LINK */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--rl);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+</style>
 </head>
 <body>
-<div class="background" id="background"></div>
 
-<div class="container hub-view" id="hub-view">
-    <div class="hub-header"><h1 class="hub-title">GLAZ HUB</h1><p class="hub-subtitle">مجموعة أدوات ديسكورد المتقدمة - بإشراف علاوي</p></div>
-    <div class="tool-grid">
-        <div class="tool-card" data-tool="spam"><div class="tool-title">سبام ويب هوك</div><div class="tool-desc">إرسال كم هائل من الرسائل مع تحكم بالتأخير</div></div>
-        <div class="tool-card" data-tool="delete"><div class="tool-title">مدير ويب هوك</div><div class="tool-desc">حذف أو نسف ويب هوك (رسالة أخيرة + تدمير)</div></div>
-        <div class="tool-card" data-tool="sender"><div class="tool-title">مرسل رسائل عادي</div><div class="tool-desc">أرسل رسالة واحدة عادية عبر ويب هوك</div></div>
-        <div class="tool-card" data-tool="token"><div class="tool-title">فحص التوكن</div><div class="tool-desc">استخراج معلومات كاملة من توكن ديسكورد</div></div>
-        <div class="tool-card" data-tool="hypesquad"><div class="tool-title">HypeSquad (علاوي)</div><div class="tool-desc">تغيير أو إزالة HypeSquad Badge بحسابك</div></div>
-        <div class="tool-card" data-tool="streaming"><div class="tool-title">حالة Streaming</div><div class="tool-desc">اجعل حسابك يظهر كأنه يبث مباشر (اسم اللعبة + رابط)</div></div>
-    </div>
+<a href="#main-content" class="skip-link">اذهب للمحتوى الرئيسي</a>
+
+<div class="o1 orb" aria-hidden="true"></div>
+<div class="o2 orb" aria-hidden="true"></div>
+<div class="o3 orb" aria-hidden="true"></div>
+
+<div class="wrap">
+
+<!-- NAV -->
+<nav role="navigation" aria-label="القائمة الرئيسية">
+  <a href="#" class="nav-brand" aria-label="Trx Community - الصفحة الرئيسية">
+    <img src="https://timg.eu.cc/jEKyAG283-.gif" alt="شعار Trx" class="nav-logo" loading="lazy">
+    <span class="nav-name">Trx Community</span>
+    <div class="live" aria-label="السيرفر نشط الآن"></div>
+  </a>
+  <div class="nav-links">
+    <a href="#features" class="nl">المميزات</a>
+    <a href="#events" class="nl">الفعاليات</a>
+    <a href="#games" class="nl">الألعاب</a>
+    <a href="#apply" class="nl">التقديم</a>
+    <a href="#admin" class="nl">الإدارة</a>
+  </div>
+  <a href="https://discord.gg/trx" target="_blank" rel="noopener noreferrer" class="nav-cta" aria-label="انضم إلى ديسكورد Trx (يفتح في نافذة جديدة)">
+    <svg class="di" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.036.055a19.87 19.87 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.1.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .036-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+    انضم الآن
+  </a>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="main-content">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="pill"><div class="pill-dot" aria-hidden="true"></div>السيرفر نشط الآن</div>
+  <div class="logo-wrap">
+    <div class="logo-glow" aria-hidden="true"></div>
+    <div class="ring" aria-hidden="true"><div class="ring-dot"></div></div>
+    <img src="https://timg.eu.cc/jEKyAG283-.gif" alt="شعار Trx Community" class="hero-img" loading="lazy">
+  </div>
+  <h1 class="title"><em>Trx Community</em></h1>
+  <p class="hero-sub">المجتمع الأمثل لعشاق الألعاب — فعاليات يومية بجوائز قيّمة، جميع ألعاب PC والموبايل، وإدارة احترافية تساعدك في كل خطوة</p>
+  <div class="btns">
+    <a href="https://discord.gg/trx" target="_blank" rel="noopener noreferrer" class="btn-p" aria-label="انضم إلى ديسكورد Trx (يفتح في نافذة جديدة)">
+      <svg class="di" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.036.055a19.87 19.87 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.1.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .036-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+      انضم للديسكورد
+    </a>
+    <a href="#apply" class="btn-g">📋 التقديم للإدارة</a>
+  </div>
+  <div class="stats rv">
+    <div class="st"><div class="sn">+500</div><div class="sl">عضو نشط</div></div>
+    <div class="st"><div class="sn">يومياً</div><div class="sl">فعاليات بجوائز</div></div>
+    <div class="st"><div class="sn">PC+📱</div><div class="sl">جميع المنصات</div></div>
+    <div class="st"><div class="sn">24/7</div><div class="sl">دعم الإدارة</div></div>
+  </div>
 </div>
 
-<!-- سبام ويب هوك -->
-<div class="container tool-view" id="spam-view">
-    <div class="tool-header"><button class="back-arrow" onclick="showHub()">← رجوع</button><h2 class="tool-view-title">سبام ويب هوك</h2></div>
-    <div class="tool-content">
-        <div class="input-group"><label>رابط ويب هوك</label><input type="text" id="webhook-url" class="input-field" placeholder="https://discord.com/api/webhooks/..."></div>
-        <div class="input-group"><label>الرسالة المكررة</label><div class="mention-buttons"><button class="mention-btn" data-mention="@everyone">@everyone</button><button class="mention-btn" data-mention="@here">@here</button></div>
-        <textarea id="spam-message" class="input-field message-input" placeholder="أدخل النص..."></textarea><div class="invite-note">الدعوة تضاف تلقائياً: <span class="invite-link">https://discord.gg/f6C9dKZFjZ</span></div></div>
-        <div class="input-group"><label>التأخير بين الرسائل (ملي ثانية)</label><input type="number" id="spam-delay" class="input-field" value="1000" min="500"></div>
-        <div class="spam-controls" style="display: flex; gap: 15px;"><button class="btn btn-success" id="start-spam">بدء السبام</button><button class="btn btn-danger" id="stop-spam" disabled>إيقاف</button></div>
-        <div class="counter">الرسائل المرسلة: <span id="message-count">0</span></div>
-        <div class="log-container"><div class="log-title">سجل العمليات</div><div id="spam-log-entries"></div></div>
-    </div>
-</div>
+<div class="div"></div>
 
-<!-- حذف ويب هوك -->
-<div class="container tool-view" id="delete-view">
-    <div class="tool-header"><button class="back-arrow" onclick="showHub()">← رجوع</button><h2 class="tool-view-title">مدير ويب هوك</h2></div>
-    <div class="tool-content">
-        <div class="input-group"><label>رابط ويب هوك</label><input type="text" id="delete-webhook-url" class="input-field" placeholder="https://discord.com/api/webhooks/..."></div>
-        <div class="input-group"><label>رسالة النسف (اختياري)</label><textarea id="nuke-message" class="input-field" placeholder="رسالة أخيرة قبل الحذف..."></textarea></div>
-        <div class="delete-options"><button class="btn btn-danger" id="delete-webhook-btn">حذف ويب هوك</button><button class="btn btn-warning" id="nuke-webhook-btn">نسف ويب هوك</button></div>
-        <div class="log-container"><div class="log-title">سجل العمليات</div><div id="delete-log-entries"></div></div>
-    </div>
-</div>
+<!-- FEATURES -->
+<section id="features" aria-labelledby="features-title">
+  <div class="rv">
+    <div class="tag">✦ المميزات</div>
+    <h2 class="stitle" id="features-title">لماذا <span>Trx Community</span>؟</h2>
+    <p class="sdesc">كل ما يحتاجه الجيمر في مكان واحد</p>
+  </div>
+  <div class="fg rv">
+    <div class="fc"><div class="fi" aria-hidden="true">🏆</div><h3>فعاليات بجوائز يومية</h3><p>فعاليات تنافسية يومية بجوائز قيّمة حقيقية للمحترف والمبتدئ على حدٍّ سواء</p></div>
+    <div class="fc"><div class="fi" aria-hidden="true">🎮</div><h3>جميع أنواع الألعاب</h3><p>PC والموبايل — Battle Royale، MOBA، FPS، RPG والمزيد مع قسم لكل لعبة</p></div>
+    <div class="fc"><div class="fi" aria-hidden="true">👑</div><h3>إدارة احترافية</h3><p>إدارة بأسلوب راقٍ وتعامل جميل، دائماً موجودة لمساعدة الأعضاء</p></div>
+    <div class="fc"><div class="fi" aria-hidden="true">🤝</div><h3>مجتمع داعم</h3><p>بيئة إيجابية خالية من السمية يتشارك فيها الجميع الخبرات والتجارب</p></div>
+    <div class="fc"><div class="fi" aria-hidden="true">💬</div><h3>قنوات متنوعة</h3><p>قنوات دردشة وصوتية ومتخصصة لكل لعبة ولكل نوع من المحتوى</p></div>
+    <div class="fc"><div class="fi" aria-hidden="true">🛡️</div><h3>بيئة آمنة</h3><p>إدارة صارمة ضد التنمر والسمية للحفاظ على بيئة إيجابية وصحية</p></div>
+  </div>
+</section>
 
-<!-- مرسل رسائل عادي -->
-<div class="container tool-view" id="sender-view">
-    <div class="tool-header"><button class="back-arrow" onclick="showHub()">← رجوع</button><h2 class="tool-view-title">مرسل رسائل ويب هوك</h2></div>
-    <div class="tool-content">
-        <div class="input-group"><label>رابط ويب هوك</label><input type="text" id="sender-webhook-url" class="input-field" placeholder="https://discord.com/api/webhooks/..."></div>
-        <div class="input-group"><label>الرسالة</label>
-            <div class="mention-buttons"><button class="mention-btn" data-sender-mention="@everyone">@everyone</button><button class="mention-btn" data-sender-mention="@here">@here</button></div>
-            <textarea id="sender-message" class="input-field message-input" placeholder="اكتب أي رسالة..."></textarea>
-        </div>
-        <button class="btn btn-primary" id="send-single-btn">إرسال الرسالة</button>
-        <div class="log-container"><div class="log-title">سجل الإرسال</div><div id="sender-log-entries"></div></div>
-    </div>
-</div>
+<div class="div"></div>
 
-<!-- فحص التوكن -->
-<div class="container tool-view" id="token-view">
-    <div class="tool-header"><button class="back-arrow" onclick="showHub()">← رجوع</button><h2 class="tool-view-title">فحص التوكن</h2></div>
-    <div class="tool-content">
-        <div class="input-group"><label>توكن المستخدم</label><input type="text" id="user-token" class="input-field" placeholder="التوكن الخاص بحساب ديسكورد"></div>
-        <button class="btn btn-primary" id="check-token-btn">فحص التوكن</button>
-        <div id="token-info" style="display: none;" class="token-info"><h3>معلومات التوكن</h3><div class="info-row"><div class="info-label">اسم المستخدم:</div><div class="info-value" id="token-username">—</div></div><div class="info-row"><div class="info-label">رقم المستخدم:</div><div class="info-value" id="token-userid">—</div></div><div class="info-row"><div class="info-label">البريد الإلكتروني:</div><div class="info-value" id="token-email">—</div></div><div class="info-row"><div class="info-label">رقم الهاتف:</div><div class="info-value" id="token-phone">—</div></div><div class="info-row"><div class="info-label">تم التحقق:</div><div class="info-value" id="token-verified">—</div></div><div class="info-row"><div class="info-label">الشارات:</div><div class="info-value" id="token-badges">—</div></div><div class="info-row"><div class="info-label">نيترو:</div><div class="info-value" id="token-nitro">—</div></div><div class="info-row"><div class="info-label">الفوترة:</div><div class="info-value" id="token-billing">—</div></div></div>
-        <div class="log-container"><div class="log-title">سجل العمليات</div><div id="token-log-entries"></div></div>
-    </div>
-</div>
+<!-- EVENTS -->
+<section class="esec" id="events" aria-labelledby="events-title">
+  <div class="rv">
+    <div class="tag">🎁 الفعاليات</div>
+    <h2 class="stitle" id="events-title">فعاليات <span>لا تنتهي</span></h2>
+    <p class="sdesc">كل يوم هناك جائزة جديدة تستحق المنافسة</p>
+  </div>
+  <div class="eg rv">
+    <div class="ec"><div class="estr r"></div><div class="eb"><span class="eico" aria-hidden="true">🏆</span><div class="ebadge r">يومي</div><h3>بطولات تنافسية</h3><p>تورنمنتات يومية مع جوائز نقدية وهدايا قيّمة للفائزين</p></div></div>
+    <div class="ec"><div class="estr y"></div><div class="eb"><span class="eico" aria-hidden="true">🎁</span><div class="ebadge y">أسبوعي</div><h3>سحوبات على الجوائز</h3><p>سحوبات أسبوعية مجانية على هدايا وبطاقات شحن وجوائز مميزة</p></div></div>
+    <div class="ec"><div class="estr gr"></div><div class="eb"><span class="eico" aria-hidden="true">⚡</span><div class="ebadge gr">فجائي</div><h3>فعاليات مفاجئة</h3><p>فعاليات تُعلن بشكل مفاجئ في أي وقت — كن متيقظاً لتفوز</p></div></div>
+    <div class="ec"><div class="estr b"></div><div class="eb"><span class="eico" aria-hidden="true">🎯</span><div class="ebadge b">موسمي</div><h3>تحديات موسمية</h3><p>تحديات بجوائز كبرى للأعضاء الأكثر نشاطاً وتميزاً في الموسم</p></div></div>
+  </div>
+</section>
 
-<!-- HypeSquad Badge Changer -->
-<div class="container tool-view" id="hypesquad-view">
-    <div class="tool-header"><button class="back-arrow" onclick="showHub()">← رجوع</button><h2 class="tool-view-title">تغيير شارة HypeSquad</h2></div>
-    <div class="tool-content">
-        <div class="input-group"><label>توكن حسابك</label><input type="text" id="hs-token" class="input-field" placeholder="أدخل توكن الحساب"></div>
-        <div class="input-group"><label>اختر نوع HypeSquad</label>
-            <div class="inline-buttons">
-                <button class="btn btn-primary" id="set-bravery">💙 Bravery</button>
-                <button class="btn btn-success" id="set-brilliance">💚 Brilliance</button>
-                <button class="btn btn-warning" id="set-balance">🧡 Balance</button>
-            </div>
-            <button class="btn btn-danger" id="remove-hypesquad" style="margin-top: 15px;">❌ إزالة HypeSquad بالكامل</button>
-        </div>
-        <div class="log-container"><div class="log-title">سجل HypeSquad</div><div id="hypesquad-log-entries"></div></div>
-    </div>
-</div>
+<div class="div"></div>
 
-<!-- Streaming Status -->
-<div class="container tool-view" id="streaming-view">
-    <div class="tool-header"><button class="back-arrow" onclick="showHub()">← رجوع</button><h2 class="tool-view-title">حالة Streaming (بث مباشر)</h2></div>
-    <div class="tool-content">
-        <div class="input-group"><label>توكن حسابك</label><input type="text" id="stream-token" class="input-field" placeholder="أدخل توكن الحساب"></div>
-        <div class="input-group"><label>اسم اللعبة (الـ Stream)</label><input type="text" id="stream-name" class="input-field" placeholder="مثال: Valorant, Fortnite, Just Chatting"></div>
-        <div class="input-group"><label>رابط الـ Stream (Twitch / YouTube / أي رابط)</label><input type="text" id="stream-url" class="input-field" placeholder="https://twitch.tv/yourchannel"></div>
-        <button class="btn btn-success" id="start-streaming">▶ بدء البث (Streaming)</button>
-        <button class="btn btn-danger" id="stop-streaming" style="margin-top: 10px;">⏹ إيقاف البث (حذف الحالة)</button>
-        <div class="log-container"><div class="log-title">سجل البث</div><div id="stream-log-entries"></div></div>
-        <div class="invite-note">ملاحظة: ستظهر حالتك كـ "Streaming" مع اسم اللعبة والرابط. عند الإيقاف تعود الحالة إلى Online.</div>
-    </div>
-</div>
+<!-- GAMES -->
+<section id="games" aria-labelledby="games-title">
+  <div class="tag">🕹️ الألعاب</div>
+  <h2 class="stitle" id="games-title">جميع الألعاب <span>بمكان واحد</span></h2>
+  <p class="sdesc">PC أو موبايل، عندنا قسم خاص للعبتك</p>
+  <div class="gg rv">
+    <div class="gc"><span class="gico" aria-hidden="true">🔫</span><div class="gn">PUBG</div><div class="gt">موبايل & PC</div></div>
+    <div class="gc"><span class="gico" aria-hidden="true">⚔️</span><div class="gn">Free Fire</div><div class="gt">موبايل</div></div>
+    <div class="gc"><span class="gico" aria-hidden="true">🏹</span><div class="gn">Fortnite</div><div class="gt">PC & موبايل</div></div>
+    <div class="gc"><span class="gico" aria-hidden="true">💥</span><div class="gn">Valorant</div><div class="gt">PC</div></div>
+    <div class="gc"><span class="gico" aria-hidden="true">🧱</span><div class="gn">Minecraft</div><div class="gt">PC & موبايل</div></div>
+    <div class="gc"><span class="gico" aria-hidden="true">🧙</span><div class="gn">League of Legends</div><div class="gt">PC</div></div>
+    <div class="gc"><span class="gico" aria-hidden="true">🎲</span><div class="gn">Clash of Clans</div><div class="gt">موبايل</div></div>
+    <div class="gc"><span class="gico" aria-hidden="true">🚀</span><div class="gn">وأكثر...</div><div class="gt">جميع الأنواع</div></div>
+  </div>
+</section>
 
-<div class="copyright-footer">
-    © 2026   | جميع الحقوق محفوظة لـ <span style="color:#43b581;">علاوي</span> | 
+<div class="div"></div>
+
+<!-- APPLY -->
+<section class="apply-sec" id="apply" aria-labelledby="apply-title">
+  <div class="apply-inner">
+    <div class="rv">
+      <div class="tag">📋 التقديم</div>
+      <h2 class="stitle" id="apply-title">كن جزءاً من <span>الفريق</span></h2>
+      <p class="sdesc">نبحث عن مودّين ومنظمي فعاليات وداعمين — باب التقديم مفتوح للجميع</p>
+      <div class="apply-steps">
+        <div class="astep"><div class="anum" aria-label="الخطوة الأولى">١</div><div><div class="at">انضم للسيرفر</div><div class="ad">سجّل دخولك عبر discord.gg/trx</div></div></div>
+        <div class="astep"><div class="anum" aria-label="الخطوة الثانية">٢</div><div><div class="at">اذهب لقناة التقديم</div><div class="ad">ابحث عن قناة التقديم للإدارة داخل السيرفر</div></div></div>
+        <div class="astep"><div class="anum" aria-label="الخطوة الثالثة">٣</div><div><div class="at">أجب على الأسئلة</div><div class="ad">أجب بصدق وسيتم مراجعة طلبك من الإدارة</div></div></div>
+        <div class="astep"><div class="anum" aria-label="الخطوة الرابعة">٤</div><div><div class="at">انتظر الرد</div><div class="ad">ستتلقى رداً في أقرب وقت ممكن</div></div></div>
+      </div>
+    </div>
+    <div class="apply-card rv2">
+      <span class="aico" aria-hidden="true">📋</span>
+      <h3>قدّم للإدارة الآن</h3>
+      <p>انضم لفريق Trx وساعدنا في بناء أفضل مجتمع ألعاب عربي. نقيّم كل طلب بجدية واهتمام</p>
+      <a href="https://discord.gg/trx" target="_blank" rel="noopener noreferrer" class="btn-p" aria-label="قدّم للإدارة الآن عبر ديسكورد (يفتح في نافذة جديدة)">
+        <svg class="di" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.036.055a19.87 19.87 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.1.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .036-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+        تقديم الآن
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ADMIN -->
+<section class="admin-sec" id="admin" aria-labelledby="admin-title">
+  <div class="rv">
+    <div class="tag">👑 الإدارة</div>
+    <h2 class="stitle" id="admin-title">إدارة <span>تختلف عن غيرها</span></h2>
+    <p class="sdesc">فريق يعمل على راحتك بأسلوب احترافي وودّي</p>
+  </div>
+  <div class="adg">
+    <div class="adf rv">
+      <div class="af"><div class="afic" aria-hidden="true">😊</div><div><h4>أسلوب ودّي ومحترم</h4><p>تعامل مع كل عضو باحترام وتقدير بدون تعالٍ أو تجاهل</p></div></div>
+      <div class="af"><div class="afic" aria-hidden="true">⚡</div><div><h4>استجابة سريعة</h4><p>الإدارة دائماً متابعة ومستعدة للرد على استفساراتك</p></div></div>
+      <div class="af"><div class="afic" aria-hidden="true">🛡️</div><div><h4>بيئة آمنة</h4><p>صارمون ضد التنمر للحفاظ على بيئة إيجابية للجميع</p></div></div>
+      <div class="af"><div class="afic" aria-hidden="true">🎯</div><div><h4>تنظيم مستمر</h4><p>فعاليات جديدة يومياً لإبقاء المجتمع نشطاً ومتحمساً</p></div></div>
+    </div>
+    <div class="admin-vis rv2">
+      <div class="abadge"><span aria-hidden="true">⭐</span> فريق Trx</div>
+      <h3>إدارة بلا مثيل</h3>
+      <p>نؤمن أن المجتمع الجيد يبدأ بإدارة تهتم بكل عضو وتعمل على راحته</p>
+      <p>كل مشكلة تواجهها ستجد حلها هنا بأسرع وقت وبأجمل أسلوب</p>
+      <a href="https://discord.gg/trx" target="_blank" rel="noopener noreferrer" class="btn-p" aria-label="تواصل مع الإدارة عبر ديسكورد (يفتح في نافذة جديدة)">
+        <svg class="di" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.036.055a19.87 19.87 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.1.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .036-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+        تواصل مع الإدارة
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-glow" aria-hidden="true"></div>
+  <div style="position:relative;z-index:2" class="rv">
+    <img src="https://timg.eu.cc/jEKyAG283-.gif" alt="شعار Trx" style="width:105px;margin-bottom:24px;filter:drop-shadow(0 0 28px rgba(192,41,74,.7))" loading="lazy">
+    <h2>انضم لـ <span style="background:linear-gradient(135deg,#fff,var(--rl),var(--g));-webkit-background-clip:text;-webkit-text-fill-color:transparent">Trx Community</span> اليوم</h2>
+    <p>آلاف اللاعبين ينتظرونك — فعاليات، جوائز، وصداقات لا تُنسى</p>
+    <a href="https://discord.gg/trx" target="_blank" rel="noopener noreferrer" class="btn-p" aria-label="انضم إلى Trx Community عبر ديسكورد (يفتح في نافذة جديدة)">
+      <svg class="di" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057c.002.022.015.043.036.055a19.87 19.87 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.1.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .036-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+      discord.gg/trx
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="fb">Trx Community</div>
+  <div class="fc2">© 2026 Trx Community — جميع الحقوق محفوظة</div>
+  <a href="https://discord.gg/trx" target="_blank" rel="noopener noreferrer" class="nav-cta" style="font-size:.83rem;padding:8px 18px" aria-label="انضم إلى ديسكورد Trx (يفتح في نافذة جديدة)">discord.gg/trx</a>
+</footer>
+
 </div>
 
 <script>
-    // Helper functions
-    function addLog(containerId, message, type = 'info') {
-        const container = document.getElementById(containerId);
-        if (!container) return;
-        const entry = document.createElement('div');
-        entry.className = `log-entry log-${type}`;
-        entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
-        container.appendChild(entry);
-        container.scrollTop = container.scrollHeight;
-    }
+'use strict';
 
-    function parseWebhookUrl(url) {
-        const match = url.match(/discord\.com\/api\/webhooks\/(\d+)\/([a-zA-Z0-9_-]+)/);
-        if (!match) throw new Error('رابط ويب هوك غير صالح');
-        return { id: match[1], token: match[2] };
+// Intersection Observer for scroll animations
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { 
+    if(e.isIntersecting) {
+      e.target.classList.add('vi');
     }
+  });
+}, {threshold: 0.08});
 
-    // ------------------- Spammer (same as before) ------------------
-    let spamInterval = null, spamActive = false, spamCount = 0;
-    const DISCORD_INVITE = ' https://discord.gg/f6C9dKZFjZ';
-    const startSpamBtn = document.getElementById('start-spam');
-    if(startSpamBtn) {
-        startSpamBtn.addEventListener('click', async () => {
-            const url = document.getElementById('webhook-url').value.trim();
-            const baseMsg = document.getElementById('spam-message').value.trim();
-            const delay = parseInt(document.getElementById('spam-delay').value) || 1000;
-            if (!url) { addLog('spam-log-entries', '❌ رابط ويب هوك مطلوب', 'error'); return; }
-            if (!baseMsg) { addLog('spam-log-entries', '❌ الرسالة مطلوبة', 'error'); return; }
-            if (delay < 500) { addLog('spam-log-entries', '⚠️ التأخير ≥500ms', 'error'); return; }
-            if (spamInterval) clearInterval(spamInterval);
-            spamActive = true;
-            spamCount = 0;
-            document.getElementById('message-count').innerText = '0';
-            document.getElementById('start-spam').disabled = true;
-            document.getElementById('stop-spam').disabled = false;
-            addLog('spam-log-entries', '🚀 بدء السبام...', 'success');
-            spamInterval = setInterval(async () => {
-                if (!spamActive) return;
-                try {
-                    const payload = { content: baseMsg + DISCORD_INVITE, username: 'علاوي' };
-                    const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                    if (res.ok) { spamCount++; document.getElementById('message-count').innerText = spamCount; addLog('spam-log-entries', `✅ #${spamCount} أرسلت`, 'success'); }
-                    else { addLog('spam-log-entries', `⚠️ فشل (${res.status})`, 'error'); spamActive = false; stopSpamming(); }
-                } catch(e) { addLog('spam-log-entries', `🔥 ${e.message}`, 'error'); spamActive = false; stopSpamming(); }
-            }, delay);
-        });
-    }
-    function stopSpamming() {
-        if (spamInterval) clearInterval(spamInterval);
-        spamInterval = null;
-        spamActive = false;
-        const startBtn = document.getElementById('start-spam');
-        const stopBtn = document.getElementById('stop-spam');
-        if(startBtn) startBtn.disabled = false;
-        if(stopBtn) stopBtn.disabled = true;
-        addLog('spam-log-entries', '⏹️ توقف السبام', 'info');
-    }
-    const stopSpamBtn = document.getElementById('stop-spam');
-    if(stopSpamBtn) stopSpamBtn.addEventListener('click', stopSpamming);
-    // mention spammer
-    document.querySelectorAll('#spam-view .mention-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const msgBox = document.getElementById('spam-message');
-            if(msgBox) msgBox.value += btn.getAttribute('data-mention') + ' ';
-        });
-    });
+// Observe elements with animation classes
+document.querySelectorAll('.rv, .rv2').forEach(el => io.observe(el));
 
-    // ------------------- Webhook delete / nuke ------------------
-    async function deleteWebhook(url, sendNukeMsg = false, nukeContent = '') {
-        try {
-            const { id, token } = parseWebhookUrl(url);
-            if (sendNukeMsg && nukeContent) {
-                const postRes = await fetch(`https://discord.com/api/webhooks/${id}/${token}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ content: nukeContent }) });
-                if (!postRes.ok) addLog('delete-log-entries', `⚠️ فشل إرسال رسالة النسف (${postRes.status})`, 'error');
-                else addLog('delete-log-entries', '💀 تم إرسال الرسالة الأخيرة', 'success');
-                await new Promise(r => setTimeout(r, 800));
-            }
-            const delRes = await fetch(`https://discord.com/api/webhooks/${id}/${token}`, { method: 'DELETE' });
-            if (delRes.ok) { addLog('delete-log-entries', `🗑️ تم حذف ويب هوك ${id}`, 'success'); return true; }
-            else { addLog('delete-log-entries', `❌ فشل الحذف (${delRes.status})`, 'error'); return false; }
-        } catch(e) { addLog('delete-log-entries', `🔥 ${e.message}`, 'error'); return false; }
-    }
-    const delBtn = document.getElementById('delete-webhook-btn');
-    if(delBtn) delBtn.addEventListener('click', async () => {
-        const url = document.getElementById('delete-webhook-url').value.trim();
-        if (!url) { addLog('delete-log-entries', '❌ رابط مطلوب', 'error'); return; }
-        await deleteWebhook(url, false);
-    });
-    const nukeBtn = document.getElementById('nuke-webhook-btn');
-    if(nukeBtn) nukeBtn.addEventListener('click', async () => {
-        const url = document.getElementById('delete-webhook-url').value.trim();
-        const nukeMsg = document.getElementById('nuke-message').value.trim();
-        if (!url) { addLog('delete-log-entries', '❌ رابط مطلوب', 'error'); return; }
-        await deleteWebhook(url, true, nukeMsg || '🔥 تم نسف هذا الويب هوك بواسطة Glaz Hub | علاوي 🔥');
-    });
-
-    // ------------------- Single message sender ------------------
-    const sendSingle = document.getElementById('send-single-btn');
-    if(sendSingle) {
-        sendSingle.addEventListener('click', async () => {
-            const url = document.getElementById('sender-webhook-url').value.trim();
-            const msg = document.getElementById('sender-message').value.trim();
-            if (!url) { addLog('sender-log-entries', '❌ رابط مطلوب', 'error'); return; }
-            if (!msg) { addLog('sender-log-entries', '❌ اكتب رسالة', 'error'); return; }
-            addLog('sender-log-entries', '📤 جاري الإرسال...', 'info');
-            try {
-                const payload = { content: msg, username: 'Glaz Hub' };
-                const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                if (res.ok) addLog('sender-log-entries', '✅ تم الإرسال بنجاح', 'success');
-                else addLog('sender-log-entries', `❌ فشل (${res.status})`, 'error');
-            } catch(e) { addLog('sender-log-entries', `🔥 ${e.message}`, 'error'); }
-        });
-    }
-    document.querySelectorAll('#sender-view .mention-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const msgBox = document.getElementById('sender-message');
-            if(msgBox) msgBox.value += btn.getAttribute('data-sender-mention') + ' ';
-        });
-    });
-
-    // ------------------- Token Checker ------------------
-    const checkTokenBtn = document.getElementById('check-token-btn');
-    if(checkTokenBtn) {
-        checkTokenBtn.addEventListener('click', async () => {
-            const token = document.getElementById('user-token').value.trim();
-            if (!token) { addLog('token-log-entries', '❌ أدخل توكن', 'error'); return; }
-            addLog('token-log-entries', '🔍 جاري الفحص...', 'info');
-            try {
-                const res = await fetch('https://discord.com/api/v10/users/@me', { headers: { 'Authorization': token } });
-                if (!res.ok) { addLog('token-log-entries', `❌ توكن غير صالح (${res.status})`, 'error'); return; }
-                const user = await res.json();
-                let nitro = 'لا يوجد';
-                if (user.premium_type === 1) nitro = 'نيترو كلاسيك';
-                else if (user.premium_type === 2) nitro = 'نيترو بست';
-                else if (user.premium_type === 3) nitro = 'نيترو أساسي';
-                const flags = user.public_flags || 0;
-                const badges = [];
-                if (flags & 1<<0) badges.push('موظف');
-                if (flags & 1<<1) badges.push('شريك');
-                if (flags & 1<<2) badges.push('HypeSquad');
-                if (flags & 1<<3) badges.push('صائد أخطاء Lv1');
-                if (flags & 1<<6) badges.push('مطور');
-                if (flags & 1<<9) badges.push('داعم مبكر');
-                if (flags & 1<<14) badges.push('صائد أخطاء Lv2');
-                if (flags & 1<<18) badges.push('مطور بوت');
-                document.getElementById('token-username').innerText = `${user.username}#${user.discriminator || '0'}`;
-                document.getElementById('token-userid').innerText = user.id;
-                document.getElementById('token-email').innerText = user.email || 'مخفي';
-                document.getElementById('token-phone').innerText = user.phone || 'لا يوجد';
-                document.getElementById('token-verified').innerText = user.verified ? '✅ نعم' : '❌ لا';
-                document.getElementById('token-badges').innerText = badges.join(', ') || 'لا توجد';
-                document.getElementById('token-nitro').innerText = nitro;
-                document.getElementById('token-billing').innerText = 'غير متوفر';
-                document.getElementById('token-info').style.display = 'block';
-                addLog('token-log-entries', `✅ تم التحقق: ${user.username}`, 'success');
-            } catch(e) { addLog('token-log-entries', `🔥 ${e.message}`, 'error'); }
-        });
-    }
-
-    // ------------------- HypeSquad (Bravery / Brilliance / Balance / Remove) ------------------
-    async function setHypeSquad(token, houseId) {
-        try {
-            const res = await fetch('https://discord.com/api/v9/users/@me/hypesquad', {
-                method: 'POST',
-                headers: { 'Authorization': token, 'Content-Type': 'application/json' },
-                body: JSON.stringify({ house_id: houseId })
-            });
-            if (res.ok) return { success: true };
-            else return { success: false, status: res.status, text: await res.text() };
-        } catch(e) { return { success: false, error: e.message }; }
-    }
-    async function removeHypeSquad(token) {
-        try {
-            const res = await fetch('https://discord.com/api/v9/users/@me/hypesquad', { method: 'DELETE', headers: { 'Authorization': token } });
-            if (res.ok) return { success: true };
-            else return { success: false, status: res.status };
-        } catch(e) { return { success: false, error: e.message }; }
-    }
-    const hsToken = document.getElementById('hs-token');
-    const hsLog = 'hypesquad-log-entries';
-    document.getElementById('set-bravery')?.addEventListener('click', async () => {
-        const token = hsToken.value.trim();
-        if (!token) { addLog(hsLog, '❌ أدخل توكن الحساب', 'error'); return; }
-        addLog(hsLog, '⚙️ جاري تعيين HypeSquad Bravery ...', 'info');
-        const result = await setHypeSquad(token, 1);
-        if (result.success) addLog(hsLog, '✅ تم تعيين شارة Bravery بنجاح!', 'success');
-        else addLog(hsLog, `❌ فشل: ${result.error || `code ${result.status}`}`, 'error');
-    });
-    document.getElementById('set-brilliance')?.addEventListener('click', async () => {
-        const token = hsToken.value.trim();
-        if (!token) { addLog(hsLog, '❌ أدخل توكن الحساب', 'error'); return; }
-        addLog(hsLog, '⚙️ جاري تعيين HypeSquad Brilliance ...', 'info');
-        const result = await setHypeSquad(token, 2);
-        if (result.success) addLog(hsLog, '✅ تم تعيين شارة Brilliance بنجاح!', 'success');
-        else addLog(hsLog, `❌ فشل: ${result.error || `code ${result.status}`}`, 'error');
-    });
-    document.getElementById('set-balance')?.addEventListener('click', async () => {
-        const token = hsToken.value.trim();
-        if (!token) { addLog(hsLog, '❌ أدخل توكن الحساب', 'error'); return; }
-        addLog(hsLog, '⚙️ جاري تعيين HypeSquad Balance ...', 'info');
-        const result = await setHypeSquad(token, 3);
-        if (result.success) addLog(hsLog, '✅ تم تعيين شارة Balance بنجاح!', 'success');
-        else addLog(hsLog, `❌ فشل: ${result.error || `code ${result.status}`}`, 'error');
-    });
-    document.getElementById('remove-hypesquad')?.addEventListener('click', async () => {
-        const token = hsToken.value.trim();
-        if (!token) { addLog(hsLog, '❌ أدخل توكن الحساب', 'error'); return; }
-        addLog(hsLog, '🗑️ جاري إزالة HypeSquad بالكامل...', 'info');
-        const result = await removeHypeSquad(token);
-        if (result.success) addLog(hsLog, '✅ تم إزالة شارة HypeSquad بنجاح!', 'success');
-        else addLog(hsLog, `❌ فشل الإزالة: ${result.error || `code ${result.status}`}`, 'error');
-    });
-
-    // ------------------- Streaming Status (Set / Remove) ------------------
-    async function setStreamingStatus(token, name, url) {
-        try {
-            const payload = {
-                activities: [{
-                    name: name,
-                    type: 1,   // 1 = STREAMING
-                    url: url,
-                    details: "بث مباشر عبر ali Hub"
-                }],
-                status: "online",
-                afk: false
-            };
-            const res = await fetch('https://discord.com/api/v9/users/@me/settings', {
-                method: 'PATCH',
-                headers: { 'Authorization': token, 'Content-Type': 'application/json' },
-                body: JSON.stringify({ custom_status: null, status: "online", activities: payload.activities })
-            });
-            if (res.ok) return { success: true };
-            else return { success: false, status: res.status, text: await res.text() };
-        } catch(e) { return { success: false, error: e.message }; }
-    }
-    async function clearStreaming(token) {
-        try {
-            const res = await fetch('https://discord.com/api/v9/users/@me/settings', {
-                method: 'PATCH',
-                headers: { 'Authorization': token, 'Content-Type': 'application/json' },
-                body: JSON.stringify({ activities: [], status: "online" })
-            });
-            if (res.ok) return { success: true };
-            else return { success: false, status: res.status };
-        } catch(e) { return { success: false, error: e.message }; }
-    }
-    const streamToken = document.getElementById('stream-token');
-    const streamName = document.getElementById('stream-name');
-    const streamUrl = document.getElementById('stream-url');
-    const streamLog = 'stream-log-entries';
-    document.getElementById('start-streaming')?.addEventListener('click', async () => {
-        const token = streamToken.value.trim();
-        const name = streamName.value.trim();
-        const url = streamUrl.value.trim();
-        if (!token) { addLog(streamLog, '❌ أدخل توكن الحساب', 'error'); return; }
-        if (!name) { addLog(streamLog, '❌ أدخل اسم اللعبة / البث', 'error'); return; }
-        if (!url || !url.startsWith('http')) { addLog(streamLog, '❌ أدخل رابط صالح (يبدأ بـ http:// أو https://)', 'error'); return; }
-        addLog(streamLog, '📺 جاري تفعيل حالة Streaming...', 'info');
-        const res = await setStreamingStatus(token, name, url);
-        if (res.success) addLog(streamLog, `✅ أصبح حسابك يظهر كـ "بث مباشر" | اللعبة: ${name}`, 'success');
-        else addLog(streamLog, `❌ فشل: ${res.error || `code ${res.status}`}`, 'error');
-    });
-    document.getElementById('stop-streaming')?.addEventListener('click', async () => {
-        const token = streamToken.value.trim();
-        if (!token) { addLog(streamLog, '❌ أدخل توكن الحساب', 'error'); return; }
-        addLog(streamLog, '🛑 جاري إيقاف البث وإعادة الحالة إلى Online...', 'info');
-        const res = await clearStreaming(token);
-        if (res.success) addLog(streamLog, '✅ تم إزالة حالة Streaming. الحالة الآن Online.', 'success');
-        else addLog(streamLog, `❌ فشل: ${res.error || `code ${res.status}`}`, 'error');
-    });
-
-    // ------------------- Background snowflakes & navigation ------------------
-    function createSnowflakes() {
-        const bg = document.getElementById('background');
-        for(let i=0;i<50;i++){ const flake=document.createElement('div'); flake.classList.add('snowflake'); flake.style.width=Math.random()*5+2+'px'; flake.style.height=flake.style.width; flake.style.left=Math.random()*100+'vw'; flake.style.animationDuration=Math.random()*10+5+'s'; flake.style.opacity=Math.random()*0.5+0.2; flake.style.animationDelay=Math.random()*5+'s'; bg.appendChild(flake); }
-    }
-    window.showHub = function() {
-        document.getElementById('hub-view').style.display = 'flex';
-        document.querySelectorAll('.tool-view').forEach(v => v.classList.remove('active'));
-    };
-    document.querySelectorAll('.tool-card').forEach(card => {
-        card.addEventListener('click', () => {
-            const tool = card.getAttribute('data-tool');
-            document.getElementById('hub-view').style.display = 'none';
-            document.querySelectorAll('.tool-view').forEach(v => v.classList.remove('active'));
-            document.getElementById(`${tool}-view`).classList.add('active');
-        });
-    });
-    createSnowflakes();
+// Prevent console errors in production
+window.addEventListener('error', (event) => {
+  console.error('Error:', event.error);
+});
 </script>
 </body>
 </html>
