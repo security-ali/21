@@ -1,0 +1,1977 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALVEX studio | Discord Tools Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ═══════════════════════════════════════
+           ALVEX studio - Discord Tools Hub v4.0
+           Single Page Application
+           ═══════════════════════════════════════ */
+
+        /* ─── CSS Variables ─── */
+        :root {
+            --void: #030508;
+            --surface: #111827;
+            --glass: rgba(17, 24, 39, 0.8);
+            --glass-border: rgba(56, 189, 248, 0.15);
+            --neon-cyan: #06b6d4;
+            --neon-violet: #8b5cf6;
+            --neon-pink: #ec4899;
+            --neon-green: #10b981;
+            --neon-red: #ef4444;
+            --neon-amber: #f59e0b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --radius: 20px;
+            --radius-sm: 12px;
+            --primary: #e040fb;
+            --secondary: #00e5ff;
+            --accent: #ff4081;
+            --bg-dark: #0a0a0f;
+            --bg-card: rgba(15, 15, 25, 0.9);
+            --border: rgba(224, 64, 251, 0.3);
+            --gradient-1: linear-gradient(135deg, #e040fb, #7c4dff);
+            --gradient-2: linear-gradient(135deg, #00e5ff, #2979ff);
+            --gradient-3: linear-gradient(135deg, #ff4081, #ff9100);
+        }
+
+        /* ─── Reset & Base ─── */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--void);
+            color: var(--text-primary);
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ─── Particles Background ─── */
+        #particles {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ─── Sidebar ─── */
+        .sidebar {
+            position: fixed;
+            top: 0; right: 0;
+            width: 260px;
+            height: 100vh;
+            background: var(--glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-left: 1px solid var(--glass-border);
+            z-index: 1000;
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .sidebar-header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--glass-border);
+            margin-bottom: 16px;
+        }
+        .sidebar-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-violet));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .sidebar-version {
+            font-size: 0.7rem;
+            color: var(--neon-cyan);
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: 4px;
+        }
+        .nav-menu { list-style: none; flex: 1; overflow-y: auto; }
+        .nav-item { margin-bottom: 8px; }
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 16px;
+            border-radius: var(--radius-sm);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+            background: transparent;
+            width: 100%;
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+        }
+        .nav-link:hover, .nav-link.active {
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--neon-cyan);
+            border-color: rgba(6, 182, 212, 0.2);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.1);
+        }
+        .nav-link .icon { font-size: 1.3rem; width: 28px; text-align: center; }
+        .sidebar-footer {
+            padding-top: 16px;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* ─── Menu Toggle (Mobile) ─── */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 16px; right: 16px;
+            z-index: 1001;
+            width: 44px; height: 44px;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+        }
+        .menu-toggle:hover { background: rgba(6, 182, 212, 0.2); border-color: var(--neon-cyan); }
+
+        /* ─── Main Content ─── */
+        .main-content {
+            margin-right: 260px;
+            min-height: 100vh;
+            padding: 0;
+            transition: margin-right 0.4s ease;
+        }
+
+        /* ─── Pages ─── */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+            min-height: 100vh;
+        }
+        .page.active { display: block; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─── Section Headers ─── */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .section-icon {
+            width: 48px; height: 48px;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-violet));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
+        }
+        .section-title { font-size: 1.5rem; font-weight: 700; }
+        .section-desc { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
+
+        /* ─── Cards Grid ─── */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 20px;
+        }
+
+        /* ─── Tool Cards ─── */
+        .tool-card {
+            background: var(--glass);
+            backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 24px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-violet), var(--neon-pink));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tool-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(6, 182, 212, 0.3);
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.1);
+        }
+        .tool-card:hover::before { opacity: 1; }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .card-icon {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+        }
+        .card-title { font-size: 1.1rem; font-weight: 700; }
+        .card-badge {
+            margin-right: auto;
+            font-size: 0.65rem;
+            padding: 3px 10px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .badge-live { background: rgba(16, 185, 129, 0.15); color: var(--neon-green); border: 1px solid rgba(16, 185, 129, 0.3); }
+        .badge-beta { background: rgba(245, 158, 11, 0.15); color: var(--neon-amber); border: 1px solid rgba(245, 158, 11, 0.3); }
+        .badge-secure { background: rgba(239, 68, 68, 0.15); color: var(--neon-red); border: 1px solid rgba(239, 68, 68, 0.3); }
+        .badge-bot { background: rgba(139, 92, 246, 0.15); color: var(--neon-violet); border: 1px solid rgba(139, 92, 246, 0.3); }
+
+        /* ─── Inputs ─── */
+        .input-group { margin-bottom: 16px; }
+        .input-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+        .input-label .required { color: var(--neon-red); font-size: 0.65rem; }
+        .input-field {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 16px;
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-family: 'JetBrains Mono', monospace;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        .input-field::placeholder { color: var(--text-muted); font-family: 'Tajawal', sans-serif; }
+        .input-field:focus {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1), 0 0 15px rgba(6, 182, 212, 0.1);
+            background: rgba(0, 0, 0, 0.5);
+        }
+        select.input-field {
+            font-family: 'Tajawal', sans-serif;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 12px center;
+            padding-left: 36px;
+        }
+        textarea.input-field { min-height: 70px; resize: vertical; font-family: 'Tajawal', sans-serif; }
+
+        /* ─── Buttons ─── */
+        .btn {
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--neon-cyan), #0891b2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4); }
+        .btn-success {
+            background: linear-gradient(135deg, var(--neon-green), #059669);
+            color: white;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+        .btn-success:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4); }
+        .btn-danger {
+            background: linear-gradient(135deg, var(--neon-red), #dc2626);
+            color: white;
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+        }
+        .btn-danger:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(239, 68, 68, 0.4); }
+        .btn-warning {
+            background: linear-gradient(135deg, var(--neon-amber), #d97706);
+            color: var(--void);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+        .btn-warning:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4); }
+        .btn-violet {
+            background: linear-gradient(135deg, var(--neon-violet), #7c3aed);
+            color: white;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+        .btn-violet:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4); }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
+        .btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
+        .btn-group .btn { flex: 1; min-width: 100px; }
+        .btn-full { width: 100%; }
+
+        /* ─── Status Pills ─── */
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        .status-pill::before { content: ''; width: 8px; height: 8px; border-radius: 50%; }
+        .status-online { background: rgba(16, 185, 129, 0.15); color: var(--neon-green); border: 1px solid rgba(16, 185, 129, 0.3); }
+        .status-online::before { background: var(--neon-green); animation: pulse 2s infinite; }
+        .status-offline { background: rgba(239, 68, 68, 0.15); color: var(--neon-red); border: 1px solid rgba(239, 68, 68, 0.3); }
+        .status-offline::before { background: var(--neon-red); }
+        .status-idle { background: rgba(245, 158, 11, 0.15); color: var(--neon-amber); border: 1px solid rgba(245, 158, 11, 0.3); }
+        .status-idle::before { background: var(--neon-amber); }
+        @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } }
+
+        /* ─── Counter Box ─── */
+        .counter-box {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 14px;
+            text-align: center;
+            margin-top: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .counter-number { font-size: 1.8rem; font-weight: 800; color: var(--neon-cyan); font-family: 'JetBrains Mono', monospace; }
+        .counter-label { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
+
+        /* ─── Token Info Card ─── */
+        .token-info-card {
+            display: none;
+            margin-top: 15px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            animation: slideDown 0.4s ease;
+        }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .token-info-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .token-info-row:last-child { border-bottom: none; }
+        .token-info-icon { width: 32px; height: 32px; border-radius: 8px; background: rgba(6, 182, 212, 0.1); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+        .token-info-text { flex: 1; }
+        .token-info-label { font-size: 0.7rem; color: var(--text-muted); }
+        .token-info-value { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); font-family: 'JetBrains Mono', monospace; }
+
+        /* ─── Log Section ─── */
+        .log-section {
+            background: var(--glass);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-top: 32px;
+        }
+        .log-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; }
+        .log-title { font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .log-title .live-dot { width: 8px; height: 8px; background: var(--neon-green); border-radius: 50%; animation: pulse 2s infinite; }
+        .log-actions { display: flex; gap: 8px; }
+        .log-container {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .log-container::-webkit-scrollbar { width: 5px; }
+        .log-container::-webkit-scrollbar-track { background: transparent; }
+        .log-container::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 10px; }
+        .log-entry { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; border-radius: 10px; margin-bottom: 6px; animation: slideIn 0.3s ease; border-right: 3px solid transparent; }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+        .log-time { color: var(--text-muted); font-size: 0.7rem; white-space: nowrap; min-width: 60px; }
+        .log-content { flex: 1; word-break: break-word; }
+        .log-success { background: rgba(16, 185, 129, 0.08); border-right-color: var(--neon-green); color: #6ee7b7; }
+        .log-error { background: rgba(239, 68, 68, 0.08); border-right-color: var(--neon-red); color: #fca5a5; }
+        .log-info { background: rgba(6, 182, 212, 0.08); border-right-color: var(--neon-cyan); color: #67e8f9; }
+        .log-warn { background: rgba(245, 158, 11, 0.08); border-right-color: var(--neon-amber); color: #fcd34d; }
+
+        /* ─── Toast Notifications ─── */
+        .toast-container {
+            position: fixed;
+            top: 20px; left: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .toast {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-sm);
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 280px;
+            max-width: 360px;
+            animation: toastIn 0.4s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        @keyframes toastIn { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+        .toast-icon { font-size: 1.3rem; }
+        .toast-content { flex: 1; }
+        .toast-title { font-weight: 700; font-size: 0.9rem; }
+        .toast-msg { font-size: 0.8rem; color: var(--text-secondary); margin-top: 2px; }
+        .toast-close { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.1rem; }
+
+        /* ─── Spinner ─── */
+        .spinner {
+            width: 18px; height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: inline-block;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ─── Overlay ─── */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+        }
+        .overlay.active { display: block; }
+
+        /* ═══════════════════════════════════════
+           HOME PAGE STYLES
+           ═══════════════════════════════════════ */
+        .home-hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            min-height: 100vh;
+            padding: 8rem 32px 4rem;
+            position: relative;
+        }
+        .home-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.5rem;
+            background: rgba(224, 64, 251, 0.1);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+        .home-hero-avatar-wrapper { position: relative; margin-bottom: 2.5rem; }
+        .home-hero-avatar {
+            width: 200px; height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid transparent;
+            background: linear-gradient(var(--bg-dark), var(--bg-dark)) padding-box, var(--gradient-1) border-box;
+            box-shadow: 0 0 60px rgba(224, 64, 251, 0.3);
+            transition: all 0.4s;
+        }
+        .home-hero-avatar:hover { transform: scale(1.05) rotate(3deg); box-shadow: 0 0 80px rgba(224, 64, 251, 0.5); }
+        .home-avatar-ring {
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border-radius: 50%;
+            border: 2px dashed rgba(224, 64, 251, 0.3);
+            animation: spin 20s linear infinite;
+        }
+        .home-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #fff, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+        .home-hero-title {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            justify-content: center;
+        }
+        .home-hero-title::before, .home-hero-title::after { content: ''; width: 40px; height: 2px; background: var(--gradient-2); }
+        .home-hero-bio { font-size: clamp(1rem, 2vw, 1.2rem); max-width: 700px; margin-bottom: 2.5rem; color: var(--text-secondary); font-weight: 600; line-height: 1.8; }
+        .home-hero-social { display: flex; gap: 1.2rem; margin-bottom: 2.5rem; }
+        .home-social-btn {
+            width: 55px; height: 55px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 16px;
+            font-size: 1.4rem;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .home-social-btn:hover { transform: translateY(-5px) scale(1.1); }
+        .home-social-github { background: linear-gradient(135deg, #333, #24292e); border: 1px solid rgba(255,255,255,0.1); }
+        .home-social-spotify { background: linear-gradient(135deg, #1db954, #1ed760); border: 1px solid rgba(29,185,84,0.3); }
+        .home-social-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border: 1px solid rgba(220,39,67,0.3); }
+        .home-hero-cta { display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
+        .home-btn {
+            text-decoration: none;
+            padding: 1rem 2.5rem;
+            font-weight: 800;
+            border-radius: 16px;
+            transition: all 0.3s;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            border: none;
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+        }
+        .home-btn-primary { background: var(--gradient-1); color: #fff; box-shadow: 0 8px 30px rgba(224, 64, 251, 0.4); }
+        .home-btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(224, 64, 251, 0.5); }
+        .home-btn-secondary { background: transparent; color: var(--text-primary); border: 2px solid var(--border); }
+        .home-btn-secondary:hover { border-color: var(--primary); background: rgba(224, 64, 251, 0.1); transform: translateY(-3px); }
+
+        .home-section { padding: 6rem 32px; }
+        .home-section-header { text-align: center; margin-bottom: 4rem; }
+        .home-section-label { display: inline-block; padding: 0.4rem 1.2rem; background: rgba(224, 64, 251, 0.1); border: 1px solid var(--border); border-radius: 50px; font-size: 0.85rem; font-weight: 700; color: var(--primary); margin-bottom: 1rem; }
+        .home-section-title { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 900; margin-bottom: 1rem; background: linear-gradient(135deg, #fff, var(--primary)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .home-section-subtitle { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto; line-height: 1.7; }
+
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; max-width: 1200px; margin: 0 auto; }
+        .about-image-wrapper { position: relative; }
+        .about-image { width: 100%; max-width: 500px; border-radius: 30px; border: 2px solid var(--border); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); }
+        .about-content h3 { font-size: 2rem; font-weight: 900; margin-bottom: 1.5rem; color: var(--text-primary); }
+        .about-content p { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem; }
+
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+        .skill-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 25px; padding: 2.5rem; transition: all 0.4s; position: relative; overflow: hidden; }
+        .skill-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--gradient-1); transform: scaleX(0); transform-origin: right; transition: transform 0.4s; }
+        .skill-card:hover::before { transform: scaleX(1); }
+        .skill-card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4); }
+        .skill-icon { width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 1.5rem; background: rgba(224, 64, 251, 0.1); border: 1px solid var(--border); color: var(--primary); }
+        .skill-card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 1rem; }
+        .skill-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem; }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+        .skill-tag { padding: 0.4rem 1rem; background: rgba(224, 64, 251, 0.1); border: 1px solid var(--border); border-radius: 50px; font-size: 0.8rem; font-weight: 700; color: var(--primary); }
+
+        .contact-wrapper { max-width: 600px; margin: 0 auto; }
+        .contact-info h3 { font-size: 2rem; font-weight: 900; margin-bottom: 1.5rem; text-align: center; }
+        .contact-info p { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8; margin-bottom: 2rem; text-align: center; }
+        .contact-links { display: flex; flex-direction: column; gap: 1.2rem; }
+        .contact-link-item { display: flex; align-items: center; gap: 1rem; padding: 1.2rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; text-decoration: none; color: var(--text-primary); transition: all 0.3s; }
+        .contact-link-item:hover { border-color: var(--primary); transform: translateX(-5px); background: rgba(224, 64, 251, 0.05); }
+        .contact-link-icon { width: 50px; height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+        .contact-link-text { flex: 1; }
+        .contact-link-text strong { display: block; font-weight: 800; margin-bottom: 0.2rem; }
+        .contact-link-text span { font-size: 0.9rem; color: var(--text-secondary); }
+
+        .home-footer { padding: 3rem 32px 1.5rem; text-align: center; border-top: 1px solid var(--border); background: rgba(0, 0, 0, 0.3); }
+        .home-footer-logo { font-size: 1.8rem; font-weight: 900; background: var(--gradient-1); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.7rem; }
+        .home-footer-social { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; }
+        .home-footer-social a { width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; border-radius: 12px; font-size: 1.2rem; color: var(--text-secondary); background: var(--bg-card); border: 1px solid var(--border); text-decoration: none; transition: all 0.3s; }
+        .home-footer-social a:hover { color: var(--primary); border-color: var(--primary); transform: translateY(-3px); }
+        .home-footer-divider { width: 80px; height: 2px; background: var(--gradient-1); margin: 1.5rem auto; }
+        .home-copyright { color: var(--text-secondary); font-size: 0.9rem; }
+        .home-made-with { font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem; }
+        .home-made-with i { color: var(--accent); }
+
+        /* ═══════════════════════════════════════
+           DEV PAGE STYLES
+           ═══════════════════════════════════════ */
+        .dev-page-content { display: flex; justify-content: center; align-items: center; min-height: calc(100vh - 200px); padding: 32px; }
+        .dev-card {
+            max-width: 520px;
+            width: 100%;
+            background: linear-gradient(145deg, rgba(17,24,39,0.95), rgba(10,10,20,0.98));
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(139,92,246,0.25);
+            border-radius: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 80px rgba(139,92,246,0.15), 0 0 0 1px rgba(255,255,255,0.03);
+        }
+        .dev-card-top-bar { height: 4px; background: linear-gradient(90deg, var(--neon-cyan), var(--neon-violet), var(--neon-pink)); opacity: 0.8; }
+        .dev-card-glow { position: absolute; top: 20%; left: 50%; transform: translateX(-50%); width: 300px; height: 300px; background: radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 70%); pointer-events: none; z-index: 0; }
+        .dev-card-inner { padding: 40px 30px 35px; position: relative; z-index: 1; }
+        .dev-avatar-wrap { width: 160px; height: 160px; margin: 0 auto 28px; border-radius: 50%; overflow: hidden; border: 3px solid rgba(139,92,246,0.4); box-shadow: 0 0 40px rgba(139,92,246,0.3), 0 0 80px rgba(6,182,212,0.15); position: relative; }
+        .dev-avatar-wrap img { width: 100%; height: 100%; object-fit: cover; }
+        .dev-status-dot { position: absolute; bottom: 8px; right: 8px; width: 18px; height: 18px; background: var(--neon-green); border-radius: 50%; border: 3px solid var(--void); box-shadow: 0 0 10px var(--neon-green); animation: pulse 2s infinite; }
+        .dev-name { font-size: 2.2rem; font-weight: 900; background: linear-gradient(135deg, #fff, var(--neon-cyan), var(--neon-violet)); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 10px; letter-spacing: -1px; }
+        .dev-badge { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(6,182,212,0.15)); border: 1px solid rgba(139,92,246,0.3); padding: 8px 24px; border-radius: 50px; font-size: 0.85rem; color: var(--neon-violet); font-weight: 700; margin-bottom: 20px; }
+        .dev-copyright { color: var(--neon-cyan); font-size: 0.95rem; font-weight: 600; margin-bottom: 28px; opacity: 0.9; }
+        .dev-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 28px; }
+        .dev-tag { background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.2); padding: 8px 18px; border-radius: 50px; font-size: 0.8rem; color: var(--neon-cyan); font-weight: 600; }
+        .dev-tag.violet { background: rgba(139,92,246,0.1); border-color: rgba(139,92,246,0.2); color: var(--neon-violet); }
+        .dev-tag.pink { background: rgba(236,72,153,0.1); border-color: rgba(236,72,153,0.2); color: var(--neon-pink); }
+        .dev-tag.green { background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.2); color: var(--neon-green); }
+        .dev-tag.amber { background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.2); color: var(--neon-amber); }
+        .dev-rights { color: var(--text-muted); font-size: 0.85rem; }
+        .dev-bottom-bar { height: 3px; background: linear-gradient(90deg, var(--neon-violet), var(--neon-cyan)); opacity: 0.6; }
+
+        /* ═══════════════════════════════════════
+           TOOLS PAGE STYLES
+           ═══════════════════════════════════════ */
+        .tools-page { padding: 32px; }
+        .tools-hero { text-align: center; padding: 40px 20px; }
+        .tools-hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.3); padding: 6px 16px; border-radius: 50px; font-size: 0.8rem; color: var(--neon-cyan); font-family: 'JetBrains Mono', monospace; margin-bottom: 24px; }
+        .tools-hero-title { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 800; background: linear-gradient(135deg, #fff, var(--neon-cyan), var(--neon-violet)); -webkit-background-clip: text; background-clip: text; color: transparent; line-height: 1.1; margin-bottom: 16px; }
+        .tools-hero-subtitle { font-size: 1.1rem; color: var(--text-secondary); max-width: 500px; margin: 0 auto 16px; }
+        .tools-hero-dev { font-size: 0.95rem; color: var(--neon-violet); font-weight: 600; }
+        .tools-warning { border-color: rgba(239, 68, 68, 0.4) !important; background: rgba(239, 68, 68, 0.05) !important; margin-bottom: 32px; }
+        .tools-warning .card-header { border-bottom-color: rgba(239, 68, 68, 0.2) !important; }
+        .tools-warning .card-icon { background: rgba(239, 68, 68, 0.15) !important; border-color: rgba(239, 68, 68, 0.3) !important; color: var(--neon-red) !important; }
+        .tools-warning .card-title { color: var(--neon-red) !important; }
+        .dm-progress { margin-top: 16px; background: rgba(0,0,0,0.4); border-radius: 12px; padding: 16px; border: 1px solid rgba(6,182,212,0.2); display: none; }
+        .dm-progress.active { display: block; }
+        .dm-progress-bar { height: 8px; background: rgba(255,255,255,0.1); border-radius: 50px; overflow: hidden; margin-bottom: 10px; }
+        .dm-progress-fill { height: 100%; background: linear-gradient(90deg, var(--neon-cyan), var(--neon-violet)); border-radius: 50px; transition: width 0.3s ease; width: 0%; }
+        .dm-progress-text { font-size: 0.85rem; color: var(--text-secondary); text-align: center; font-family: 'JetBrains Mono', monospace; }
+        .ws-connected-info { margin-top: 12px; padding: 10px 14px; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2); border-radius: 10px; font-size: 0.8rem; color: var(--neon-green); display: none; }
+        .ws-connected-info.active { display: block; }
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE DESIGN
+           ═══════════════════════════════════════ */
+        @media (max-width: 968px) {
+            .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .about-image-wrapper { order: -1; text-align: center; }
+            .about-image { margin: 0 auto; }
+        }
+        @media (max-width: 900px) {
+            .sidebar { transform: translateX(100%); }
+            .sidebar.open { transform: translateX(0); }
+            .main-content { margin-right: 0; }
+            .menu-toggle { display: flex; }
+        }
+        @media (max-width: 768px) {
+            .home-hero { padding: 7rem 20px 3rem; }
+            .home-section { padding: 4rem 20px; }
+            .tools-page { padding: 20px; }
+            .dev-page-content { padding: 20px; }
+        }
+        @media (max-width: 600px) {
+            .cards-grid { grid-template-columns: 1fr; }
+            .btn-group { flex-direction: column; }
+            .btn-group .btn { width: 100%; }
+        }
+
+        /* ─── Fade In Animation ─── */
+        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+    <base target="_blank">
+<base target="_blank">
+</head>
+<body>
+    <!-- Particles Canvas -->
+    <canvas id="particles"></canvas>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Menu Toggle -->
+    <button class="menu-toggle" id="menu-toggle" onclick="toggleSidebar()">☰</button>
+
+    <!-- ═══════════════════════════════════════
+         SIDEBAR
+         ═══════════════════════════════════════ -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">ALVEX</div>
+            <div class="sidebar-version">V4.0 // SPA</div>
+        </div>
+        <nav>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <button class="nav-link active" onclick="navigateTo('home', this)">
+                        <span class="icon">🏠</span> الرئيسية
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" onclick="navigateTo('tools', this)">
+                        <span class="icon">🛠️</span> Discord Tools
+                    </button>
+                </li>
+                <li class="nav-item">
+                    <button class="nav-link" onclick="navigateTo('dev', this)">
+                        <span class="icon">👨‍💻</span> المطور
+                    </button>
+                </li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <div style="padding: 10px; border-radius: 10px; background: rgba(139,92,246,0.1); border: 1px solid rgba(139,92,246,0.2);">
+                <div style="font-size: 0.8rem; color: var(--neon-violet); font-weight: 700;">ALVEX studio</div>
+                <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 3px;">© 2026 جميع الحقوق محفوظة</div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ═══════════════════════════════════════
+         MAIN CONTENT
+         ═══════════════════════════════════════ -->
+    <main class="main-content">
+
+        <!-- ═══════════════════════════════════════
+             PAGE: HOME
+             ═══════════════════════════════════════ -->
+        <div id="page-home" class="page active">
+            <div class="home-hero">
+                <div class="home-hero-badge">
+                    <i class="fas fa-circle" style="font-size: 8px;"></i>
+                    متاح للعمل الحر
+                </div>
+                <div class="home-hero-avatar-wrapper">
+                    <div class="home-avatar-ring"></div>
+                    <img src="https://timg.eu.cc/AVQaM1Q0Gt.jpg" alt="ALVEX studio" class="home-hero-avatar">
+                </div>
+                <h1>ALVEX studio</h1>
+                <div class="home-hero-title">مطور ويب & مبرمج</div>
+                <p class="home-hero-bio">مطور تطبيقات وبوتات ذكية.</p>
+                <div class="home-hero-social">
+                    <a href="https://github.com/security-ali" target="_blank" rel="noopener noreferrer" class="home-social-btn home-social-github" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://open.spotify.com/user/31sy6wauuivbpzlq24of6kqe5ni4" target="_blank" rel="noopener noreferrer" class="home-social-btn home-social-spotify" aria-label="Spotify">
+                        <i class="fab fa-spotify"></i>
+                    </a>
+                    <a href="https://www.instagram.com/ali_ghosthub" target="_blank" rel="noopener noreferrer" class="home-social-btn home-social-instagram" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+                <div class="home-hero-cta">
+                    <button onclick="navigateTo('tools', null)" class="home-btn home-btn-primary">
+                        <i class="fas fa-paper-plane"></i> Discord Tools
+                    </button>
+                    <button onclick="document.getElementById('about-section').scrollIntoView({behavior:'smooth'})" class="home-btn home-btn-secondary">
+                        <i class="fas fa-code"></i> مهاراتي
+                    </button>
+                </div>
+            </div>
+
+            <section id="about-section" class="home-section fade-in">
+                <div class="home-section-header">
+                    <div class="home-section-label">من أنا</div>
+                    <h2 class="home-section-title">نبذة عني</h2>
+                    <p class="home-section-subtitle">شغف بالتقنية</p>
+                </div>
+                <div class="about-grid">
+                    <div class="about-content">
+                        <h3>مطور شغوف ببناء المستقبل الرقمي</h3>
+                        <p>متخصص في تطوير الويب والبوتات.</p>
+                        <p>أستخدم JavaScript و Python مع أحدث الأطر.</p>
+                    </div>
+                    <div class="about-image-wrapper">
+                        <img src="https://timg.eu.cc/AVQaM1Q0Gt.jpg" alt="ALVEX studio" class="about-image">
+                    </div>
+                </div>
+            </section>
+
+            <section id="skills-section" class="home-section fade-in">
+                <div class="home-section-header">
+                    <div class="home-section-label">خبراتي</div>
+                    <h2 class="home-section-title">المهارات التقنية</h2>
+                    <p class="home-section-subtitle">التقنيات المستخدمة</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fab fa-js"></i></div>
+                        <h3>JavaScript</h3>
+                        <p>تطبيقات ويب وبوتات</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Express</span>
+                            <span class="skill-tag">React</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fab fa-python"></i></div>
+                        <h3>Python</h3>
+                        <p>أنظمة ذكية وأتمتة</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Django</span>
+                            <span class="skill-tag">Flask</span>
+                            <span class="skill-tag">AI/ML</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <div class="skill-icon"><i class="fas fa-robot"></i></div>
+                        <h3>البوتات الذكية</h3>
+                        <p>بوتات متقدمة</p>
+                        <div class="skill-tags">
+                            <span class="skill-tag">API</span>
+                            <span class="skill-tag">AutoMod</span>
+                            <span class="skill-tag">AI</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact-section" class="home-section fade-in">
+                <div class="home-section-header">
+                    <div class="home-section-label">تواصل</div>
+                    <h2 class="home-section-title">لنتحدث</h2>
+                    <p class="home-section-subtitle">هل لديك مشروع؟</p>
+                </div>
+                <div class="contact-wrapper">
+                    <div class="contact-info">
+                        <h3>لنبدأ مشروعك</h3>
+                        <p>متاح للعمل الحر والمشاريع.</p>
+                        <div class="contact-links">
+                            <a href="https://github.com/security-ali" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+                                <div class="contact-link-icon" style="background: linear-gradient(135deg, #333, #24292e); color: #fff;">
+                                    <i class="fab fa-github"></i>
+                                </div>
+                                <div class="contact-link-text">
+                                    <strong>GitHub</strong>
+                                    <span>github.com/security-ali</span>
+                                </div>
+                                <i class="fas fa-external-link-alt" style="color: var(--text-secondary);"></i>
+                            </a>
+                            <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+                                <div class="contact-link-icon" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff;">
+                                    <i class="fab fa-instagram"></i>
+                                </div>
+                                <div class="contact-link-text">
+                                    <strong>Instagram</strong>
+                                    <span>تابعني للتحديثات اليومية</span>
+                                </div>
+                                <i class="fas fa-external-link-alt" style="color: var(--text-secondary);"></i>
+                            </a>
+                            <a href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer" class="contact-link-item">
+                                <div class="contact-link-icon" style="background: linear-gradient(135deg, #1db954, #1ed760); color: #fff;">
+                                    <i class="fab fa-spotify"></i>
+                                </div>
+                                <div class="contact-link-text">
+                                    <strong>Spotify</strong>
+                                    <span>قائمة التشغيل المفضلة</span>
+                                </div>
+                                <i class="fas fa-external-link-alt" style="color: var(--text-secondary);"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="home-footer">
+                <div class="home-footer-logo">
+                    <i class="fas fa-code"></i> ALVEX studio
+                </div>
+                <div class="home-footer-social">
+                    <a href="https://github.com/security-ali" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/ali_ghosthub" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://open.spotify.com/user/31sy6wauuivbpzlq24of6kqe5ni4" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                </div>
+                <div class="home-footer-divider"></div>
+                <p class="home-copyright">© 2026 ALVEX studio - جميع الحقوق محفوظة</p>
+                <p class="home-made-with">Made with <i class="fas fa-heart"></i></p>
+            </footer>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+             PAGE: TOOLS
+             ═══════════════════════════════════════ -->
+        <div id="page-tools" class="page">
+            <div class="tools-page">
+                <div class="section-header">
+                    <div class="section-icon">🛠️</div>
+                    <div>
+                        <div class="section-title">Discord Tools</div>
+                        <div class="section-desc">أدوات متقدمة</div>
+                    </div>
+                </div>
+
+                <div class="tools-hero">
+                    <div class="tools-hero-badge"><span>●</span> Discord Tools Hub</div>
+                    <h1 class="tools-hero-title">Discord Tools</h1>
+                    <p class="tools-hero-subtitle">أدوات متقدمة لإدارة Discord</p>
+                    <p class="tools-hero-dev">🚀 تطوير وإشراف: ALVEX studio</p>
+                </div>
+
+                <div class="tool-card tools-warning">
+                    <div class="card-header">
+                        <div class="card-icon">⚠️</div>
+                        <div class="card-title">تنبيه هام</div>
+                        <span class="card-badge badge-secure">● SECURE</span>
+                    </div>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.8;">
+                        <strong style="color: var(--neon-red);">على مسؤوليتك.</strong> استخدم بحذر. ALVEX studio غير مسؤول عن أي استخدام خاطئ أو غير قانوني.
+                    </p>
+                </div>
+
+                <div class="cards-grid">
+                    <!-- Bot Status -->
+                    <div class="tool-card">
+                        <div class="card-header">
+                            <div class="card-icon">🤖</div>
+                            <div class="card-title">Bot Status</div>
+                            <span class="card-badge badge-bot">● BOT</span>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">🔑 Bot Token <span class="required">*</span></label>
+                            <input type="password" id="bot-token" class="input-field" placeholder="توكن البوت">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">🎭 نوع الحالة</label>
+                            <select id="bot-activity-type" class="input-field">
+                                <option value="0">🎮 Playing (يلعب)</option>
+                                <option value="2">🎧 Listening (يستمع)</option>
+                                <option value="3">👀 Watching (يشاهد)</option>
+                                <option value="5">🏆 Competing (يتنافس)</option>
+                                <option value="4">💬 Custom (مخصص)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">✏️ النص <span class="required">*</span></label>
+                            <input type="text" id="bot-activity-name" class="input-field" placeholder="مثال: مع ALVEX studio">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">🌐 حالة الاتصال</label>
+                            <select id="bot-status" class="input-field">
+                                <option value="online">🟢 متصل (Online)</option>
+                                <option value="idle">🌙 خامل (Idle)</option>
+                                <option value="dnd">🔴 مشغول (DND)</option>
+                                <option value="invisible">⚫ مخفي (Invisible)</option>
+                            </select>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn btn-violet" id="apply-bot-status"><span>⚡</span> تطبيق</button>
+                            <button class="btn btn-danger" id="stop-bot-status" disabled><span>⏹️</span> إيقاف</button>
+                        </div>
+                        <div class="status-pill status-offline" id="bot-status-pill">غير متصل</div>
+                        <div class="ws-connected-info" id="bot-ws-info">
+                            <i class="fas fa-plug"></i> الاتصال مفتوح — الحالة نشطة
+                        </div>
+                    </div>
+
+                    <!-- DM Message Deleter -->
+                    <div class="tool-card">
+                        <div class="card-header">
+                            <div class="card-icon">💬</div>
+                            <div class="card-title">حذف رسائل الخاص</div>
+                            <span class="card-badge badge-live">● LIVE</span>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">🔑 التوكن <span class="required">*</span></label>
+                            <input type="password" id="dm-token" class="input-field" placeholder="توكن حسابك">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">🆔 ID الشخص المستهدف <span class="required">*</span></label>
+                            <input type="text" id="dm-target-id" class="input-field" placeholder="معرف المستخدم">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">⏱️ التأخير بين الحذف (ms)</label>
+                            <input type="number" id="dm-delay" class="input-field" value="800" min="200" max="5000">
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn btn-danger btn-full" id="start-dm-delete">
+                                <span>🗑️</span> حذف كل رسائلي
+                            </button>
+                        </div>
+                        <div class="dm-progress" id="dm-progress">
+                            <div class="dm-progress-bar">
+                                <div class="dm-progress-fill" id="dm-progress-fill"></div>
+                            </div>
+                            <div class="dm-progress-text" id="dm-progress-text">0 / 0 رسالة</div>
+                        </div>
+                        <div class="counter-box">
+                            <div class="counter-number" id="dm-deleted-count">0</div>
+                            <div class="counter-label">رسائل محذوفة</div>
+                        </div>
+                    </div>
+
+                    <!-- Rich Presence -->
+                    <div class="tool-card">
+                        <div class="card-header">
+                            <div class="card-icon">🎮</div>
+                            <div class="card-title">Rich Presence (User)</div>
+                            <span class="card-badge badge-live">● LIVE</span>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">🔑 User Token <span class="required">*</span></label>
+                            <input type="password" id="ws-token" class="input-field" placeholder="توكن الحساب">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">🎭 نوع النشاط</label>
+                            <select id="ws-activity-type" class="input-field">
+                                <option value="0">🎮 Playing</option>
+                                <option value="1">📺 Streaming</option>
+                                <option value="2">🎧 Listening</option>
+                                <option value="3">👀 Watching</option>
+                                <option value="5">🏆 Competing</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">✏️ النشاط <span class="required">*</span></label>
+                            <input type="text" id="ws-activity-name" class="input-field" placeholder="النشاط">
+                        </div>
+                        <div class="input-group" id="ws-stream-url-group" style="display:none;">
+                            <label class="input-label">🔗 رابط البث (Streaming)</label>
+                            <input type="text" id="ws-stream-url" class="input-field" placeholder="https://twitch.tv/...">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">📝 الوصف</label>
+                            <input type="text" id="ws-details" class="input-field" placeholder="الوصف">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">📌 التفاصيل</label>
+                            <input type="text" id="ws-state" class="input-field" placeholder="تفاصيل">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">🖼️ صورة كبيرة</label>
+                            <input type="text" id="ws-large-image" class="input-field" placeholder="asset أو رابط">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">📝 وصف الصورة الكبيرة</label>
+                            <input type="text" id="ws-large-text" class="input-field" placeholder="الوصف">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">🖼️ صورة صغيرة</label>
+                            <input type="text" id="ws-small-image" class="input-field" placeholder="asset أو رابط">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">📝 وصف الصورة الصغيرة</label>
+                            <input type="text" id="ws-small-text" class="input-field" placeholder="الوصف">
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn btn-success" id="apply-ws-status"><span>⚡</span> تطبيق</button>
+                            <button class="btn btn-danger" id="stop-ws-status" disabled><span>⏹️</span> إيقاف</button>
+                        </div>
+                        <div class="status-pill status-offline" id="ws-status">غير متصل</div>
+                        <div class="ws-connected-info" id="ws-connected-info">
+                            <i class="fas fa-plug"></i> الاتصال مفتوح — الحالة نشطة
+                        </div>
+                    </div>
+
+                    <!-- HypeSquad -->
+                    <div class="tool-card">
+                        <div class="card-header">
+                            <div class="card-icon">⚡</div>
+                            <div class="card-title">HypeSquad</div>
+                            <span class="card-badge badge-live">● LIVE</span>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">🔑 التوكن <span class="required">*</span></label>
+                            <input type="password" id="hs-token" class="input-field" placeholder="التوكن">
+                        </div>
+                        <div class="btn-group" style="margin-bottom: 10px;">
+                            <button class="btn btn-primary" id="set-bravery"><span>💙</span> Bravery</button>
+                            <button class="btn btn-success" id="set-brilliance"><span>💚</span> Brilliance</button>
+                            <button class="btn btn-warning" id="set-balance"><span>🧡</span> Balance</button>
+                        </div>
+                        <button class="btn btn-danger btn-full" id="remove-hypesquad"><span>❌</span> إزالة</button>
+                    </div>
+
+                    <!-- Token Checker -->
+                    <div class="tool-card">
+                        <div class="card-header">
+                            <div class="card-icon">🔑</div>
+                            <div class="card-title">Token Checker</div>
+                            <span class="card-badge badge-secure">● SECURE</span>
+                        </div>
+                        <div class="input-group">
+                            <label class="input-label">🔑 التوكن <span class="required">*</span></label>
+                            <input type="password" id="check-token" class="input-field" placeholder="التوكن">
+                        </div>
+                        <button class="btn btn-primary btn-full" id="check-token-btn">
+                            <span>🔍</span> فحص
+                        </button>
+                        <div class="token-info-card" id="token-info">
+                            <div class="token-info-row">
+                                <div class="token-info-icon">👤</div>
+                                <div class="token-info-text">
+                                    <div class="token-info-label">اسم المستخدم</div>
+                                    <div class="token-info-value" id="token-username">-</div>
+                                </div>
+                            </div>
+                            <div class="token-info-row">
+                                <div class="token-info-icon">🆔</div>
+                                <div class="token-info-text">
+                                    <div class="token-info-label">المعرف</div>
+                                    <div class="token-info-value" id="token-id">-</div>
+                                </div>
+                            </div>
+                            <div class="token-info-row">
+                                <div class="token-info-icon">📧</div>
+                                <div class="token-info-text">
+                                    <div class="token-info-label">البريد</div>
+                                    <div class="token-info-value" id="token-email">-</div>
+                                </div>
+                            </div>
+                            <div class="token-info-row">
+                                <div class="token-info-icon">✅</div>
+                                <div class="token-info-text">
+                                    <div class="token-info-label">2FA</div>
+                                    <div class="token-info-value" id="token-mfa">-</div>
+                                </div>
+                            </div>
+                            <div class="token-info-row">
+                                <div class="token-info-icon">🎨</div>
+                                <div class="token-info-text">
+                                    <div class="token-info-label">الأفاتار</div>
+                                    <div class="token-info-value" id="token-avatar">-</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="log-section">
+                    <div class="log-header">
+                        <div class="log-title"><span class="live-dot"></span>السجل</div>
+                        <div class="log-actions">
+                            <button class="btn btn-danger" style="padding: 6px 16px; font-size: 0.8rem;" id="clear-log-btn">
+                                <span>🗑️</span> مسح
+                            </button>
+                        </div>
+                    </div>
+                    <div class="log-container" id="log-container">
+                        <div class="log-entry log-info">
+                            <span class="log-time">--:--</span>
+                            <span class="log-content">📋 سجل جاهز</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+             PAGE: DEV
+             ═══════════════════════════════════════ -->
+        <div id="page-dev" class="page">
+            <div style="padding: 32px;">
+                <div class="section-header">
+                    <div class="section-icon">👨‍💻</div>
+                    <div>
+                        <div class="section-title">المطور</div>
+                        <div class="section-desc">معلومات المطور</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dev-page-content">
+                <div class="dev-card">
+                    <div class="dev-card-top-bar"></div>
+                    <div class="dev-card-glow"></div>
+                    <div class="dev-card-inner">
+                        <div class="dev-avatar-wrap">
+                            <img src="https://timg.eu.cc/Qr7iaBKds1.jpg" alt="ALVEX studio">
+                            <div class="dev-status-dot"></div>
+                        </div>
+                        <h2 class="dev-name">ALVEX studio</h2>
+                        <div class="dev-badge">
+                            <span>🚀</span> المطور
+                        </div>
+                        <p class="dev-copyright">
+                            ⚡ جميع الحقوق محفوظة © 2026
+                        </p>
+                        <div class="dev-tags">
+                            <span class="dev-tag">WebSocket</span>
+                            <span class="dev-tag violet">Discord API</span>
+                            <span class="dev-tag pink">HypeSquad</span>
+                            <span class="dev-tag green">DM Tools</span>
+                            <span class="dev-tag amber">UI/UX</span>
+                        </div>
+                        <p class="dev-rights">
+                            ✅ جميع الحقوق محفوظة لـ ALVEX studio
+                        </p>
+                    </div>
+                    <div class="dev-bottom-bar"></div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   ALVEX studio - Discord Tools Hub v4.0
+   JavaScript Core
+   ═══════════════════════════════════════════════════════ */
+
+// ─── Navigation System ───
+function navigateTo(pageId, element) {
+    document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+    const targetPage = document.getElementById('page-' + pageId);
+    if (targetPage) targetPage.classList.add('active');
+
+    if (element) {
+        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+        element.classList.add('active');
+    } else {
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('onclick').includes("'" + pageId + "'")) {
+                link.classList.add('active');
+            }
+        });
+    }
+    if (window.innerWidth <= 900) toggleSidebar();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ─── Sidebar Toggle ───
+function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+    document.getElementById('overlay').classList.toggle('active');
+}
+document.getElementById('overlay').addEventListener('click', toggleSidebar);
+
+// ─── Particles Background ───
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let particles = [];
+
+function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+class Particle {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.opacity = Math.random() * 0.5 + 0.2;
+        this.color = Math.random() > 0.5 ? '139, 92, 246' : '6, 182, 212';
+    }
+    update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x > canvas.width) this.x = 0;
+        if (this.x < 0) this.x = canvas.width;
+        if (this.y > canvas.height) this.y = 0;
+        if (this.y < 0) this.y = canvas.height;
+    }
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${this.color}, ${this.opacity})`;
+        ctx.fill();
+    }
+}
+for (let i = 0; i < 100; i++) particles.push(new Particle());
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => { p.update(); p.draw(); });
+    for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 100) {
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(139, 92, 246, ${0.08 * (1 - dist / 100)})`;
+                ctx.lineWidth = 0.5;
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.stroke();
+            }
+        }
+    }
+    requestAnimationFrame(animate);
+}
+animate();
+
+// ─── Toast Notifications ───
+function showToast(title, message, type = 'info') {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    const icons = { success: '✅', error: '❌', info: 'ℹ️', warn: '⚠️' };
+    const colors = { success: 'var(--neon-green)', error: 'var(--neon-red)', info: 'var(--neon-cyan)', warn: 'var(--neon-amber)' };
+    toast.innerHTML = `<div class="toast-icon">${icons[type]}</div><div class="toast-content"><div class="toast-title" style="color: ${colors[type]}">${title}</div><div class="toast-msg">${message}</div></div><button class="toast-close" onclick="this.parentElement.remove()">×</button>`;
+    container.appendChild(toast);
+    setTimeout(() => toast.remove(), 5000);
+}
+
+// ─── Log System ───
+const logContainer = document.getElementById('log-container');
+let operationCount = 0;
+
+function addLog(msg, type = 'info') {
+    const entry = document.createElement('div');
+    entry.className = `log-entry log-${type}`;
+    const time = new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    entry.innerHTML = `<span class="log-time">${time}</span><span class="log-content">${msg}</span>`;
+    logContainer.appendChild(entry);
+    entry.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    operationCount++;
+}
+
+document.getElementById('clear-log-btn').onclick = () => {
+    logContainer.innerHTML = '';
+    addLog('✅ تم مسح السجل', 'info');
+    showToast('تم المسح', 'تم إفراغ السجل', 'info');
+};
+
+// ─── BOT STATUS (WebSocket) ───
+let botWs = null;
+let botIntervalId = null;
+let botConnected = false;
+
+function disconnectBot() {
+    if (botIntervalId) { clearInterval(botIntervalId); botIntervalId = null; }
+    if (botWs && botWs.readyState === WebSocket.OPEN) { botWs.close(); }
+    botWs = null; botConnected = false;
+    document.getElementById('bot-status-pill').className = 'status-pill status-offline';
+    document.getElementById('bot-status-pill').textContent = 'غير متصل';
+    document.getElementById('bot-ws-info').classList.remove('active');
+    document.getElementById('apply-bot-status').disabled = false;
+    document.getElementById('stop-bot-status').disabled = true;
+    addLog('⏹️ تم إغلاق اتصال البوت', 'warn');
+    showToast('إيقاف', 'تم إغلاق اتصال البوت', 'info');
+}
+document.getElementById('stop-bot-status').onclick = disconnectBot;
+
+document.getElementById('apply-bot-status').onclick = async function() {
+    const btn = this;
+    const token = document.getElementById('bot-token').value.trim();
+    const type = document.getElementById('bot-activity-type').value;
+    const name = document.getElementById('bot-activity-name').value.trim();
+    const status = document.getElementById('bot-status').value;
+    const statusPill = document.getElementById('bot-status-pill');
+    const wsInfo = document.getElementById('bot-ws-info');
+    const stopBtn = document.getElementById('stop-bot-status');
+
+    if (!token) { addLog('❌ أدخل Bot Token', 'error'); showToast('خطأ', 'Bot Token مطلوب', 'error'); return; }
+    if (!name) { addLog('❌ أدخل النص', 'error'); showToast('خطأ', 'النص مطلوب', 'error'); return; }
+    if (botConnected) disconnectBot();
+
+    addLog('🤖 جاري الاتصال بالـ Gateway...', 'info');
+    statusPill.className = 'status-pill status-idle';
+    statusPill.textContent = 'جاري الاتصال...';
+    btn.disabled = true;
+    stopBtn.disabled = false;
+
+    try {
+        const meRes = await fetch('https://discord.com/api/v10/users/@me', { headers: { 'Authorization': 'Bot ' + token } });
+        if (!meRes.ok) {
+            addLog('❌ Bot Token غير صالح', 'error');
+            showToast('خطأ', 'Bot Token غير صالح', 'error');
+            statusPill.className = 'status-pill status-offline';
+            statusPill.textContent = 'غير متصل';
+            btn.disabled = false; stopBtn.disabled = true;
+            return;
+        }
+        const me = await meRes.json();
+        addLog(`✅ تم التحقق من البوت: ${me.username}`, 'success');
+
+        botWs = new WebSocket("wss://gateway.discord.gg/?v=10&encoding=json");
+        botWs.onopen = () => { addLog('🔌 متصل بـ Gateway', 'info'); };
+        botWs.onmessage = (e) => {
+            const data = JSON.parse(e.data);
+            if (data.op === 10) {
+                const interval = data.d.heartbeat_interval;
+                botIntervalId = setInterval(() => {
+                    if (botWs && botWs.readyState === WebSocket.OPEN) { botWs.send(JSON.stringify({ op: 1, d: null })); }
+                }, interval);
+                botWs.send(JSON.stringify({
+                    op: 2,
+                    d: {
+                        token: 'Bot ' + token,
+                        intents: 0,
+                        properties: { $os: "linux", $browser: "ALVEX Bot", $device: "ALVEX Bot" },
+                        presence: {
+                            status: status,
+                            afk: false,
+                            activities: [{ name: name, type: parseInt(type), state: name, details: name }]
+                        }
+                    }
+                }));
+            } else if (data.t === "READY") {
+                addLog(`✅ البوت جاهز: ${data.d.user.username}`, 'success');
+                statusPill.className = 'status-pill status-online';
+                statusPill.textContent = `متصل: ${data.d.user.username}`;
+                wsInfo.classList.add('active');
+                showToast('تم', `تم تفعيل حالة البوت: ${data.d.user.username}`, 'success');
+                addLog(`📤 الحالة: ${name} (${status})`, 'info');
+                addLog('🔌 الاتصال مفتوح — الحالة نشطة', 'info');
+            } else if (data.op === 9) {
+                addLog('❌ فشل الاتصال', 'error');
+                statusPill.className = 'status-pill status-offline';
+                showToast('خطأ', 'فشل الاتصال بالـ Gateway', 'error');
+                if (botIntervalId) { clearInterval(botIntervalId); botIntervalId = null; }
+                btn.disabled = false;
+                stopBtn.disabled = true;
+            }
+        };
+        botWs.onerror = () => {
+            addLog('❌ خطأ WebSocket', 'error');
+            statusPill.className = 'status-pill status-offline';
+            showToast('خطأ', 'فشل الاتصال', 'error');
+            if (botIntervalId) { clearInterval(botIntervalId); botIntervalId = null; }
+            btn.disabled = false;
+            stopBtn.disabled = true;
+            wsInfo.classList.remove('active');
+        };
+        botWs.onclose = () => {
+            if (botConnected) {
+                addLog('⚠️ تم إغلاق الاتصال', 'warn');
+                statusPill.className = 'status-pill status-offline';
+                statusPill.textContent = 'غير متصل';
+                wsInfo.classList.remove('active');
+                btn.disabled = false;
+                stopBtn.disabled = true;
+            }
+        };
+        botConnected = true;
+    } catch (e) {
+        addLog(`🔥 خطأ: ${e.message}`, 'error');
+        showToast('خطأ', e.message, 'error');
+        statusPill.className = 'status-pill status-offline';
+        btn.disabled = false;
+        stopBtn.disabled = true;
+    }
+};
+
+// ─── DM MESSAGE DELETER ───
+let dmDeleteActive = false;
+let dmDeletedCount = 0;
+let dmTotalMessages = 0;
+
+async function fetchDMChannel(token, targetId) {
+    const res = await fetch('https://discord.com/api/v10/users/@me/channels', { headers: { 'Authorization': token, 'Content-Type': 'application/json' } });
+    if (!res.ok) throw new Error('فشل جلب القنوات: ' + res.status);
+    const channels = await res.json();
+    const dmChannel = channels.find(ch => ch.type === 1 && ch.recipients && ch.recipients.some(r => r.id === targetId));
+    if (!dmChannel) throw new Error('لم يتم العثور على محادثة خاصة مع هذا المستخدم');
+    return dmChannel.id;
+}
+
+async function fetchMessages(token, channelId, before = null) {
+    let url = `https://discord.com/api/v10/channels/${channelId}/messages?limit=100`;
+    if (before) url += `&before=${before}`;
+    const res = await fetch(url, { headers: { 'Authorization': token } });
+    if (!res.ok) throw new Error('فشل جلب الرسائل: ' + res.status);
+    return await res.json();
+}
+
+async function deleteMessage(token, channelId, messageId) {
+    const res = await fetch(`https://discord.com/api/v10/channels/${channelId}/messages/${messageId}`, { method: 'DELETE', headers: { 'Authorization': token } });
+    return res.ok;
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+document.getElementById('start-dm-delete').onclick = async function() {
+    const btn = this;
+    const token = document.getElementById('dm-token').value.trim();
+    const targetId = document.getElementById('dm-target-id').value.trim();
+    const delay = parseInt(document.getElementById('dm-delay').value) || 800;
+    const progressDiv = document.getElementById('dm-progress');
+    const progressFill = document.getElementById('dm-progress-fill');
+    const progressText = document.getElementById('dm-progress-text');
+    const counter = document.getElementById('dm-deleted-count');
+
+    if (!token) { addLog('❌ أدخل التوكن', 'error'); showToast('خطأ', 'التوكن مطلوب', 'error'); return; }
+    if (!targetId) { addLog('❌ أدخل ID الشخص', 'error'); showToast('خطأ', 'ID الشخص مطلوب', 'error'); return; }
+    if (delay < 200) { addLog('⚠️ الحد الأدنى 200ms', 'warn'); showToast('تحذير', 'الحد الأدنى 200ms', 'warn'); return; }
+
+    dmDeleteActive = true;
+    dmDeletedCount = 0;
+    dmTotalMessages = 0;
+    counter.innerText = '0';
+    progressDiv.classList.add('active');
+    progressFill.style.width = '0%';
+    progressText.innerText = 'جاري البحث...';
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span> جاري...';
+    addLog('🔍 جاري البحث عن المحادثة...', 'info');
+
+    try {
+        const channelId = await fetchDMChannel(token, targetId);
+        addLog(`✅ تم العثور على المحادثة: ${channelId}`, 'success');
+
+        let allMessages = [];
+        let before = null;
+        let batchCount = 0;
+        const maxBatches = 50;
+
+        while (dmDeleteActive && batchCount < maxBatches) {
+            const messages = await fetchMessages(token, channelId, before);
+            if (messages.length === 0) break;
+            allMessages = allMessages.concat(messages);
+            before = messages[messages.length - 1].id;
+            batchCount++;
+            addLog(`📥 تم جلب ${messages.length} رسالة (الدفعة ${batchCount})`, 'info');
+        }
+
+        const meRes = await fetch('https://discord.com/api/v10/users/@me', { headers: { 'Authorization': token } });
+        const me = await meRes.json();
+        const myId = me.id;
+        const myMessages = allMessages.filter(m => m.author && m.author.id === myId);
+        dmTotalMessages = myMessages.length;
+
+        if (dmTotalMessages === 0) {
+            addLog('ℹ️ لا توجد رسائل منك في هذه المحادثة', 'info');
+            showToast('انتهى', 'لا توجد رسائل لحذفها', 'info');
+            btn.disabled = false;
+            btn.innerHTML = '<span>🗑️</span> حذف كل رسائلي';
+            progressDiv.classList.remove('active');
+            return;
+        }
+
+        addLog(`🗑️ جاري حذف ${dmTotalMessages} رسالة...`, 'info');
+        showToast('بدء', `جاري حذف ${dmTotalMessages} رسالة`, 'info');
+
+        let deleted = 0;
+        for (const msg of myMessages) {
+            if (!dmDeleteActive) { addLog('⏹️ تم الإيقاف من المستخدم', 'warn'); break; }
+            const ok = await deleteMessage(token, channelId, msg.id);
+            if (ok) {
+                deleted++;
+                dmDeletedCount++;
+                counter.innerText = dmDeletedCount;
+                const pct = Math.round((deleted / dmTotalMessages) * 100);
+                progressFill.style.width = pct + '%';
+                progressText.innerText = `${deleted} / ${dmTotalMessages} رسالة`;
+                if (deleted % 10 === 0) addLog(`🗑️ تم حذف ${deleted} / ${dmTotalMessages}`, 'info');
+            } else {
+                addLog(`⚠️ فشل حذف رسالة ${msg.id}`, 'error');
+            }
+            await sleep(delay);
+        }
+        addLog(`✅ تم حذف ${deleted} من ${dmTotalMessages} رسالة`, 'success');
+        showToast('تم', `تم حذف ${deleted} رسالة`, 'success');
+    } catch (e) {
+        addLog(`🔥 خطأ: ${e.message}`, 'error');
+        showToast('خطأ', e.message, 'error');
+    }
+    dmDeleteActive = false;
+    btn.disabled = false;
+    btn.innerHTML = '<span>🗑️</span> حذف كل رسائلي';
+    progressDiv.classList.remove('active');
+};
+
+// ─── RICH PRESENCE (User WebSocket) ───
+let userWs = null;
+let userIntervalId = null;
+let userConnected = false;
+
+function disconnectUser() {
+    if (userIntervalId) { clearInterval(userIntervalId); userIntervalId = null; }
+    if (userWs && userWs.readyState === WebSocket.OPEN) { userWs.close(); }
+    userWs = null; userConnected = false;
+    document.getElementById('ws-status').className = 'status-pill status-offline';
+    document.getElementById('ws-status').textContent = 'غير متصل';
+    document.getElementById('ws-connected-info').classList.remove('active');
+    document.getElementById('apply-ws-status').disabled = false;
+    document.getElementById('stop-ws-status').disabled = true;
+    addLog('⏹️ تم إغلاق اتصال Rich Presence', 'warn');
+    showToast('إيقاف', 'تم إغلاق اتصال Rich Presence', 'info');
+}
+document.getElementById('stop-ws-status').onclick = disconnectUser;
+
+const typeSelect = document.getElementById('ws-activity-type');
+const streamDiv = document.getElementById('ws-stream-url-group');
+typeSelect.addEventListener('change', () => {
+    streamDiv.style.display = typeSelect.value === '1' ? 'block' : 'none';
+});
+
+document.getElementById('apply-ws-status').onclick = async function() {
+    const btn = this;
+    const token = document.getElementById('ws-token').value.trim();
+    const type = document.getElementById('ws-activity-type').value;
+    const name = document.getElementById('ws-activity-name').value.trim();
+    const details = document.getElementById('ws-details').value.trim();
+    const state = document.getElementById('ws-state').value.trim();
+    const streamUrl = document.getElementById('ws-stream-url').value.trim();
+    const largeImage = document.getElementById('ws-large-image').value.trim();
+    const largeText = document.getElementById('ws-large-text').value.trim();
+    const smallImage = document.getElementById('ws-small-image').value.trim();
+    const smallText = document.getElementById('ws-small-text').value.trim();
+    const stopBtn = document.getElementById('stop-ws-status');
+    const wsInfo = document.getElementById('ws-connected-info');
+
+    if (!token) { addLog('❌ أدخل التوكن', 'error'); showToast('خطأ', 'التوكن مطلوب', 'error'); return; }
+    if (!name) { addLog('❌ أدخل النشاط', 'error'); showToast('خطأ', 'النشاط مطلوب', 'error'); return; }
+    if (type === '1' && !streamUrl) { addLog('❌ رابط البث مطلوب', 'error'); showToast('خطأ', 'رابط البث مطلوب', 'error'); return; }
+    if (userConnected) disconnectUser();
+
+    addLog('🔄 جاري الاتصال بـ Gateway...', 'info');
+    document.getElementById('ws-status').className = 'status-pill status-idle';
+    document.getElementById('ws-status').textContent = 'جاري الاتصال...';
+    btn.disabled = true;
+    stopBtn.disabled = false;
+
+    userWs = new WebSocket("wss://gateway.discord.gg/?v=10&encoding=json");
+    userWs.onopen = () => { addLog('🔌 متصل بـ Gateway', 'info'); };
+    userWs.onmessage = (e) => {
+        const data = JSON.parse(e.data);
+        if (data.op === 10) {
+            const interval = data.d.heartbeat_interval;
+            userIntervalId = setInterval(() => {
+                if (userWs && userWs.readyState === WebSocket.OPEN) { userWs.send(JSON.stringify({ op: 1, d: null })); }
+            }, interval);
+            userWs.send(JSON.stringify({
+                op: 2,
+                d: {
+                    token,
+                    properties: { $os: "windows", $browser: "chrome", $device: "pc" },
+                    presence: { status: "online", afk: false, activities: [] }
+                }
+            }));
+        } else if (data.t === "READY") {
+            addLog(`✅ متصل كـ ${data.d.user.username}`, 'success');
+            document.getElementById('ws-status').className = 'status-pill status-online';
+            document.getElementById('ws-status').textContent = `متصل: ${data.d.user.username}`;
+            wsInfo.classList.add('active');
+            showToast('متصل', `تم الدخول كـ ${data.d.user.username}`, 'success');
+
+            let activity = { name, type: parseInt(type) };
+            if (type === '1') {
+                if (!streamUrl || !streamUrl.match(/^https?:\/\//)) {
+                    addLog('❌ رابط بث غير صالح', 'error');
+                    document.getElementById('ws-status').className = 'status-pill status-offline';
+                    showToast('خطأ', 'رابط البث غير صالح', 'error');
+                    disconnectUser();
+                    return;
+                }
+                activity.url = streamUrl;
+            }
+            if (details && details.trim()) activity.details = details;
+            if (state && state.trim()) activity.state = state;
+            if (largeImage || smallImage || largeText || smallText) {
+                activity.assets = {};
+                if (largeImage) activity.assets.large_image = largeImage;
+                if (largeText) activity.assets.large_text = largeText;
+                if (smallImage) activity.assets.small_image = smallImage;
+                if (smallText) activity.assets.small_text = smallText;
+                addLog('🖼️ تم إضافة الصور', 'info');
+            }
+            userWs.send(JSON.stringify({
+                op: 3,
+                d: { since: null, activities: [activity], status: "online", afk: false }
+            }));
+            addLog(`📤 تم إرسال الحالة: ${name}`, 'info');
+            addLog('🔌 الاتصال مفتوح — الحالة نشطة', 'info');
+        } else if (data.op === 9) {
+            addLog('❌ توكن غير صالح', 'error');
+            document.getElementById('ws-status').className = 'status-pill status-offline';
+            showToast('خطأ', 'توكن غير صالح', 'error');
+            if (userIntervalId) { clearInterval(userIntervalId); userIntervalId = null; }
+            btn.disabled = false;
+            stopBtn.disabled = true;
+            wsInfo.classList.remove('active');
+        }
+    };
+    userWs.onerror = () => {
+        addLog('❌ خطأ WebSocket', 'error');
+        document.getElementById('ws-status').className = 'status-pill status-offline';
+        showToast('خطأ', 'فشل الاتصال', 'error');
+        if (userIntervalId) { clearInterval(userIntervalId); userIntervalId = null; }
+        btn.disabled = false;
+        stopBtn.disabled = true;
+        wsInfo.classList.remove('active');
+    };
+    userWs.onclose = () => {
+        if (userConnected) {
+            addLog('⚠️ تم إغلاق الاتصال', 'warn');
+            document.getElementById('ws-status').className = 'status-pill status-offline';
+            document.getElementById('ws-status').textContent = 'غير متصل';
+            wsInfo.classList.remove('active');
+            btn.disabled = false;
+            stopBtn.disabled = true;
+        }
+    };
+    userConnected = true;
+};
+
+// ─── HYPESQUAD ───
+async function setHype(token, houseId, name) {
+    const btn = event.target;
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<span class="spinner"></span> جاري...';
+    btn.disabled = true;
+    try {
+        const r = await fetch('https://discord.com/api/v9/hypesquad/online', {
+            method: 'POST',
+            headers: { 'Authorization': token, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ house_id: houseId })
+        });
+        if (r.ok) {
+            addLog(`✅ تم تعيين ${name}`, 'success');
+            showToast('تم', `تم تعيين ${name}`, 'success');
+        } else {
+            addLog(`❌ فشل (${r.status})`, 'error');
+            showToast('فشل', `خطأ ${r.status}`, 'error');
+        }
+    } catch (e) {
+        addLog(`🔥 خطأ: ${e.message}`, 'error');
+        showToast('خطأ', e.message, 'error');
+    }
+    btn.innerHTML = originalText;
+    btn.disabled = false;
+}
+
+async function removeHype(token) {
+    const btn = event.target;
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<span class="spinner"></span> جاري...';
+    btn.disabled = true;
+    try {
+        const r = await fetch('https://discord.com/api/v9/hypesquad/online', {
+            method: 'DELETE',
+            headers: { 'Authorization': token }
+        });
+        if (r.ok) {
+            addLog('✅ تم الإزالة', 'success');
+            showToast('تم', 'تم إزالة HypeSquad', 'success');
+        } else {
+            addLog(`❌ فشل (${r.status})`, 'error');
+            showToast('فشل', `خطأ ${r.status}`, 'error');
+        }
+    } catch (e) {
+        addLog(`🔥 خطأ: ${e.message}`, 'error');
+        showToast('خطأ', e.message, 'error');
+    }
+    btn.innerHTML = originalText;
+    btn.disabled = false;
+}
+
+const hsToken = document.getElementById('hs-token');
+document.getElementById('set-bravery').onclick = async () => {
+    const t = hsToken.value.trim();
+    if (!t) { addLog('❌ أدخل التوكن', 'error'); showToast('خطأ', 'التوكن مطلوب', 'error'); return; }
+    await setHype(t, 1, 'Bravery');
+};
+document.getElementById('set-brilliance').onclick = async () => {
+    const t = hsToken.value.trim();
+    if (!t) { addLog('❌ أدخل التوكن', 'error'); showToast('خطأ', 'التوكن مطلوب', 'error'); return; }
+    await setHype(t, 2, 'Brilliance');
+};
+document.getElementById('set-balance').onclick = async () => {
+    const t = hsToken.value.trim();
+    if (!t) { addLog('❌ أدخل التوكن', 'error'); showToast('خطأ', 'التوكن مطلوب', 'error'); return; }
+    await setHype(t, 3, 'Balance');
+};
+document.getElementById('remove-hypesquad').onclick = async () => {
+    const t = hsToken.value.trim();
+    if (!t) { addLog('❌ أدخل التوكن', 'error'); showToast('خطأ', 'التوكن مطلوب', 'error'); return; }
+    await removeHype(t);
+};
+
+// ─── TOKEN CHECKER ───
+document.getElementById('check-token-btn').onclick = async function() {
+    const btn = this;
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<span class="spinner"></span> جاري...';
+    btn.disabled = true;
+
+    const token = document.getElementById('check-token').value.trim();
+    if (!token) { addLog('❌ أدخل التوكن', 'error'); showToast('خطأ', 'التوكن مطلوب', 'error'); btn.innerHTML = originalText; btn.disabled = false; return; }
+
+    addLog('🔍 جاري الفحص...', 'info');
+    try {
+        const res = await fetch('https://discord.com/api/v10/users/@me', { headers: { 'Authorization': token } });
+        if (!res.ok) {
+            addLog(`❌ توكن غير صالح (${res.status})`, 'error');
+            showToast('غير صالح', 'توكن غير صالح', 'error');
+            btn.innerHTML = originalText; btn.disabled = false; return;
+        }
+        const user = await res.json();
+        document.getElementById('token-username').textContent = `${user.username || 'غير معروف'}#${user.discriminator || '0'}`;
+        document.getElementById('token-id').textContent = user.id || 'غير معروف';
+        document.getElementById('token-email').textContent = user.email || 'غير متاح';
+        document.getElementById('token-mfa').textContent = user.mfa_enabled ? '✅ مفعل' : '❌ غير مفعل';
+        document.getElementById('token-avatar').textContent = user.avatar ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` : 'لا يوجد';
+        document.getElementById('token-info').style.display = 'block';
+        addLog(`✅ تم التحقق: ${user.username}`, 'success');
+        showToast('تم', `الحساب: ${user.username}`, 'success');
+    } catch (e) {
+        addLog(`🔥 خطأ: ${e.message}`, 'error');
+        showToast('خطأ', e.message, 'error');
+    }
+    btn.innerHTML = originalText;
+    btn.disabled = false;
+};
+
+// ─── Protection (Anti-DevTools) ───
+function isInputField(el) {
+    return el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable);
+}
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+function isInputOrAncestor(el) {
+    if (!el) return false;
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable) return true;
+    let parent = el.parentElement;
+    while (parent) {
+        if (parent.tagName === 'INPUT' || parent.tagName === 'TEXTAREA' || parent.isContentEditable) return true;
+        parent = parent.parentElement;
+    }
+    return false;
+}
+
+document.addEventListener('contextmenu', function(e) {
+    if (isTouchDevice && isInputOrAncestor(e.target)) return;
+    e.preventDefault();
+    showToast('🚫', 'النقر بزر الماوس الأيمن معطل', 'warn');
+    return false;
+});
+
+document.addEventListener('paste', function(e) {
+    if (isInputField(e.target)) return;
+    e.preventDefault();
+    showToast('🚫', 'لصق (Paste) معطل', 'warn');
+    return false;
+});
+
+document.addEventListener('copy', function(e) {
+    if (isInputField(e.target)) return;
+    e.preventDefault();
+    return false;
+});
+
+document.addEventListener('cut', function(e) {
+    if (isInputField(e.target)) return;
+    e.preventDefault();
+    return false;
+});
+
+document.addEventListener('selectstart', function(e) {
+    if (isInputOrAncestor(e.target)) return;
+    e.preventDefault();
+    return false;
+});
+
+document.addEventListener('drop', function(e) {
+    if (isInputField(e.target)) return;
+    e.preventDefault();
+    return false;
+});
+
+document.addEventListener('dragstart', function(e) {
+    if (isInputField(e.target)) return;
+    e.preventDefault();
+    return false;
+});
+
+document.addEventListener('keydown', function(e) {
+    if (isInputField(e.target)) return;
+    if (e.key === 'F12') { e.preventDefault(); showToast('🚫', 'F12 معطل', 'warn'); return false; }
+    if (e.key === 'F5') { e.preventDefault(); showToast('🚫', 'تحديث الصفحة (F5) معطل', 'warn'); return false; }
+    if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) { e.preventDefault(); showToast('🚫', 'اختصار Developer Tools معطل', 'warn'); return false; }
+    if (e.ctrlKey && e.key === 'u') { e.preventDefault(); showToast('🚫', 'عرض المصدر معطل', 'warn'); return false; }
+    if (e.ctrlKey && e.key === 'r') { e.preventDefault(); showToast('🚫', 'تحديث الصفحة (Ctrl+R) معطل', 'warn'); return false; }
+    if (e.ctrlKey && e.shiftKey && e.key === 'R') { e.preventDefault(); showToast('🚫', 'تحديث قوي معطل', 'warn'); return false; }
+    if (e.ctrlKey && e.key === 'v') { e.preventDefault(); showToast('🚫', 'لصق (Ctrl+V) معطل', 'warn'); return false; }
+    if (e.ctrlKey && e.key === 'a') { e.preventDefault(); return false; }
+    if (e.ctrlKey && e.key === 'c') { e.preventDefault(); return false; }
+    if (e.ctrlKey && e.key === 's') { e.preventDefault(); showToast('🚫', 'حفظ الصفحة معطل', 'warn'); return false; }
+    if (e.ctrlKey && e.key === 'p') { e.preventDefault(); showToast('🚫', 'طباعة معطلة', 'warn'); return false; }
+    if (e.ctrlKey && e.shiftKey && e.key === 'Delete') { e.preventDefault(); showToast('🚫', 'مسح البيانات معطل', 'warn'); return false; }
+    if (e.altKey && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) { e.preventDefault(); showToast('🚫', 'تصفح السجل معطل', 'warn'); return false; }
+    if (e.key === 'Escape') { e.preventDefault(); showToast('🚫', 'Escape معطل', 'warn'); return false; }
+});
+
+window.onbeforeunload = function(e) {
+    e.preventDefault();
+    e.returnValue = '';
+    return '';
+};
+
+history.pushState(null, null, location.href);
+window.onpopstate = function(e) {
+    e.preventDefault();
+    history.pushState(null, null, location.href);
+    showToast('🚫', 'الرجوع للخلف معطل', 'warn');
+};
+
+let devtoolsOpen = false;
+setInterval(() => {
+    const widthThreshold = window.outerWidth - window.innerWidth > 160;
+    const heightThreshold = window.outerHeight - window.innerHeight > 160;
+    if (widthThreshold || heightThreshold) {
+        if (!devtoolsOpen) {
+            devtoolsOpen = true;
+            document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#030508;color:#ef4444;font-family:Cairo,sans-serif;font-size:1.5rem;font-weight:700;">🚫 Developer Tools مفتوح — تم حظر الوصول</div>';
+        }
+    } else { devtoolsOpen = false; }
+}, 500);
+
+setInterval(function() {
+    const start = new Date();
+    debugger;
+    const end = new Date();
+    if (end - start > 100) {
+        document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#030508;color:#ef4444;font-family:Cairo,sans-serif;font-size:1.5rem;font-weight:700;">🚫 Developer Tools مفتوح — تم حظر الوصول</div>';
+    }
+}, 100);
+
+// ─── Fade In Observer ───
+const fadeElements = document.querySelectorAll('.fade-in');
+const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+fadeElements.forEach(el => fadeObserver.observe(el));
+
+// ─── Initial Log ───
+addLog('📋 سجل جاهز', 'info');
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"c312e939cc0147e2b894b25cd79582ff","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
