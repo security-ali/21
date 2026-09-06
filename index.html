@@ -1,12 +1,12 @@
-&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;ar&quot; dir=&quot;rtl&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;title&gt;ALVEX studio | Discord Tools Hub v5.0&lt;/title&gt;
-    &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&amp;family=Tajawal:wght@400;500;700;800&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css&quot;&gt;
-    &lt;style&gt;
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALVEX studio | Discord Tools Hub v5.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
         /* ─── نفس الـ CSS السابق مع إضافة بسيطة ─── */
         :root {
             --void: #030508;
@@ -39,7 +39,7 @@
         body {
             background: var(--void);
             color: var(--text-primary);
-            font-family: &#039;Cairo&#039;, &#039;Tajawal&#039;, sans-serif;
+            font-family: 'Cairo', 'Tajawal', sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -67,7 +67,7 @@
         }
         .sidebar-header { text-align: center; padding-bottom: 20px; border-bottom: 1px solid var(--glass-border); margin-bottom: 16px; }
         .sidebar-logo { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, var(--neon-cyan), var(--neon-violet)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .sidebar-version { font-size: 0.7rem; color: var(--neon-cyan); font-family: &#039;JetBrains Mono&#039;, monospace; margin-top: 4px; }
+        .sidebar-version { font-size: 0.7rem; color: var(--neon-cyan); font-family: 'JetBrains Mono', monospace; margin-top: 4px; }
         .nav-menu { list-style: none; flex: 1; overflow-y: auto; }
         .nav-item { margin-bottom: 8px; }
         .nav-link {
@@ -85,7 +85,7 @@
             border: 1px solid transparent;
             background: transparent;
             width: 100%;
-            font-family: &#039;Cairo&#039;, &#039;Tajawal&#039;, sans-serif;
+            font-family: 'Cairo', 'Tajawal', sans-serif;
         }
         .nav-link:hover, .nav-link.active {
             background: rgba(6, 182, 212, 0.1);
@@ -132,7 +132,7 @@
             overflow: hidden;
         }
         .tool-card::before {
-            content: &#039;&#039;;
+            content: '';
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 2px;
@@ -145,19 +145,19 @@
         .card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .card-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; background: rgba(6, 182, 212, 0.1); border: 1px solid rgba(6, 182, 212, 0.2); }
         .card-title { font-size: 1.1rem; font-weight: 700; }
-        .card-badge { margin-right: auto; font-size: 0.65rem; padding: 3px 10px; border-radius: 50px; font-weight: 600; font-family: &#039;JetBrains Mono&#039;, monospace; }
+        .card-badge { margin-right: auto; font-size: 0.65rem; padding: 3px 10px; border-radius: 50px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
         .badge-live { background: rgba(16, 185, 129, 0.15); color: var(--neon-green); border: 1px solid rgba(16, 185, 129, 0.3); }
         .badge-beta { background: rgba(245, 158, 11, 0.15); color: var(--neon-amber); border: 1px solid rgba(245, 158, 11, 0.3); }
         .badge-secure { background: rgba(239, 68, 68, 0.15); color: var(--neon-red); border: 1px solid rgba(239, 68, 68, 0.3); }
         .badge-bot { background: rgba(139, 92, 246, 0.15); color: var(--neon-violet); border: 1px solid rgba(139, 92, 246, 0.3); }
         .input-group { margin-bottom: 16px; }
         .input-label { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; font-weight: 600; font-size: 0.8rem; color: var(--text-secondary); }
-        .input-field { width: 100%; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 12px; color: var(--text-primary); font-size: 0.9rem; font-family: &#039;JetBrains Mono&#039;, monospace; transition: all 0.3s ease; outline: none; }
-        .input-field::placeholder { color: var(--text-muted); font-family: &#039;Tajawal&#039;, sans-serif; }
+        .input-field { width: 100%; background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 12px; color: var(--text-primary); font-size: 0.9rem; font-family: 'JetBrains Mono', monospace; transition: all 0.3s ease; outline: none; }
+        .input-field::placeholder { color: var(--text-muted); font-family: 'Tajawal', sans-serif; }
         .input-field:focus { border-color: var(--neon-cyan); box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1), 0 0 15px rgba(6, 182, 212, 0.1); background: rgba(0,0,0,0.5); }
-        select.input-field { font-family: &#039;Tajawal&#039;, sans-serif; cursor: pointer; appearance: none; background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#039;http://www.w3.org/2000/svg&#039; width=&#039;24&#039; height=&#039;24&#039; viewBox=&#039;0 0 24 24&#039; fill=&#039;none&#039; stroke=&#039;%2394a3b8&#039; stroke-width=&#039;2&#039; stroke-linecap=&#039;round&#039; stroke-linejoin=&#039;round&#039;%3E%3Cpolyline points=&#039;6 9 12 15 18 9&#039;%3E%3C/polyline%3E%3C/svg%3E&quot;); background-repeat: no-repeat; background-position: left 12px center; padding-left: 36px; }
-        textarea.input-field { min-height: 70px; resize: vertical; font-family: &#039;Tajawal&#039;, sans-serif; }
-        .btn { padding: 12px 20px; border-radius: 12px; font-weight: 700; font-size: 0.9rem; border: none; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-family: &#039;Cairo&#039;, &#039;Tajawal&#039;, sans-serif; }
+        select.input-field { font-family: 'Tajawal', sans-serif; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: left 12px center; padding-left: 36px; }
+        textarea.input-field { min-height: 70px; resize: vertical; font-family: 'Tajawal', sans-serif; }
+        .btn { padding: 12px 20px; border-radius: 12px; font-weight: 700; font-size: 0.9rem; border: none; cursor: pointer; transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-family: 'Cairo', 'Tajawal', sans-serif; }
         .btn-primary { background: linear-gradient(135deg, var(--neon-cyan), #0891b2); color: white; box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3); }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4); }
         .btn-success { background: linear-gradient(135deg, var(--neon-green), #059669); color: white; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3); }
@@ -173,7 +173,7 @@
         .btn-group .btn { flex: 1; min-width: 100px; }
         .btn-full { width: 100%; }
         .status-pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 600; margin-top: 10px; }
-        .status-pill::before { content: &#039;&#039;; width: 8px; height: 8px; border-radius: 50%; }
+        .status-pill::before { content: ''; width: 8px; height: 8px; border-radius: 50%; }
         .status-online { background: rgba(16, 185, 129, 0.15); color: var(--neon-green); border: 1px solid rgba(16, 185, 129, 0.3); }
         .status-online::before { background: var(--neon-green); animation: pulse 2s infinite; }
         .status-offline { background: rgba(239, 68, 68, 0.15); color: var(--neon-red); border: 1px solid rgba(239, 68, 68, 0.3); }
@@ -182,7 +182,7 @@
         .status-idle::before { background: var(--neon-amber); }
         @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } }
         .counter-box { background: rgba(0,0,0,0.3); border-radius: 12px; padding: 14px; text-align: center; margin-top: 14px; border: 1px solid rgba(255,255,255,0.05); }
-        .counter-number { font-size: 1.8rem; font-weight: 800; color: var(--neon-cyan); font-family: &#039;JetBrains Mono&#039;, monospace; }
+        .counter-number { font-size: 1.8rem; font-weight: 800; color: var(--neon-cyan); font-family: 'JetBrains Mono', monospace; }
         .counter-label { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
         .token-info-card { display: none; margin-top: 15px; background: rgba(0,0,0,0.4); border: 1px solid rgba(6,182,212,0.3); border-radius: var(--radius-sm); padding: 16px; animation: slideDown 0.4s ease; }
         @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
@@ -191,13 +191,13 @@
         .token-info-icon { width: 32px; height: 32px; border-radius: 8px; background: rgba(6,182,212,0.1); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
         .token-info-text { flex: 1; }
         .token-info-label { font-size: 0.7rem; color: var(--text-muted); }
-        .token-info-value { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); font-family: &#039;JetBrains Mono&#039;, monospace; }
+        .token-info-value { font-size: 0.85rem; font-weight: 600; color: var(--text-primary); font-family: 'JetBrains Mono', monospace; }
         .log-section { background: var(--glass); backdrop-filter: blur(16px); border: 1px solid var(--glass-border); border-radius: var(--radius); padding: 24px; margin-top: 32px; }
         .log-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; }
         .log-title { font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
         .log-title .live-dot { width: 8px; height: 8px; background: var(--neon-green); border-radius: 50%; animation: pulse 2s infinite; }
         .log-actions { display: flex; gap: 8px; }
-        .log-container { background: rgba(0,0,0,0.5); border-radius: var(--radius-sm); padding: 16px; max-height: 300px; overflow-y: auto; font-family: &#039;JetBrains Mono&#039;, monospace; font-size: 0.8rem; border: 1px solid rgba(255,255,255,0.05); }
+        .log-container { background: rgba(0,0,0,0.5); border-radius: var(--radius-sm); padding: 16px; max-height: 300px; overflow-y: auto; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; border: 1px solid rgba(255,255,255,0.05); }
         .log-container::-webkit-scrollbar { width: 5px; }
         .log-container::-webkit-scrollbar-track { background: transparent; }
         .log-container::-webkit-scrollbar-thumb { background: var(--glass-border); border-radius: 10px; }
@@ -223,7 +223,7 @@
         .overlay.active { display: block; }
         .tools-page { padding: 32px; }
         .tools-hero { text-align: center; padding: 40px 20px; }
-        .tools-hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.3); padding: 6px 16px; border-radius: 50px; font-size: 0.8rem; color: var(--neon-cyan); font-family: &#039;JetBrains Mono&#039;, monospace; margin-bottom: 24px; }
+        .tools-hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.3); padding: 6px 16px; border-radius: 50px; font-size: 0.8rem; color: var(--neon-cyan); font-family: 'JetBrains Mono', monospace; margin-bottom: 24px; }
         .tools-hero-title { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 800; background: linear-gradient(135deg, #fff, var(--neon-cyan), var(--neon-violet)); -webkit-background-clip: text; background-clip: text; color: transparent; line-height: 1.1; margin-bottom: 16px; }
         .tools-hero-subtitle { font-size: 1.1rem; color: var(--text-secondary); max-width: 500px; margin: 0 auto 16px; }
         .tools-warning { border-color: rgba(239, 68, 68, 0.4) !important; background: rgba(239, 68, 68, 0.05) !important; margin-bottom: 32px; }
@@ -232,7 +232,7 @@
         .dm-progress.active { display: block; }
         .dm-progress-bar { height: 8px; background: rgba(255,255,255,0.1); border-radius: 50px; overflow: hidden; margin-bottom: 10px; }
         .dm-progress-fill { height: 100%; background: linear-gradient(90deg, var(--neon-cyan), var(--neon-violet)); border-radius: 50px; transition: width 0.3s ease; width: 0%; }
-        .dm-progress-text { font-size: 0.85rem; color: var(--text-secondary); text-align: center; font-family: &#039;JetBrains Mono&#039;, monospace; }
+        .dm-progress-text { font-size: 0.85rem; color: var(--text-secondary); text-align: center; font-family: 'JetBrains Mono', monospace; }
         .ws-connected-info { margin-top: 12px; padding: 10px 14px; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2); border-radius: 10px; font-size: 0.8rem; color: var(--neon-green); display: none; }
         .ws-connected-info.active { display: block; }
         /* home page styles */
@@ -244,7 +244,7 @@
         .home-avatar-ring { position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; border-radius: 50%; border: 2px dashed rgba(224,64,251,0.3); animation: spin 20s linear infinite; }
         .home-hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; margin-bottom: 0.5rem; background: linear-gradient(135deg, #fff, var(--primary), var(--secondary)); -webkit-background-clip: text; background-clip: text; color: transparent; line-height: 1.2; }
         .home-hero-title { font-size: clamp(1.2rem, 3vw, 1.8rem); font-weight: 700; color: var(--secondary); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.8rem; justify-content: center; }
-        .home-hero-title::before, .home-hero-title::after { content: &#039;&#039;; width: 40px; height: 2px; background: var(--gradient-2); }
+        .home-hero-title::before, .home-hero-title::after { content: ''; width: 40px; height: 2px; background: var(--gradient-2); }
         .home-hero-bio { font-size: clamp(1rem, 2vw, 1.2rem); max-width: 700px; margin-bottom: 2.5rem; color: var(--text-secondary); font-weight: 600; line-height: 1.8; }
         .home-hero-social { display: flex; gap: 1.2rem; margin-bottom: 2.5rem; }
         .home-social-btn { width: 55px; height: 55px; display: flex; align-items: center; justify-content: center; border-radius: 16px; font-size: 1.4rem; color: #fff; text-decoration: none; transition: all 0.3s; }
@@ -253,7 +253,7 @@
         .home-social-spotify { background: linear-gradient(135deg, #1db954, #1ed760); border: 1px solid rgba(29,185,84,0.3); }
         .home-social-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border: 1px solid rgba(220,39,67,0.3); }
         .home-hero-cta { display: flex; gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
-        .home-btn { text-decoration: none; padding: 1rem 2.5rem; font-weight: 800; border-radius: 16px; transition: all 0.3s; font-size: 1rem; display: inline-flex; align-items: center; gap: 0.8rem; cursor: pointer; border: none; font-family: &#039;Cairo&#039;, &#039;Tajawal&#039;, sans-serif; }
+        .home-btn { text-decoration: none; padding: 1rem 2.5rem; font-weight: 800; border-radius: 16px; transition: all 0.3s; font-size: 1rem; display: inline-flex; align-items: center; gap: 0.8rem; cursor: pointer; border: none; font-family: 'Cairo', 'Tajawal', sans-serif; }
         .home-btn-primary { background: var(--gradient-1); color: #fff; box-shadow: 0 8px 30px rgba(224,64,251,0.4); }
         .home-btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(224,64,251,0.5); }
         .home-btn-secondary { background: transparent; color: var(--text-primary); border: 2px solid var(--border); }
@@ -269,7 +269,7 @@
         .about-image { width: 100%; max-width: 500px; border-radius: 30px; border: 2px solid var(--border); box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
         .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
         .skill-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 25px; padding: 2.5rem; transition: all 0.4s; position: relative; overflow: hidden; }
-        .skill-card::before { content: &#039;&#039;; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--gradient-1); transform: scaleX(0); transform-origin: right; transition: transform 0.4s; }
+        .skill-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--gradient-1); transform: scaleX(0); transform-origin: right; transition: transform 0.4s; }
         .skill-card:hover::before { transform: scaleX(1); }
         .skill-card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
         .skill-icon { width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 1.5rem; background: rgba(224,64,251,0.1); border: 1px solid var(--border); color: var(--primary); }
@@ -322,286 +322,286 @@
         @media (max-width: 900px) { .sidebar { transform: translateX(100%); } .sidebar.open { transform: translateX(0); } .main-content { margin-right: 0; } .menu-toggle { display: flex; } }
         @media (max-width: 768px) { .home-hero { padding: 7rem 20px 3rem; } .home-section { padding: 4rem 20px; } .tools-page { padding: 20px; } .dev-page-content { padding: 20px; } }
         @media (max-width: 600px) { .cards-grid { grid-template-columns: 1fr; } .btn-group { flex-direction: column; } .btn-group .btn { width: 100%; } }
-    &lt;/style&gt;
-    &lt;base target=&quot;_blank&quot;&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;canvas id=&quot;particles&quot;&gt;&lt;/canvas&gt;
-    &lt;div class=&quot;overlay&quot; id=&quot;overlay&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;toast-container&quot; id=&quot;toast-container&quot;&gt;&lt;/div&gt;
-    &lt;button class=&quot;menu-toggle&quot; id=&quot;menu-toggle&quot; onclick=&quot;toggleSidebar()&quot;&gt;☰&lt;/button&gt;
+    </style>
+    <base target="_blank">
+</head>
+<body>
+    <canvas id="particles"></canvas>
+    <div class="overlay" id="overlay"></div>
+    <div class="toast-container" id="toast-container"></div>
+    <button class="menu-toggle" id="menu-toggle" onclick="toggleSidebar()">☰</button>
 
-    &lt;aside class=&quot;sidebar&quot; id=&quot;sidebar&quot;&gt;
-        &lt;div class=&quot;sidebar-header&quot;&gt;
-            &lt;div class=&quot;sidebar-logo&quot;&gt;ALVEX&lt;/div&gt;
-            &lt;div class=&quot;sidebar-version&quot;&gt;V5.0 // SPA&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;nav&gt;
-            &lt;ul class=&quot;nav-menu&quot;&gt;
-                &lt;li class=&quot;nav-item&quot;&gt;&lt;button class=&quot;nav-link active&quot; onclick=&quot;navigateTo(&#039;home&#039;, this)&quot;&gt;&lt;span class=&quot;icon&quot;&gt;🏠&lt;/span&gt; الرئيسية&lt;/button&gt;&lt;/li&gt;
-                &lt;li class=&quot;nav-item&quot;&gt;&lt;button class=&quot;nav-link&quot; onclick=&quot;navigateTo(&#039;tools&#039;, this)&quot;&gt;&lt;span class=&quot;icon&quot;&gt;🛠️&lt;/span&gt; Discord Tools&lt;/button&gt;&lt;/li&gt;
-                &lt;li class=&quot;nav-item&quot;&gt;&lt;button class=&quot;nav-link&quot; onclick=&quot;navigateTo(&#039;dev&#039;, this)&quot;&gt;&lt;span class=&quot;icon&quot;&gt;👨‍💻&lt;/span&gt; المطور&lt;/button&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/nav&gt;
-        &lt;div class=&quot;sidebar-footer&quot;&gt;
-            &lt;div style=&quot;padding:10px;border-radius:10px;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.2);&quot;&gt;
-                &lt;div style=&quot;font-size:0.8rem;color:var(--neon-violet);font-weight:700;&quot;&gt;ALVEX studio&lt;/div&gt;
-                &lt;div style=&quot;font-size:0.7rem;color:var(--text-muted);margin-top:3px;&quot;&gt;© 2026 جميع الحقوق محفوظة&lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/aside&gt;
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">ALVEX</div>
+            <div class="sidebar-version">V5.0 // SPA</div>
+        </div>
+        <nav>
+            <ul class="nav-menu">
+                <li class="nav-item"><button class="nav-link active" onclick="navigateTo('home', this)"><span class="icon">🏠</span> الرئيسية</button></li>
+                <li class="nav-item"><button class="nav-link" onclick="navigateTo('tools', this)"><span class="icon">🛠️</span> Discord Tools</button></li>
+                <li class="nav-item"><button class="nav-link" onclick="navigateTo('dev', this)"><span class="icon">👨‍💻</span> المطور</button></li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <div style="padding:10px;border-radius:10px;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.2);">
+                <div style="font-size:0.8rem;color:var(--neon-violet);font-weight:700;">ALVEX studio</div>
+                <div style="font-size:0.7rem;color:var(--text-muted);margin-top:3px;">© 2026 جميع الحقوق محفوظة</div>
+            </div>
+        </div>
+    </aside>
 
-    &lt;main class=&quot;main-content&quot;&gt;
-        &lt;!-- PAGE: HOME --&gt;
-        &lt;div id=&quot;page-home&quot; class=&quot;page active&quot;&gt;
-            &lt;div class=&quot;home-hero&quot;&gt;
-                &lt;div class=&quot;home-hero-badge&quot;&gt;&lt;i class=&quot;fas fa-circle&quot; style=&quot;font-size:8px;&quot;&gt;&lt;/i&gt; متاح للعمل الحر&lt;/div&gt;
-                &lt;div class=&quot;home-hero-avatar-wrapper&quot;&gt;
-                    &lt;div class=&quot;home-avatar-ring&quot;&gt;&lt;/div&gt;
-                    &lt;img src=&quot;https://timg.eu.cc/AVQaM1Q0Gt.jpg&quot; alt=&quot;ALVEX studio&quot; class=&quot;home-hero-avatar&quot;&gt;
-                &lt;/div&gt;
-                &lt;h1&gt;ALVEX studio&lt;/h1&gt;
-                &lt;div class=&quot;home-hero-title&quot;&gt;مطور ويب &amp; مبرمج&lt;/div&gt;
-                &lt;p class=&quot;home-hero-bio&quot;&gt;مطور تطبيقات وبوتات ذكية.&lt;/p&gt;
-                &lt;div class=&quot;home-hero-social&quot;&gt;
-                    &lt;a href=&quot;&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; class=&quot;home-social-btn home-social-github&quot; aria-label=&quot;GitHub&quot;&gt;&lt;i class=&quot;fab fa-github&quot;&gt;&lt;/i&gt;&lt;/a&gt;
-                    &lt;a href=&quot;https://open.spotify.com/user/31sy6wauuivbpzlq24of6kqe5ni4&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; class=&quot;home-social-btn home-social-spotify&quot; aria-label=&quot;Spotify&quot;&gt;&lt;i class=&quot;fab fa-spotify&quot;&gt;&lt;/i&gt;&lt;/a&gt;
-                    &lt;a href=&quot;https://www.instagram.com/ali_ghosthub&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; class=&quot;home-social-btn home-social-instagram&quot; aria-label=&quot;Instagram&quot;&gt;&lt;i class=&quot;fab fa-instagram&quot;&gt;&lt;/i&gt;&lt;/a&gt;
-                &lt;/div&gt;
-                &lt;div class=&quot;home-hero-cta&quot;&gt;
-                    &lt;button onclick=&quot;navigateTo(&#039;tools&#039;, null)&quot; class=&quot;home-btn home-btn-primary&quot;&gt;&lt;i class=&quot;fas fa-paper-plane&quot;&gt;&lt;/i&gt; Discord Tools&lt;/button&gt;
-                    &lt;button onclick=&quot;document.getElementById(&#039;about-section&#039;).scrollIntoView({behavior:&#039;smooth&#039;})&quot; class=&quot;home-btn home-btn-secondary&quot;&gt;&lt;i class=&quot;fas fa-code&quot;&gt;&lt;/i&gt; مهاراتي&lt;/button&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-            &lt;section id=&quot;about-section&quot; class=&quot;home-section fade-in&quot;&gt;
-                &lt;div class=&quot;home-section-header&quot;&gt;&lt;div class=&quot;home-section-label&quot;&gt;من أنا&lt;/div&gt;&lt;h2 class=&quot;home-section-title&quot;&gt;نبذة عني&lt;/h2&gt;&lt;p class=&quot;home-section-subtitle&quot;&gt;شغف بالتقنية&lt;/p&gt;&lt;/div&gt;
-                &lt;div class=&quot;about-grid&quot;&gt;
-                    &lt;div class=&quot;about-content&quot;&gt;&lt;h3&gt;مطور شغوف ببناء المستقبل الرقمي&lt;/h3&gt;&lt;p&gt;متخصص في تطوير الويب والبوتات.&lt;/p&gt;&lt;p&gt;أستخدم JavaScript و Python مع أحدث الأطر.&lt;/p&gt;&lt;/div&gt;
-                    &lt;div class=&quot;about-image-wrapper&quot;&gt;&lt;img src=&quot;https://timg.eu.cc/AVQaM1Q0Gt.jpg&quot; alt=&quot;ALVEX studio&quot; class=&quot;about-image&quot;&gt;&lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/section&gt;
-            &lt;section id=&quot;skills-section&quot; class=&quot;home-section fade-in&quot;&gt;
-                &lt;div class=&quot;home-section-header&quot;&gt;&lt;div class=&quot;home-section-label&quot;&gt;خبراتي&lt;/div&gt;&lt;h2 class=&quot;home-section-title&quot;&gt;المهارات التقنية&lt;/h2&gt;&lt;p class=&quot;home-section-subtitle&quot;&gt;التقنيات المستخدمة&lt;/p&gt;&lt;/div&gt;
-                &lt;div class=&quot;skills-grid&quot;&gt;
-                    &lt;div class=&quot;skill-card&quot;&gt;&lt;div class=&quot;skill-icon&quot;&gt;&lt;i class=&quot;fab fa-js&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;h3&gt;JavaScript&lt;/h3&gt;&lt;p&gt;تطبيقات ويب وبوتات&lt;/p&gt;&lt;div class=&quot;skill-tags&quot;&gt;&lt;span class=&quot;skill-tag&quot;&gt;Node.js&lt;/span&gt;&lt;span class=&quot;skill-tag&quot;&gt;Express&lt;/span&gt;&lt;span class=&quot;skill-tag&quot;&gt;React&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
-                    &lt;div class=&quot;skill-card&quot;&gt;&lt;div class=&quot;skill-icon&quot;&gt;&lt;i class=&quot;fab fa-python&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;h3&gt;Python&lt;/h3&gt;&lt;p&gt;أنظمة ذكية وأتمتة&lt;/p&gt;&lt;div class=&quot;skill-tags&quot;&gt;&lt;span class=&quot;skill-tag&quot;&gt;Django&lt;/span&gt;&lt;span class=&quot;skill-tag&quot;&gt;Flask&lt;/span&gt;&lt;span class=&quot;skill-tag&quot;&gt;AI/ML&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
-                    &lt;div class=&quot;skill-card&quot;&gt;&lt;div class=&quot;skill-icon&quot;&gt;&lt;i class=&quot;fas fa-robot&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;h3&gt;البوتات الذكية&lt;/h3&gt;&lt;p&gt;بوتات متقدمة&lt;/p&gt;&lt;div class=&quot;skill-tags&quot;&gt;&lt;span class=&quot;skill-tag&quot;&gt;API&lt;/span&gt;&lt;span class=&quot;skill-tag&quot;&gt;AutoMod&lt;/span&gt;&lt;span class=&quot;skill-tag&quot;&gt;AI&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/section&gt;
-            &lt;section id=&quot;contact-section&quot; class=&quot;home-section fade-in&quot;&gt;
-                &lt;div class=&quot;home-section-header&quot;&gt;&lt;div class=&quot;home-section-label&quot;&gt;تواصل&lt;/div&gt;&lt;h2 class=&quot;home-section-title&quot;&gt;لنتحدث&lt;/h2&gt;&lt;p class=&quot;home-section-subtitle&quot;&gt;هل لديك مشروع؟&lt;/p&gt;&lt;/div&gt;
-                &lt;div class=&quot;contact-wrapper&quot;&gt;
-                    &lt;div class=&quot;contact-info&quot;&gt;&lt;h3&gt;لنبدأ مشروعك&lt;/h3&gt;&lt;p&gt;متاح للعمل الحر والمشاريع.&lt;/p&gt;
-                        &lt;div class=&quot;contact-links&quot;&gt;
-                            &lt;a href=&quot;https://github.com/security-ali&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; class=&quot;contact-link-item&quot;&gt;&lt;div class=&quot;contact-link-icon&quot; style=&quot;background:linear-gradient(135deg,#333,#24292e);color:#fff;&quot;&gt;&lt;i class=&quot;fab fa-github&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;div class=&quot;contact-link-text&quot;&gt;&lt;strong&gt;GitHub&lt;/strong&gt;&lt;span&gt;github.com/security-ali&lt;/span&gt;&lt;/div&gt;&lt;i class=&quot;fas fa-external-link-alt&quot; style=&quot;color:var(--text-secondary);&quot;&gt;&lt;/i&gt;&lt;/a&gt;
-                            &lt;a href=&quot;https://instagram.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; class=&quot;contact-link-item&quot;&gt;&lt;div class=&quot;contact-link-icon&quot; style=&quot;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;&quot;&gt;&lt;i class=&quot;fab fa-instagram&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;div class=&quot;contact-link-text&quot;&gt;&lt;strong&gt;Instagram&lt;/strong&gt;&lt;span&gt;تابعني للتحديثات اليومية&lt;/span&gt;&lt;/div&gt;&lt;i class=&quot;fas fa-external-link-alt&quot; style=&quot;color:var(--text-secondary);&quot;&gt;&lt;/i&gt;&lt;/a&gt;
-                            &lt;a href=&quot;https://open.spotify.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; class=&quot;contact-link-item&quot;&gt;&lt;div class=&quot;contact-link-icon&quot; style=&quot;background:linear-gradient(135deg,#1db954,#1ed760);color:#fff;&quot;&gt;&lt;i class=&quot;fab fa-spotify&quot;&gt;&lt;/i&gt;&lt;/div&gt;&lt;div class=&quot;contact-link-text&quot;&gt;&lt;strong&gt;Spotify&lt;/strong&gt;&lt;span&gt;قائمة التشغيل المفضلة&lt;/span&gt;&lt;/div&gt;&lt;i class=&quot;fas fa-external-link-alt&quot; style=&quot;color:var(--text-secondary);&quot;&gt;&lt;/i&gt;&lt;/a&gt;
-                        &lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/section&gt;
-            &lt;footer class=&quot;home-footer&quot;&gt;
-                &lt;div class=&quot;home-footer-logo&quot;&gt;&lt;i class=&quot;fas fa-code&quot;&gt;&lt;/i&gt; ALVEX studio&lt;/div&gt;
-                &lt;div class=&quot;home-footer-social&quot;&gt;&lt;a href=&quot;https://github.com/security-ali&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; aria-label=&quot;GitHub&quot;&gt;&lt;i class=&quot;fab fa-github&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;a href=&quot;https://www.instagram.com/ali_ghosthub&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; aria-label=&quot;Instagram&quot;&gt;&lt;i class=&quot;fab fa-instagram&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;a href=&quot;https://open.spotify.com/user/31sy6wauuivbpzlq24of6kqe5ni4&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; aria-label=&quot;Spotify&quot;&gt;&lt;i class=&quot;fab fa-spotify&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/div&gt;
-                &lt;div class=&quot;home-footer-divider&quot;&gt;&lt;/div&gt;
-                &lt;p class=&quot;home-copyright&quot;&gt;© 2026 ALVEX studio - جميع الحقوق محفوظة&lt;/p&gt;
-                &lt;p class=&quot;home-made-with&quot;&gt;Made with &lt;i class=&quot;fas fa-heart&quot;&gt;&lt;/i&gt;&lt;/p&gt;
-            &lt;/footer&gt;
-        &lt;/div&gt;
+    <main class="main-content">
+        <!-- PAGE: HOME -->
+        <div id="page-home" class="page active">
+            <div class="home-hero">
+                <div class="home-hero-badge"><i class="fas fa-circle" style="font-size:8px;"></i> متاح للعمل الحر</div>
+                <div class="home-hero-avatar-wrapper">
+                    <div class="home-avatar-ring"></div>
+                    <img src="https://timg.eu.cc/AVQaM1Q0Gt.jpg" alt="ALVEX studio" class="home-hero-avatar">
+                </div>
+                <h1>ALVEX studio</h1>
+                <div class="home-hero-title">مطور ويب & مبرمج</div>
+                <p class="home-hero-bio">مطور تطبيقات وبوتات ذكية.</p>
+                <div class="home-hero-social">
+                    <a href="" target="_blank" rel="noopener noreferrer" class="home-social-btn home-social-github" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://open.spotify.com/user/31sy6wauuivbpzlq24of6kqe5ni4" target="_blank" rel="noopener noreferrer" class="home-social-btn home-social-spotify" aria-label="Spotify"><i class="fab fa-spotify"></i></a>
+                    <a href="https://www.instagram.com/ali_ghosthub" target="_blank" rel="noopener noreferrer" class="home-social-btn home-social-instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+                <div class="home-hero-cta">
+                    <button onclick="navigateTo('tools', null)" class="home-btn home-btn-primary"><i class="fas fa-paper-plane"></i> Discord Tools</button>
+                    <button onclick="document.getElementById('about-section').scrollIntoView({behavior:'smooth'})" class="home-btn home-btn-secondary"><i class="fas fa-code"></i> مهاراتي</button>
+                </div>
+            </div>
+            <section id="about-section" class="home-section fade-in">
+                <div class="home-section-header"><div class="home-section-label">من أنا</div><h2 class="home-section-title">نبذة عني</h2><p class="home-section-subtitle">شغف بالتقنية</p></div>
+                <div class="about-grid">
+                    <div class="about-content"><h3>مطور شغوف ببناء المستقبل الرقمي</h3><p>متخصص في تطوير الويب والبوتات.</p><p>أستخدم JavaScript و Python مع أحدث الأطر.</p></div>
+                    <div class="about-image-wrapper"><img src="https://timg.eu.cc/AVQaM1Q0Gt.jpg" alt="ALVEX studio" class="about-image"></div>
+                </div>
+            </section>
+            <section id="skills-section" class="home-section fade-in">
+                <div class="home-section-header"><div class="home-section-label">خبراتي</div><h2 class="home-section-title">المهارات التقنية</h2><p class="home-section-subtitle">التقنيات المستخدمة</p></div>
+                <div class="skills-grid">
+                    <div class="skill-card"><div class="skill-icon"><i class="fab fa-js"></i></div><h3>JavaScript</h3><p>تطبيقات ويب وبوتات</p><div class="skill-tags"><span class="skill-tag">Node.js</span><span class="skill-tag">Express</span><span class="skill-tag">React</span></div></div>
+                    <div class="skill-card"><div class="skill-icon"><i class="fab fa-python"></i></div><h3>Python</h3><p>أنظمة ذكية وأتمتة</p><div class="skill-tags"><span class="skill-tag">Django</span><span class="skill-tag">Flask</span><span class="skill-tag">AI/ML</span></div></div>
+                    <div class="skill-card"><div class="skill-icon"><i class="fas fa-robot"></i></div><h3>البوتات الذكية</h3><p>بوتات متقدمة</p><div class="skill-tags"><span class="skill-tag">API</span><span class="skill-tag">AutoMod</span><span class="skill-tag">AI</span></div></div>
+                </div>
+            </section>
+            <section id="contact-section" class="home-section fade-in">
+                <div class="home-section-header"><div class="home-section-label">تواصل</div><h2 class="home-section-title">لنتحدث</h2><p class="home-section-subtitle">هل لديك مشروع؟</p></div>
+                <div class="contact-wrapper">
+                    <div class="contact-info"><h3>لنبدأ مشروعك</h3><p>متاح للعمل الحر والمشاريع.</p>
+                        <div class="contact-links">
+                            <a href="https://github.com/security-ali" target="_blank" rel="noopener noreferrer" class="contact-link-item"><div class="contact-link-icon" style="background:linear-gradient(135deg,#333,#24292e);color:#fff;"><i class="fab fa-github"></i></div><div class="contact-link-text"><strong>GitHub</strong><span>github.com/security-ali</span></div><i class="fas fa-external-link-alt" style="color:var(--text-secondary);"></i></a>
+                            <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="contact-link-item"><div class="contact-link-icon" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;"><i class="fab fa-instagram"></i></div><div class="contact-link-text"><strong>Instagram</strong><span>تابعني للتحديثات اليومية</span></div><i class="fas fa-external-link-alt" style="color:var(--text-secondary);"></i></a>
+                            <a href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer" class="contact-link-item"><div class="contact-link-icon" style="background:linear-gradient(135deg,#1db954,#1ed760);color:#fff;"><i class="fab fa-spotify"></i></div><div class="contact-link-text"><strong>Spotify</strong><span>قائمة التشغيل المفضلة</span></div><i class="fas fa-external-link-alt" style="color:var(--text-secondary);"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <footer class="home-footer">
+                <div class="home-footer-logo"><i class="fas fa-code"></i> ALVEX studio</div>
+                <div class="home-footer-social"><a href="https://github.com/security-ali" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a><a href="https://www.instagram.com/ali_ghosthub" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a><a href="https://open.spotify.com/user/31sy6wauuivbpzlq24of6kqe5ni4" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><i class="fab fa-spotify"></i></a></div>
+                <div class="home-footer-divider"></div>
+                <p class="home-copyright">© 2026 ALVEX studio - جميع الحقوق محفوظة</p>
+                <p class="home-made-with">Made with <i class="fas fa-heart"></i></p>
+            </footer>
+        </div>
 
-        &lt;!-- PAGE: TOOLS --&gt;
-        &lt;div id=&quot;page-tools&quot; class=&quot;page&quot;&gt;
-            &lt;div class=&quot;tools-page&quot;&gt;
-                &lt;div class=&quot;section-header&quot;&gt;&lt;div class=&quot;section-icon&quot;&gt;🛠️&lt;/div&gt;&lt;div&gt;&lt;div class=&quot;section-title&quot;&gt;Discord Tools&lt;/div&gt;&lt;div class=&quot;section-desc&quot;&gt;أدوات متقدمة&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
-                &lt;div class=&quot;tools-hero&quot;&gt;
-                    &lt;div class=&quot;tools-hero-badge&quot;&gt;&lt;span&gt;●&lt;/span&gt; Discord Tools Hub v5.0&lt;/div&gt;
-                    &lt;h1 class=&quot;tools-hero-title&quot;&gt;Discord Tools&lt;/h1&gt;
-                    &lt;p class=&quot;tools-hero-subtitle&quot;&gt;أدوات متقدمة لإدارة Discord&lt;/p&gt;
-                    &lt;p class=&quot;tools-hero-dev&quot;&gt;🚀 تطوير وإشراف: ALVEX studio&lt;/p&gt;
-                &lt;/div&gt;
-                &lt;div class=&quot;tool-card tools-warning&quot;&gt;
-                    &lt;div class=&quot;card-header&quot;&gt;&lt;div class=&quot;card-icon&quot;&gt;⚠️&lt;/div&gt;&lt;div class=&quot;card-title&quot;&gt;تنبيه هام&lt;/div&gt;&lt;span class=&quot;card-badge badge-secure&quot;&gt;● SECURE&lt;/span&gt;&lt;/div&gt;
-                    &lt;p style=&quot;color:var(--text-secondary);font-size:0.9rem;line-height:1.8;&quot;&gt;&lt;strong style=&quot;color:var(--neon-red);&quot;&gt;على مسؤوليتك.&lt;/strong&gt; استخدم بحذر. ALVEX studio غير مسؤول عن أي استخدام خاطئ أو غير قانوني.&lt;/p&gt;
-                &lt;/div&gt;
+        <!-- PAGE: TOOLS -->
+        <div id="page-tools" class="page">
+            <div class="tools-page">
+                <div class="section-header"><div class="section-icon">🛠️</div><div><div class="section-title">Discord Tools</div><div class="section-desc">أدوات متقدمة</div></div></div>
+                <div class="tools-hero">
+                    <div class="tools-hero-badge"><span>●</span> Discord Tools Hub v5.0</div>
+                    <h1 class="tools-hero-title">Discord Tools</h1>
+                    <p class="tools-hero-subtitle">أدوات متقدمة لإدارة Discord</p>
+                    <p class="tools-hero-dev">🚀 تطوير وإشراف: ALVEX studio</p>
+                </div>
+                <div class="tool-card tools-warning">
+                    <div class="card-header"><div class="card-icon">⚠️</div><div class="card-title">تنبيه هام</div><span class="card-badge badge-secure">● SECURE</span></div>
+                    <p style="color:var(--text-secondary);font-size:0.9rem;line-height:1.8;"><strong style="color:var(--neon-red);">على مسؤوليتك.</strong> استخدم بحذر. ALVEX studio غير مسؤول عن أي استخدام خاطئ أو غير قانوني.</p>
+                </div>
 
-                &lt;div class=&quot;cards-grid&quot;&gt;
-                    &lt;!-- 1. Bot Status --&gt;
-                    &lt;div class=&quot;tool-card&quot;&gt;
-                        &lt;div class=&quot;card-header&quot;&gt;&lt;div class=&quot;card-icon&quot;&gt;🤖&lt;/div&gt;&lt;div class=&quot;card-title&quot;&gt;Bot Status&lt;/div&gt;&lt;span class=&quot;card-badge badge-bot&quot;&gt;● BOT&lt;/span&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;🔑 Bot Token &lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;&lt;input type=&quot;password&quot; id=&quot;bot-token&quot; class=&quot;input-field&quot; placeholder=&quot;توكن البوت&quot;&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;🎭 نوع الحالة&lt;/label&gt;&lt;select id=&quot;bot-activity-type&quot; class=&quot;input-field&quot;&gt;&lt;option value=&quot;0&quot;&gt;🎮 Playing&lt;/option&gt;&lt;option value=&quot;2&quot;&gt;🎧 Listening&lt;/option&gt;&lt;option value=&quot;3&quot;&gt;👀 Watching&lt;/option&gt;&lt;option value=&quot;5&quot;&gt;🏆 Competing&lt;/option&gt;&lt;option value=&quot;4&quot;&gt;💬 Custom&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;✏️ النص &lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;bot-activity-name&quot; class=&quot;input-field&quot; placeholder=&quot;مثال: مع ALVEX studio&quot;&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;🌐 حالة الاتصال&lt;/label&gt;&lt;select id=&quot;bot-status&quot; class=&quot;input-field&quot;&gt;&lt;option value=&quot;online&quot;&gt;🟢 متصل&lt;/option&gt;&lt;option value=&quot;idle&quot;&gt;🌙 خامل&lt;/option&gt;&lt;option value=&quot;dnd&quot;&gt;🔴 مشغول&lt;/option&gt;&lt;option value=&quot;invisible&quot;&gt;⚫ مخفي&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
-                        &lt;div class=&quot;btn-group&quot;&gt;&lt;button class=&quot;btn btn-violet&quot; id=&quot;apply-bot-status&quot;&gt;&lt;span&gt;⚡&lt;/span&gt; تطبيق&lt;/button&gt;&lt;button class=&quot;btn btn-danger&quot; id=&quot;stop-bot-status&quot; disabled&gt;&lt;span&gt;⏹️&lt;/span&gt; إيقاف&lt;/button&gt;&lt;/div&gt;
-                        &lt;div class=&quot;status-pill status-offline&quot; id=&quot;bot-status-pill&quot;&gt;غير متصل&lt;/div&gt;
-                        &lt;div class=&quot;ws-connected-info&quot; id=&quot;bot-ws-info&quot;&gt;&lt;i class=&quot;fas fa-plug&quot;&gt;&lt;/i&gt; الاتصال مفتوح — الحالة نشطة&lt;/div&gt;
-                    &lt;/div&gt;
+                <div class="cards-grid">
+                    <!-- 1. Bot Status -->
+                    <div class="tool-card">
+                        <div class="card-header"><div class="card-icon">🤖</div><div class="card-title">Bot Status</div><span class="card-badge badge-bot">● BOT</span></div>
+                        <div class="input-group"><label class="input-label">🔑 Bot Token <span class="required">*</span></label><input type="password" id="bot-token" class="input-field" placeholder="توكن البوت"></div>
+                        <div class="input-group"><label class="input-label">🎭 نوع الحالة</label><select id="bot-activity-type" class="input-field"><option value="0">🎮 Playing</option><option value="2">🎧 Listening</option><option value="3">👀 Watching</option><option value="5">🏆 Competing</option><option value="4">💬 Custom</option></select></div>
+                        <div class="input-group"><label class="input-label">✏️ النص <span class="required">*</span></label><input type="text" id="bot-activity-name" class="input-field" placeholder="مثال: مع ALVEX studio"></div>
+                        <div class="input-group"><label class="input-label">🌐 حالة الاتصال</label><select id="bot-status" class="input-field"><option value="online">🟢 متصل</option><option value="idle">🌙 خامل</option><option value="dnd">🔴 مشغول</option><option value="invisible">⚫ مخفي</option></select></div>
+                        <div class="btn-group"><button class="btn btn-violet" id="apply-bot-status"><span>⚡</span> تطبيق</button><button class="btn btn-danger" id="stop-bot-status" disabled><span>⏹️</span> إيقاف</button></div>
+                        <div class="status-pill status-offline" id="bot-status-pill">غير متصل</div>
+                        <div class="ws-connected-info" id="bot-ws-info"><i class="fas fa-plug"></i> الاتصال مفتوح — الحالة نشطة</div>
+                    </div>
 
-                    &lt;!-- 2. DM Message Deleter --&gt;
-                    &lt;div class=&quot;tool-card&quot;&gt;
-                        &lt;div class=&quot;card-header&quot;&gt;&lt;div class=&quot;card-icon&quot;&gt;💬&lt;/div&gt;&lt;div class=&quot;card-title&quot;&gt;حذف رسائل الخاص&lt;/div&gt;&lt;span class=&quot;card-badge badge-live&quot;&gt;● LIVE&lt;/span&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;🔑 التوكن &lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;&lt;input type=&quot;password&quot; id=&quot;dm-token&quot; class=&quot;input-field&quot; placeholder=&quot;توكن حسابك&quot;&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;🆔 ID الشخص المستهدف &lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;dm-target-id&quot; class=&quot;input-field&quot; placeholder=&quot;معرف المستخدم&quot;&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;⏱️ التأخير بين الحذف (ms)&lt;/label&gt;&lt;input type=&quot;number&quot; id=&quot;dm-delay&quot; class=&quot;input-field&quot; value=&quot;800&quot; min=&quot;200&quot; max=&quot;5000&quot;&gt;&lt;/div&gt;
-                        &lt;div class=&quot;btn-group&quot;&gt;&lt;button class=&quot;btn btn-danger btn-full&quot; id=&quot;start-dm-delete&quot;&gt;&lt;span&gt;🗑️&lt;/span&gt; حذف كل رسائلي&lt;/button&gt;&lt;/div&gt;
-                        &lt;div class=&quot;dm-progress&quot; id=&quot;dm-progress&quot;&gt;&lt;div class=&quot;dm-progress-bar&quot;&gt;&lt;div class=&quot;dm-progress-fill&quot; id=&quot;dm-progress-fill&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;dm-progress-text&quot; id=&quot;dm-progress-text&quot;&gt;0 / 0 رسالة&lt;/div&gt;&lt;/div&gt;
-                        &lt;div class=&quot;counter-box&quot;&gt;&lt;div class=&quot;counter-number&quot; id=&quot;dm-deleted-count&quot;&gt;0&lt;/div&gt;&lt;div class=&quot;counter-label&quot;&gt;رسائل محذوفة&lt;/div&gt;&lt;/div&gt;
-                    &lt;/div&gt;
+                    <!-- 2. DM Message Deleter -->
+                    <div class="tool-card">
+                        <div class="card-header"><div class="card-icon">💬</div><div class="card-title">حذف رسائل الخاص</div><span class="card-badge badge-live">● LIVE</span></div>
+                        <div class="input-group"><label class="input-label">🔑 التوكن <span class="required">*</span></label><input type="password" id="dm-token" class="input-field" placeholder="توكن حسابك"></div>
+                        <div class="input-group"><label class="input-label">🆔 ID الشخص المستهدف <span class="required">*</span></label><input type="text" id="dm-target-id" class="input-field" placeholder="معرف المستخدم"></div>
+                        <div class="input-group"><label class="input-label">⏱️ التأخير بين الحذف (ms)</label><input type="number" id="dm-delay" class="input-field" value="800" min="200" max="5000"></div>
+                        <div class="btn-group"><button class="btn btn-danger btn-full" id="start-dm-delete"><span>🗑️</span> حذف كل رسائلي</button></div>
+                        <div class="dm-progress" id="dm-progress"><div class="dm-progress-bar"><div class="dm-progress-fill" id="dm-progress-fill"></div></div><div class="dm-progress-text" id="dm-progress-text">0 / 0 رسالة</div></div>
+                        <div class="counter-box"><div class="counter-number" id="dm-deleted-count">0</div><div class="counter-label">رسائل محذوفة</div></div>
+                    </div>
 
-                    &lt;!-- 3. Rich Presence (User) --&gt;
-                    &lt;div class=&quot;tool-card&quot;&gt;
-                        &lt;div class=&quot;card-header&quot;&gt;&lt;div class=&quot;card-icon&quot;&gt;🎮&lt;/div&gt;&lt;div class=&quot;card-title&quot;&gt;Rich Presence&lt;/div&gt;&lt;span class=&quot;card-badge badge-live&quot;&gt;● LIVE&lt;/span&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;🔑 User Token &lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;&lt;input type=&quot;password&quot; id=&quot;ws-token&quot; class=&quot;input-field&quot; placeholder=&quot;توكن الحساب&quot;&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;🎭 نوع النشاط&lt;/label&gt;&lt;select id=&quot;ws-activity-type&quot; class=&quot;input-field&quot;&gt;&lt;option value=&quot;0&quot;&gt;🎮 Playing&lt;/option&gt;&lt;option value=&quot;1&quot;&gt;📺 Streaming&lt;/option&gt;&lt;option value=&quot;2&quot;&gt;🎧 Listening&lt;/option&gt;&lt;option value=&quot;3&quot;&gt;👀 Watching&lt;/option&gt;&lt;option value=&quot;5&quot;&gt;🏆 Competing&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;✏️ النشاط &lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;ws-activity-name&quot; class=&quot;input-field&quot; placeholder=&quot;النشاط&quot;&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot; id=&quot;ws-stream-url-group&quot; style=&quot;display:none;&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;🔗 رابط البث&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;ws-stream-url&quot; class=&quot;input-field&quot; placeholder=&quot;https://twitch.tv/...&quot;&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;📝 الوصف&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;ws-details&quot; class=&quot;input-field&quot; placeholder=&quot;الوصف&quot;&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;📌 التفاصيل&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;ws-state&quot; class=&quot;input-field&quot; placeholder=&quot;تفاصيل&quot;&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;🖼️ صورة كبيرة&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;ws-large-image&quot; class=&quot;input-field&quot; placeholder=&quot;asset أو رابط&quot;&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;📝 وصف الصورة الكبيرة&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;ws-large-text&quot; class=&quot;input-field&quot; placeholder=&quot;الوصف&quot;&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;🖼️ صورة صغيرة&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;ws-small-image&quot; class=&quot;input-field&quot; placeholder=&quot;asset أو رابط&quot;&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;📝 وصف الصورة الصغيرة&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;ws-small-text&quot; class=&quot;input-field&quot; placeholder=&quot;الوصف&quot;&gt;&lt;/div&gt;
-                        &lt;div class=&quot;btn-group&quot;&gt;&lt;button class=&quot;btn btn-success&quot; id=&quot;apply-ws-status&quot;&gt;&lt;span&gt;⚡&lt;/span&gt; تطبيق&lt;/button&gt;&lt;button class=&quot;btn btn-danger&quot; id=&quot;stop-ws-status&quot; disabled&gt;&lt;span&gt;⏹️&lt;/span&gt; إيقاف&lt;/button&gt;&lt;/div&gt;
-                        &lt;div class=&quot;status-pill status-offline&quot; id=&quot;ws-status&quot;&gt;غير متصل&lt;/div&gt;
-                        &lt;div class=&quot;ws-connected-info&quot; id=&quot;ws-connected-info&quot;&gt;&lt;i class=&quot;fas fa-plug&quot;&gt;&lt;/i&gt; الاتصال مفتوح — الحالة نشطة&lt;/div&gt;
-                    &lt;/div&gt;
+                    <!-- 3. Rich Presence (User) -->
+                    <div class="tool-card">
+                        <div class="card-header"><div class="card-icon">🎮</div><div class="card-title">Rich Presence</div><span class="card-badge badge-live">● LIVE</span></div>
+                        <div class="input-group"><label class="input-label">🔑 User Token <span class="required">*</span></label><input type="password" id="ws-token" class="input-field" placeholder="توكن الحساب"></div>
+                        <div class="input-group"><label class="input-label">🎭 نوع النشاط</label><select id="ws-activity-type" class="input-field"><option value="0">🎮 Playing</option><option value="1">📺 Streaming</option><option value="2">🎧 Listening</option><option value="3">👀 Watching</option><option value="5">🏆 Competing</option></select></div>
+                        <div class="input-group"><label class="input-label">✏️ النشاط <span class="required">*</span></label><input type="text" id="ws-activity-name" class="input-field" placeholder="النشاط"></div>
+                        <div class="input-group" id="ws-stream-url-group" style="display:none;"><label class="input-label">🔗 رابط البث</label><input type="text" id="ws-stream-url" class="input-field" placeholder="https://twitch.tv/..."></div>
+                        <div class="input-group"><label class="input-label">📝 الوصف</label><input type="text" id="ws-details" class="input-field" placeholder="الوصف"></div>
+                        <div class="input-group"><label class="input-label">📌 التفاصيل</label><input type="text" id="ws-state" class="input-field" placeholder="تفاصيل"></div>
+                        <div class="input-group"><label class="input-label">🖼️ صورة كبيرة</label><input type="text" id="ws-large-image" class="input-field" placeholder="asset أو رابط"></div>
+                        <div class="input-group"><label class="input-label">📝 وصف الصورة الكبيرة</label><input type="text" id="ws-large-text" class="input-field" placeholder="الوصف"></div>
+                        <div class="input-group"><label class="input-label">🖼️ صورة صغيرة</label><input type="text" id="ws-small-image" class="input-field" placeholder="asset أو رابط"></div>
+                        <div class="input-group"><label class="input-label">📝 وصف الصورة الصغيرة</label><input type="text" id="ws-small-text" class="input-field" placeholder="الوصف"></div>
+                        <div class="btn-group"><button class="btn btn-success" id="apply-ws-status"><span>⚡</span> تطبيق</button><button class="btn btn-danger" id="stop-ws-status" disabled><span>⏹️</span> إيقاف</button></div>
+                        <div class="status-pill status-offline" id="ws-status">غير متصل</div>
+                        <div class="ws-connected-info" id="ws-connected-info"><i class="fas fa-plug"></i> الاتصال مفتوح — الحالة نشطة</div>
+                    </div>
 
-                    &lt;!-- 4. HypeSquad --&gt;
-                    &lt;div class=&quot;tool-card&quot;&gt;
-                        &lt;div class=&quot;card-header&quot;&gt;&lt;div class=&quot;card-icon&quot;&gt;⚡&lt;/div&gt;&lt;div class=&quot;card-title&quot;&gt;HypeSquad&lt;/div&gt;&lt;span class=&quot;card-badge badge-live&quot;&gt;● LIVE&lt;/span&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;🔑 التوكن &lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;&lt;input type=&quot;password&quot; id=&quot;hs-token&quot; class=&quot;input-field&quot; placeholder=&quot;التوكن&quot;&gt;&lt;/div&gt;
-                        &lt;div class=&quot;btn-group&quot; style=&quot;margin-bottom:10px;&quot;&gt;&lt;button class=&quot;btn btn-primary&quot; id=&quot;set-bravery&quot;&gt;&lt;span&gt;💙&lt;/span&gt; Bravery&lt;/button&gt;&lt;button class=&quot;btn btn-success&quot; id=&quot;set-brilliance&quot;&gt;&lt;span&gt;💚&lt;/span&gt; Brilliance&lt;/button&gt;&lt;button class=&quot;btn btn-warning&quot; id=&quot;set-balance&quot;&gt;&lt;span&gt;🧡&lt;/span&gt; Balance&lt;/button&gt;&lt;/div&gt;
-                        &lt;button class=&quot;btn btn-danger btn-full&quot; id=&quot;remove-hypesquad&quot;&gt;&lt;span&gt;❌&lt;/span&gt; إزالة&lt;/button&gt;
-                    &lt;/div&gt;
+                    <!-- 4. HypeSquad -->
+                    <div class="tool-card">
+                        <div class="card-header"><div class="card-icon">⚡</div><div class="card-title">HypeSquad</div><span class="card-badge badge-live">● LIVE</span></div>
+                        <div class="input-group"><label class="input-label">🔑 التوكن <span class="required">*</span></label><input type="password" id="hs-token" class="input-field" placeholder="التوكن"></div>
+                        <div class="btn-group" style="margin-bottom:10px;"><button class="btn btn-primary" id="set-bravery"><span>💙</span> Bravery</button><button class="btn btn-success" id="set-brilliance"><span>💚</span> Brilliance</button><button class="btn btn-warning" id="set-balance"><span>🧡</span> Balance</button></div>
+                        <button class="btn btn-danger btn-full" id="remove-hypesquad"><span>❌</span> إزالة</button>
+                    </div>
 
-                    &lt;!-- 5. Token Checker --&gt;
-                    &lt;div class=&quot;tool-card&quot;&gt;
-                        &lt;div class=&quot;card-header&quot;&gt;&lt;div class=&quot;card-icon&quot;&gt;🔑&lt;/div&gt;&lt;div class=&quot;card-title&quot;&gt;Token Checker&lt;/div&gt;&lt;span class=&quot;card-badge badge-secure&quot;&gt;● SECURE&lt;/span&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;🔑 التوكن &lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;&lt;input type=&quot;password&quot; id=&quot;check-token&quot; class=&quot;input-field&quot; placeholder=&quot;التوكن&quot;&gt;&lt;/div&gt;
-                        &lt;button class=&quot;btn btn-primary btn-full&quot; id=&quot;check-token-btn&quot;&gt;&lt;span&gt;🔍&lt;/span&gt; فحص&lt;/button&gt;
-                        &lt;div class=&quot;token-info-card&quot; id=&quot;token-info&quot;&gt;
-                            &lt;div class=&quot;token-info-row&quot;&gt;&lt;div class=&quot;token-info-icon&quot;&gt;👤&lt;/div&gt;&lt;div class=&quot;token-info-text&quot;&gt;&lt;div class=&quot;token-info-label&quot;&gt;اسم المستخدم&lt;/div&gt;&lt;div class=&quot;token-info-value&quot; id=&quot;token-username&quot;&gt;-&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
-                            &lt;div class=&quot;token-info-row&quot;&gt;&lt;div class=&quot;token-info-icon&quot;&gt;🆔&lt;/div&gt;&lt;div class=&quot;token-info-text&quot;&gt;&lt;div class=&quot;token-info-label&quot;&gt;المعرف&lt;/div&gt;&lt;div class=&quot;token-info-value&quot; id=&quot;token-id&quot;&gt;-&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
-                            &lt;div class=&quot;token-info-row&quot;&gt;&lt;div class=&quot;token-info-icon&quot;&gt;📧&lt;/div&gt;&lt;div class=&quot;token-info-text&quot;&gt;&lt;div class=&quot;token-info-label&quot;&gt;البريد&lt;/div&gt;&lt;div class=&quot;token-info-value&quot; id=&quot;token-email&quot;&gt;-&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
-                            &lt;div class=&quot;token-info-row&quot;&gt;&lt;div class=&quot;token-info-icon&quot;&gt;✅&lt;/div&gt;&lt;div class=&quot;token-info-text&quot;&gt;&lt;div class=&quot;token-info-label&quot;&gt;2FA&lt;/div&gt;&lt;div class=&quot;token-info-value&quot; id=&quot;token-mfa&quot;&gt;-&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
-                            &lt;div class=&quot;token-info-row&quot;&gt;&lt;div class=&quot;token-info-icon&quot;&gt;🎨&lt;/div&gt;&lt;div class=&quot;token-info-text&quot;&gt;&lt;div class=&quot;token-info-label&quot;&gt;الأفاتار&lt;/div&gt;&lt;div class=&quot;token-info-value&quot; id=&quot;token-avatar&quot;&gt;-&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
-                        &lt;/div&gt;
-                    &lt;/div&gt;
+                    <!-- 5. Token Checker -->
+                    <div class="tool-card">
+                        <div class="card-header"><div class="card-icon">🔑</div><div class="card-title">Token Checker</div><span class="card-badge badge-secure">● SECURE</span></div>
+                        <div class="input-group"><label class="input-label">🔑 التوكن <span class="required">*</span></label><input type="password" id="check-token" class="input-field" placeholder="التوكن"></div>
+                        <button class="btn btn-primary btn-full" id="check-token-btn"><span>🔍</span> فحص</button>
+                        <div class="token-info-card" id="token-info">
+                            <div class="token-info-row"><div class="token-info-icon">👤</div><div class="token-info-text"><div class="token-info-label">اسم المستخدم</div><div class="token-info-value" id="token-username">-</div></div></div>
+                            <div class="token-info-row"><div class="token-info-icon">🆔</div><div class="token-info-text"><div class="token-info-label">المعرف</div><div class="token-info-value" id="token-id">-</div></div></div>
+                            <div class="token-info-row"><div class="token-info-icon">📧</div><div class="token-info-text"><div class="token-info-label">البريد</div><div class="token-info-value" id="token-email">-</div></div></div>
+                            <div class="token-info-row"><div class="token-info-icon">✅</div><div class="token-info-text"><div class="token-info-label">2FA</div><div class="token-info-value" id="token-mfa">-</div></div></div>
+                            <div class="token-info-row"><div class="token-info-icon">🎨</div><div class="token-info-text"><div class="token-info-label">الأفاتار</div><div class="token-info-value" id="token-avatar">-</div></div></div>
+                        </div>
+                    </div>
 
-                    &lt;!-- 6. 🆕 تغيير الاسم (Nickname) --&gt;
-                    &lt;div class=&quot;tool-card&quot;&gt;
-                        &lt;div class=&quot;card-header&quot;&gt;&lt;div class=&quot;card-icon&quot;&gt;🏷️&lt;/div&gt;&lt;div class=&quot;card-title&quot;&gt;تغيير الاسم (Nickname)&lt;/div&gt;&lt;span class=&quot;card-badge badge-live&quot;&gt;● LIVE&lt;/span&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;🔑 التوكن &lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;&lt;input type=&quot;password&quot; id=&quot;nick-token&quot; class=&quot;input-field&quot; placeholder=&quot;توكن حسابك&quot;&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;🆔 معرف السيرفر &lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;nick-guild-id&quot; class=&quot;input-field&quot; placeholder=&quot;معرف السيرفر&quot;&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;✏️ الاسم الجديد &lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;nick-new-name&quot; class=&quot;input-field&quot; placeholder=&quot;الاسم الجديد&quot;&gt;&lt;/div&gt;
-                        &lt;button class=&quot;btn btn-primary btn-full&quot; id=&quot;change-nickname-btn&quot;&gt;&lt;span&gt;🔄&lt;/span&gt; تغيير الاسم&lt;/button&gt;
-                    &lt;/div&gt;
+                    <!-- 6. 🆕 تغيير الاسم (Nickname) -->
+                    <div class="tool-card">
+                        <div class="card-header"><div class="card-icon">🏷️</div><div class="card-title">تغيير الاسم (Nickname)</div><span class="card-badge badge-live">● LIVE</span></div>
+                        <div class="input-group"><label class="input-label">🔑 التوكن <span class="required">*</span></label><input type="password" id="nick-token" class="input-field" placeholder="توكن حسابك"></div>
+                        <div class="input-group"><label class="input-label">🆔 معرف السيرفر <span class="required">*</span></label><input type="text" id="nick-guild-id" class="input-field" placeholder="معرف السيرفر"></div>
+                        <div class="input-group"><label class="input-label">✏️ الاسم الجديد <span class="required">*</span></label><input type="text" id="nick-new-name" class="input-field" placeholder="الاسم الجديد"></div>
+                        <button class="btn btn-primary btn-full" id="change-nickname-btn"><span>🔄</span> تغيير الاسم</button>
+                    </div>
 
-                    &lt;!-- 7. 🆕 حالة مخصصة (Custom Status) --&gt;
-                    &lt;div class=&quot;tool-card&quot;&gt;
-                        &lt;div class=&quot;card-header&quot;&gt;&lt;div class=&quot;card-icon&quot;&gt;🎭&lt;/div&gt;&lt;div class=&quot;card-title&quot;&gt;حالة مخصصة&lt;/div&gt;&lt;span class=&quot;card-badge badge-live&quot;&gt;● LIVE&lt;/span&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;🔑 التوكن &lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;&lt;input type=&quot;password&quot; id=&quot;custom-status-token&quot; class=&quot;input-field&quot; placeholder=&quot;توكن حسابك&quot;&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;✏️ النص &lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;custom-status-text&quot; class=&quot;input-field&quot; placeholder=&quot;الحالة المخصصة&quot;&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;😊 Emoji (اختياري)&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;custom-status-emoji&quot; class=&quot;input-field&quot; placeholder=&quot;😎 أو :smile:&quot;&gt;&lt;/div&gt;
-                        &lt;button class=&quot;btn btn-success btn-full&quot; id=&quot;set-custom-status&quot;&gt;&lt;span&gt;✨&lt;/span&gt; تعيين الحالة&lt;/button&gt;
-                    &lt;/div&gt;
+                    <!-- 7. 🆕 حالة مخصصة (Custom Status) -->
+                    <div class="tool-card">
+                        <div class="card-header"><div class="card-icon">🎭</div><div class="card-title">حالة مخصصة</div><span class="card-badge badge-live">● LIVE</span></div>
+                        <div class="input-group"><label class="input-label">🔑 التوكن <span class="required">*</span></label><input type="password" id="custom-status-token" class="input-field" placeholder="توكن حسابك"></div>
+                        <div class="input-group"><label class="input-label">✏️ النص <span class="required">*</span></label><input type="text" id="custom-status-text" class="input-field" placeholder="الحالة المخصصة"></div>
+                        <div class="input-group"><label class="input-label">😊 Emoji (اختياري)</label><input type="text" id="custom-status-emoji" class="input-field" placeholder="😎 أو :smile:"></div>
+                        <button class="btn btn-success btn-full" id="set-custom-status"><span>✨</span> تعيين الحالة</button>
+                    </div>
 
-                    &lt;!-- 8. 🆕 إحصاءات السيرفر --&gt;
-                    &lt;div class=&quot;tool-card&quot;&gt;
-                        &lt;div class=&quot;card-header&quot;&gt;&lt;div class=&quot;card-icon&quot;&gt;📊&lt;/div&gt;&lt;div class=&quot;card-title&quot;&gt;إحصاءات السيرفر&lt;/div&gt;&lt;span class=&quot;card-badge badge-live&quot;&gt;● LIVE&lt;/span&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;🔑 التوكن &lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;&lt;input type=&quot;password&quot; id=&quot;server-stats-token&quot; class=&quot;input-field&quot; placeholder=&quot;توكن حسابك أو البوت&quot;&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;🆔 معرف السيرفر &lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;server-stats-guild&quot; class=&quot;input-field&quot; placeholder=&quot;معرف السيرفر&quot;&gt;&lt;/div&gt;
-                        &lt;button class=&quot;btn btn-violet btn-full&quot; id=&quot;get-server-stats&quot;&gt;&lt;span&gt;📈&lt;/span&gt; جلب الإحصاءات&lt;/button&gt;
-                        &lt;div id=&quot;server-stats-result&quot; style=&quot;margin-top:16px;display:none;background:rgba(0,0,0,0.3);border-radius:12px;padding:16px;border:1px solid rgba(6,182,212,0.2);&quot;&gt;
-                            &lt;div style=&quot;display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);&quot;&gt;&lt;span style=&quot;color:var(--text-secondary);&quot;&gt;👥 الأعضاء&lt;/span&gt;&lt;span id=&quot;stat-members&quot; style=&quot;font-weight:700;color:var(--neon-cyan);&quot;&gt;-&lt;/span&gt;&lt;/div&gt;
-                            &lt;div style=&quot;display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);&quot;&gt;&lt;span style=&quot;color:var(--text-secondary);&quot;&gt;🟢 المتصلون&lt;/span&gt;&lt;span id=&quot;stat-online&quot; style=&quot;font-weight:700;color:var(--neon-green);&quot;&gt;-&lt;/span&gt;&lt;/div&gt;
-                            &lt;div style=&quot;display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);&quot;&gt;&lt;span style=&quot;color:var(--text-secondary);&quot;&gt;🌙 الخاملون&lt;/span&gt;&lt;span id=&quot;stat-idle&quot; style=&quot;font-weight:700;color:var(--neon-amber);&quot;&gt;-&lt;/span&gt;&lt;/div&gt;
-                            &lt;div style=&quot;display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);&quot;&gt;&lt;span style=&quot;color:var(--text-secondary);&quot;&gt;🔴 مشغولون&lt;/span&gt;&lt;span id=&quot;stat-dnd&quot; style=&quot;font-weight:700;color:var(--neon-red);&quot;&gt;-&lt;/span&gt;&lt;/div&gt;
-                            &lt;div style=&quot;display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);&quot;&gt;&lt;span style=&quot;color:var(--text-secondary);&quot;&gt;⚫ غير متصل&lt;/span&gt;&lt;span id=&quot;stat-offline&quot; style=&quot;font-weight:700;color:var(--text-muted);&quot;&gt;-&lt;/span&gt;&lt;/div&gt;
-                            &lt;div style=&quot;display:flex;justify-content:space-between;padding:8px 0;&quot;&gt;&lt;span style=&quot;color:var(--text-secondary);&quot;&gt;📢 القنوات النصية&lt;/span&gt;&lt;span id=&quot;stat-text-channels&quot; style=&quot;font-weight:700;color:var(--neon-cyan);&quot;&gt;-&lt;/span&gt;&lt;/div&gt;
-                            &lt;div style=&quot;display:flex;justify-content:space-between;padding:8px 0;&quot;&gt;&lt;span style=&quot;color:var(--text-secondary);&quot;&gt;🔊 القنوات الصوتية&lt;/span&gt;&lt;span id=&quot;stat-voice-channels&quot; style=&quot;font-weight:700;color:var(--neon-violet);&quot;&gt;-&lt;/span&gt;&lt;/div&gt;
-                        &lt;/div&gt;
-                    &lt;/div&gt;
+                    <!-- 8. 🆕 إحصاءات السيرفر -->
+                    <div class="tool-card">
+                        <div class="card-header"><div class="card-icon">📊</div><div class="card-title">إحصاءات السيرفر</div><span class="card-badge badge-live">● LIVE</span></div>
+                        <div class="input-group"><label class="input-label">🔑 التوكن <span class="required">*</span></label><input type="password" id="server-stats-token" class="input-field" placeholder="توكن حسابك أو البوت"></div>
+                        <div class="input-group"><label class="input-label">🆔 معرف السيرفر <span class="required">*</span></label><input type="text" id="server-stats-guild" class="input-field" placeholder="معرف السيرفر"></div>
+                        <button class="btn btn-violet btn-full" id="get-server-stats"><span>📈</span> جلب الإحصاءات</button>
+                        <div id="server-stats-result" style="margin-top:16px;display:none;background:rgba(0,0,0,0.3);border-radius:12px;padding:16px;border:1px solid rgba(6,182,212,0.2);">
+                            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="color:var(--text-secondary);">👥 الأعضاء</span><span id="stat-members" style="font-weight:700;color:var(--neon-cyan);">-</span></div>
+                            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="color:var(--text-secondary);">🟢 المتصلون</span><span id="stat-online" style="font-weight:700;color:var(--neon-green);">-</span></div>
+                            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="color:var(--text-secondary);">🌙 الخاملون</span><span id="stat-idle" style="font-weight:700;color:var(--neon-amber);">-</span></div>
+                            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="color:var(--text-secondary);">🔴 مشغولون</span><span id="stat-dnd" style="font-weight:700;color:var(--neon-red);">-</span></div>
+                            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="color:var(--text-secondary);">⚫ غير متصل</span><span id="stat-offline" style="font-weight:700;color:var(--text-muted);">-</span></div>
+                            <div style="display:flex;justify-content:space-between;padding:8px 0;"><span style="color:var(--text-secondary);">📢 القنوات النصية</span><span id="stat-text-channels" style="font-weight:700;color:var(--neon-cyan);">-</span></div>
+                            <div style="display:flex;justify-content:space-between;padding:8px 0;"><span style="color:var(--text-secondary);">🔊 القنوات الصوتية</span><span id="stat-voice-channels" style="font-weight:700;color:var(--neon-violet);">-</span></div>
+                        </div>
+                    </div>
 
-                    &lt;!-- 9. 🆕 إحصاءات الحساب --&gt;
-                    &lt;div class=&quot;tool-card&quot;&gt;
-                        &lt;div class=&quot;card-header&quot;&gt;&lt;div class=&quot;card-icon&quot;&gt;👤&lt;/div&gt;&lt;div class=&quot;card-title&quot;&gt;إحصاءات الحساب&lt;/div&gt;&lt;span class=&quot;card-badge badge-live&quot;&gt;● LIVE&lt;/span&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;🔑 التوكن &lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;&lt;input type=&quot;password&quot; id=&quot;account-stats-token&quot; class=&quot;input-field&quot; placeholder=&quot;توكن حسابك&quot;&gt;&lt;/div&gt;
-                        &lt;button class=&quot;btn btn-primary btn-full&quot; id=&quot;get-account-stats&quot;&gt;&lt;span&gt;📊&lt;/span&gt; جلب الإحصاءات&lt;/button&gt;
-                        &lt;div id=&quot;account-stats-result&quot; style=&quot;margin-top:16px;display:none;background:rgba(0,0,0,0.3);border-radius:12px;padding:16px;border:1px solid rgba(6,182,212,0.2);&quot;&gt;
-                            &lt;div style=&quot;display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);&quot;&gt;&lt;span style=&quot;color:var(--text-secondary);&quot;&gt;👤 الاسم&lt;/span&gt;&lt;span id=&quot;acc-username&quot; style=&quot;font-weight:700;color:var(--neon-cyan);&quot;&gt;-&lt;/span&gt;&lt;/div&gt;
-                            &lt;div style=&quot;display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);&quot;&gt;&lt;span style=&quot;color:var(--text-secondary);&quot;&gt;🆔 المعرف&lt;/span&gt;&lt;span id=&quot;acc-id&quot; style=&quot;font-weight:700;color:var(--neon-cyan);&quot;&gt;-&lt;/span&gt;&lt;/div&gt;
-                            &lt;div style=&quot;display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);&quot;&gt;&lt;span style=&quot;color:var(--text-secondary);&quot;&gt;📅 تاريخ الإنشاء&lt;/span&gt;&lt;span id=&quot;acc-created&quot; style=&quot;font-weight:700;color:var(--neon-cyan);&quot;&gt;-&lt;/span&gt;&lt;/div&gt;
-                            &lt;div style=&quot;display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);&quot;&gt;&lt;span style=&quot;color:var(--text-secondary);&quot;&gt;📧 البريد&lt;/span&gt;&lt;span id=&quot;acc-email&quot; style=&quot;font-weight:700;color:var(--neon-cyan);&quot;&gt;-&lt;/span&gt;&lt;/div&gt;
-                            &lt;div style=&quot;display:flex;justify-content:space-between;padding:8px 0;&quot;&gt;&lt;span style=&quot;color:var(--text-secondary);&quot;&gt;🔒 2FA&lt;/span&gt;&lt;span id=&quot;acc-mfa&quot; style=&quot;font-weight:700;color:var(--neon-cyan);&quot;&gt;-&lt;/span&gt;&lt;/div&gt;
-                        &lt;/div&gt;
-                    &lt;/div&gt;
+                    <!-- 9. 🆕 إحصاءات الحساب -->
+                    <div class="tool-card">
+                        <div class="card-header"><div class="card-icon">👤</div><div class="card-title">إحصاءات الحساب</div><span class="card-badge badge-live">● LIVE</span></div>
+                        <div class="input-group"><label class="input-label">🔑 التوكن <span class="required">*</span></label><input type="password" id="account-stats-token" class="input-field" placeholder="توكن حسابك"></div>
+                        <button class="btn btn-primary btn-full" id="get-account-stats"><span>📊</span> جلب الإحصاءات</button>
+                        <div id="account-stats-result" style="margin-top:16px;display:none;background:rgba(0,0,0,0.3);border-radius:12px;padding:16px;border:1px solid rgba(6,182,212,0.2);">
+                            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="color:var(--text-secondary);">👤 الاسم</span><span id="acc-username" style="font-weight:700;color:var(--neon-cyan);">-</span></div>
+                            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="color:var(--text-secondary);">🆔 المعرف</span><span id="acc-id" style="font-weight:700;color:var(--neon-cyan);">-</span></div>
+                            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="color:var(--text-secondary);">📅 تاريخ الإنشاء</span><span id="acc-created" style="font-weight:700;color:var(--neon-cyan);">-</span></div>
+                            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="color:var(--text-secondary);">📧 البريد</span><span id="acc-email" style="font-weight:700;color:var(--neon-cyan);">-</span></div>
+                            <div style="display:flex;justify-content:space-between;padding:8px 0;"><span style="color:var(--text-secondary);">🔒 2FA</span><span id="acc-mfa" style="font-weight:700;color:var(--neon-cyan);">-</span></div>
+                        </div>
+                    </div>
 
-                    &lt;!-- 10. 🆕 انضمام/مغادرة صوتي --&gt;
-                    &lt;div class=&quot;tool-card&quot;&gt;
-                        &lt;div class=&quot;card-header&quot;&gt;&lt;div class=&quot;card-icon&quot;&gt;🔊&lt;/div&gt;&lt;div class=&quot;card-title&quot;&gt;انضمام صوتي&lt;/div&gt;&lt;span class=&quot;card-badge badge-beta&quot;&gt;● BETA&lt;/span&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;🔑 التوكن &lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;&lt;input type=&quot;password&quot; id=&quot;voice-token&quot; class=&quot;input-field&quot; placeholder=&quot;توكن الحساب&quot;&gt;&lt;/div&gt;
-                        &lt;div class=&quot;input-group&quot;&gt;&lt;label class=&quot;input-label&quot;&gt;🆔 معرف القناة الصوتية &lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;&lt;/label&gt;&lt;input type=&quot;text&quot; id=&quot;voice-channel-id&quot; class=&quot;input-field&quot; placeholder=&quot;معرف القناة الصوتية&quot;&gt;&lt;/div&gt;
-                        &lt;div class=&quot;btn-group&quot;&gt;&lt;button class=&quot;btn btn-success&quot; id=&quot;voice-join&quot;&gt;&lt;span&gt;🎤&lt;/span&gt; انضمام&lt;/button&gt;&lt;button class=&quot;btn btn-danger&quot; id=&quot;voice-leave&quot;&gt;&lt;span&gt;🚪&lt;/span&gt; مغادرة&lt;/button&gt;&lt;/div&gt;
-                        &lt;div class=&quot;status-pill status-offline&quot; id=&quot;voice-status&quot;&gt;غير متصل&lt;/div&gt;
-                    &lt;/div&gt;
-                &lt;/div&gt;
+                    <!-- 10. 🆕 انضمام/مغادرة صوتي -->
+                    <div class="tool-card">
+                        <div class="card-header"><div class="card-icon">🔊</div><div class="card-title">انضمام صوتي</div><span class="card-badge badge-beta">● BETA</span></div>
+                        <div class="input-group"><label class="input-label">🔑 التوكن <span class="required">*</span></label><input type="password" id="voice-token" class="input-field" placeholder="توكن الحساب"></div>
+                        <div class="input-group"><label class="input-label">🆔 معرف القناة الصوتية <span class="required">*</span></label><input type="text" id="voice-channel-id" class="input-field" placeholder="معرف القناة الصوتية"></div>
+                        <div class="btn-group"><button class="btn btn-success" id="voice-join"><span>🎤</span> انضمام</button><button class="btn btn-danger" id="voice-leave"><span>🚪</span> مغادرة</button></div>
+                        <div class="status-pill status-offline" id="voice-status">غير متصل</div>
+                    </div>
+                </div>
 
-                &lt;div class=&quot;log-section&quot;&gt;
-                    &lt;div class=&quot;log-header&quot;&gt;&lt;div class=&quot;log-title&quot;&gt;&lt;span class=&quot;live-dot&quot;&gt;&lt;/span&gt;السجل&lt;/div&gt;&lt;div class=&quot;log-actions&quot;&gt;&lt;button class=&quot;btn btn-danger&quot; style=&quot;padding:6px 16px;font-size:0.8rem;&quot; id=&quot;clear-log-btn&quot;&gt;&lt;span&gt;🗑️&lt;/span&gt; مسح&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
-                    &lt;div class=&quot;log-container&quot; id=&quot;log-container&quot;&gt;&lt;div class=&quot;log-entry log-info&quot;&gt;&lt;span class=&quot;log-time&quot;&gt;--:--&lt;/span&gt;&lt;span class=&quot;log-content&quot;&gt;📋 سجل جاهز&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
+                <div class="log-section">
+                    <div class="log-header"><div class="log-title"><span class="live-dot"></span>السجل</div><div class="log-actions"><button class="btn btn-danger" style="padding:6px 16px;font-size:0.8rem;" id="clear-log-btn"><span>🗑️</span> مسح</button></div></div>
+                    <div class="log-container" id="log-container"><div class="log-entry log-info"><span class="log-time">--:--</span><span class="log-content">📋 سجل جاهز</span></div></div>
+                </div>
+            </div>
+        </div>
 
-        &lt;!-- PAGE: DEV --&gt;
-        &lt;div id=&quot;page-dev&quot; class=&quot;page&quot;&gt;
-            &lt;div style=&quot;padding:32px;&quot;&gt;&lt;div class=&quot;section-header&quot;&gt;&lt;div class=&quot;section-icon&quot;&gt;👨‍💻&lt;/div&gt;&lt;div&gt;&lt;div class=&quot;section-title&quot;&gt;المطور&lt;/div&gt;&lt;div class=&quot;section-desc&quot;&gt;معلومات المطور&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
-            &lt;div class=&quot;dev-page-content&quot;&gt;
-                &lt;div class=&quot;dev-card&quot;&gt;
-                    &lt;div class=&quot;dev-card-top-bar&quot;&gt;&lt;/div&gt;
-                    &lt;div class=&quot;dev-card-glow&quot;&gt;&lt;/div&gt;
-                    &lt;div class=&quot;dev-card-inner&quot;&gt;
-                        &lt;div class=&quot;dev-avatar-wrap&quot;&gt;&lt;img src=&quot;https://timg.eu.cc/Qr7iaBKds1.jpg&quot; alt=&quot;ALVEX studio&quot;&gt;&lt;div class=&quot;dev-status-dot&quot;&gt;&lt;/div&gt;&lt;/div&gt;
-                        &lt;h2 class=&quot;dev-name&quot;&gt;ALVEX studio&lt;/h2&gt;
-                        &lt;div class=&quot;dev-badge&quot;&gt;&lt;span&gt;🚀&lt;/span&gt; المطور&lt;/div&gt;
-                        &lt;p class=&quot;dev-copyright&quot;&gt;⚡ جميع الحقوق محفوظة © 2026&lt;/p&gt;
-                        &lt;div class=&quot;dev-tags&quot;&gt;&lt;span class=&quot;dev-tag&quot;&gt;WebSocket&lt;/span&gt;&lt;span class=&quot;dev-tag violet&quot;&gt;Discord API&lt;/span&gt;&lt;span class=&quot;dev-tag pink&quot;&gt;HypeSquad&lt;/span&gt;&lt;span class=&quot;dev-tag green&quot;&gt;DM Tools&lt;/span&gt;&lt;span class=&quot;dev-tag amber&quot;&gt;UI/UX&lt;/span&gt;&lt;/div&gt;
-                        &lt;p class=&quot;dev-rights&quot;&gt;✅ جميع الحقوق محفوظة لـ ALVEX studio&lt;/p&gt;
-                    &lt;/div&gt;
-                    &lt;div class=&quot;dev-bottom-bar&quot;&gt;&lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/main&gt;
+        <!-- PAGE: DEV -->
+        <div id="page-dev" class="page">
+            <div style="padding:32px;"><div class="section-header"><div class="section-icon">👨‍💻</div><div><div class="section-title">المطور</div><div class="section-desc">معلومات المطور</div></div></div></div>
+            <div class="dev-page-content">
+                <div class="dev-card">
+                    <div class="dev-card-top-bar"></div>
+                    <div class="dev-card-glow"></div>
+                    <div class="dev-card-inner">
+                        <div class="dev-avatar-wrap"><img src="https://timg.eu.cc/Qr7iaBKds1.jpg" alt="ALVEX studio"><div class="dev-status-dot"></div></div>
+                        <h2 class="dev-name">ALVEX studio</h2>
+                        <div class="dev-badge"><span>🚀</span> المطور</div>
+                        <p class="dev-copyright">⚡ جميع الحقوق محفوظة © 2026</p>
+                        <div class="dev-tags"><span class="dev-tag">WebSocket</span><span class="dev-tag violet">Discord API</span><span class="dev-tag pink">HypeSquad</span><span class="dev-tag green">DM Tools</span><span class="dev-tag amber">UI/UX</span></div>
+                        <p class="dev-rights">✅ جميع الحقوق محفوظة لـ ALVEX studio</p>
+                    </div>
+                    <div class="dev-bottom-bar"></div>
+                </div>
+            </div>
+        </div>
+    </main>
 
-    &lt;script&gt;
+    <script>
     /* ═══════════════════════════════════════════════════════
        ALVEX studio - Discord Tools Hub v5.0
        JavaScript Core with localStorage persistence
        ═══════════════════════════════════════════════════════ */
 
     // ─── Utility Functions ───
-    function sleep(ms) { return new Promise(r =&gt; setTimeout(r, ms)); }
+    function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
     // ─── localStorage Helpers ───
     function saveState(key, value) {
-        try { localStorage.setItem(&#039;alvex_&#039; + key, JSON.stringify(value)); } catch(e) {}
+        try { localStorage.setItem('alvex_' + key, JSON.stringify(value)); } catch(e) {}
     }
     function loadState(key, defaultVal) {
-        try { const v = localStorage.getItem(&#039;alvex_&#039; + key); return v ? JSON.parse(v) : defaultVal; } catch(e) { return defaultVal; }
+        try { const v = localStorage.getItem('alvex_' + key); return v ? JSON.parse(v) : defaultVal; } catch(e) { return defaultVal; }
     }
     function saveAllFields(prefix, ids) {
-        ids.forEach(id =&gt; {
+        ids.forEach(id => {
             const el = document.getElementById(id);
-            if (el) saveState(prefix + &#039;_&#039; + id, el.value);
+            if (el) saveState(prefix + '_' + id, el.value);
         });
     }
     function loadAllFields(prefix, ids) {
-        ids.forEach(id =&gt; {
+        ids.forEach(id => {
             const el = document.getElementById(id);
             if (el) {
-                const val = loadState(prefix + &#039;_&#039; + id, &#039;&#039;);
+                const val = loadState(prefix + '_' + id, '');
                 if (val) el.value = val;
             }
         });
@@ -609,37 +609,37 @@
 
     // ─── Navigation System ───
     function navigateTo(pageId, element) {
-        document.querySelectorAll(&#039;.page&#039;).forEach(p =&gt; p.classList.remove(&#039;active&#039;));
-        const targetPage = document.getElementById(&#039;page-&#039; + pageId);
-        if (targetPage) targetPage.classList.add(&#039;active&#039;);
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        const targetPage = document.getElementById('page-' + pageId);
+        if (targetPage) targetPage.classList.add('active');
         if (element) {
-            document.querySelectorAll(&#039;.nav-link&#039;).forEach(link =&gt; link.classList.remove(&#039;active&#039;));
-            element.classList.add(&#039;active&#039;);
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            element.classList.add('active');
         } else {
-            document.querySelectorAll(&#039;.nav-link&#039;).forEach(link =&gt; {
-                link.classList.remove(&#039;active&#039;);
-                if (link.getAttribute(&#039;onclick&#039;) &amp;&amp; link.getAttribute(&#039;onclick&#039;).includes(&quot;&#039;&quot; + pageId + &quot;&#039;&quot;)) {
-                    link.classList.add(&#039;active&#039;);
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('onclick') && link.getAttribute('onclick').includes("'" + pageId + "'")) {
+                    link.classList.add('active');
                 }
             });
         }
-        if (window.innerWidth &lt;= 900) toggleSidebar();
-        window.scrollTo({ top: 0, behavior: &#039;smooth&#039; });
+        if (window.innerWidth <= 900) toggleSidebar();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function toggleSidebar() {
-        document.getElementById(&#039;sidebar&#039;).classList.toggle(&#039;open&#039;);
-        document.getElementById(&#039;overlay&#039;).classList.toggle(&#039;active&#039;);
+        document.getElementById('sidebar').classList.toggle('open');
+        document.getElementById('overlay').classList.toggle('active');
     }
-    document.getElementById(&#039;overlay&#039;).addEventListener(&#039;click&#039;, toggleSidebar);
+    document.getElementById('overlay').addEventListener('click', toggleSidebar);
 
     // ─── Particles Background ───
-    const canvas = document.getElementById(&#039;particles&#039;);
-    const ctx = canvas.getContext(&#039;2d&#039;);
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
     let particles = [];
     function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
     resize();
-    window.addEventListener(&#039;resize&#039;, resize);
+    window.addEventListener('resize', resize);
     class Particle {
         constructor() {
             this.x = Math.random() * canvas.width;
@@ -648,15 +648,15 @@
             this.speedX = (Math.random() - 0.5) * 0.5;
             this.speedY = (Math.random() - 0.5) * 0.5;
             this.opacity = Math.random() * 0.5 + 0.2;
-            this.color = Math.random() &gt; 0.5 ? &#039;139, 92, 246&#039; : &#039;6, 182, 212&#039;;
+            this.color = Math.random() > 0.5 ? '139, 92, 246' : '6, 182, 212';
         }
         update() {
             this.x += this.speedX;
             this.y += this.speedY;
-            if (this.x &gt; canvas.width) this.x = 0;
-            if (this.x &lt; 0) this.x = canvas.width;
-            if (this.y &gt; canvas.height) this.y = 0;
-            if (this.y &lt; 0) this.y = canvas.height;
+            if (this.x > canvas.width) this.x = 0;
+            if (this.x < 0) this.x = canvas.width;
+            if (this.y > canvas.height) this.y = 0;
+            if (this.y < 0) this.y = canvas.height;
         }
         draw() {
             ctx.beginPath();
@@ -665,16 +665,16 @@
             ctx.fill();
         }
     }
-    for (let i = 0; i &lt; 100; i++) particles.push(new Particle());
+    for (let i = 0; i < 100; i++) particles.push(new Particle());
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p =&gt; { p.update(); p.draw(); });
-        for (let i = 0; i &lt; particles.length; i++) {
-            for (let j = i + 1; j &lt; particles.length; j++) {
+        particles.forEach(p => { p.update(); p.draw(); });
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
                 const dx = particles[i].x - particles[j].x;
                 const dy = particles[i].y - particles[j].y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist &lt; 100) {
+                if (dist < 100) {
                     ctx.beginPath();
                     ctx.strokeStyle = `rgba(139, 92, 246, ${0.08 * (1 - dist / 100)})`;
                     ctx.lineWidth = 0.5;
@@ -689,31 +689,31 @@
     animate();
 
     // ─── Toast ───
-    function showToast(title, message, type = &#039;info&#039;) {
-        const container = document.getElementById(&#039;toast-container&#039;);
-        const toast = document.createElement(&#039;div&#039;);
-        toast.className = &#039;toast&#039;;
-        const icons = { success: &#039;✅&#039;, error: &#039;❌&#039;, info: &#039;ℹ️&#039;, warn: &#039;⚠️&#039; };
-        const colors = { success: &#039;var(--neon-green)&#039;, error: &#039;var(--neon-red)&#039;, info: &#039;var(--neon-cyan)&#039;, warn: &#039;var(--neon-amber)&#039; };
-        toast.innerHTML = `&lt;div class=&quot;toast-icon&quot;&gt;${icons[type]}&lt;/div&gt;&lt;div class=&quot;toast-content&quot;&gt;&lt;div class=&quot;toast-title&quot; style=&quot;color: ${colors[type]}&quot;&gt;${title}&lt;/div&gt;&lt;div class=&quot;toast-msg&quot;&gt;${message}&lt;/div&gt;&lt;/div&gt;&lt;button class=&quot;toast-close&quot; onclick=&quot;this.parentElement.remove()&quot;&gt;×&lt;/button&gt;`;
+    function showToast(title, message, type = 'info') {
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        toast.className = 'toast';
+        const icons = { success: '✅', error: '❌', info: 'ℹ️', warn: '⚠️' };
+        const colors = { success: 'var(--neon-green)', error: 'var(--neon-red)', info: 'var(--neon-cyan)', warn: 'var(--neon-amber)' };
+        toast.innerHTML = `<div class="toast-icon">${icons[type]}</div><div class="toast-content"><div class="toast-title" style="color: ${colors[type]}">${title}</div><div class="toast-msg">${message}</div></div><button class="toast-close" onclick="this.parentElement.remove()">×</button>`;
         container.appendChild(toast);
-        setTimeout(() =&gt; toast.remove(), 5000);
+        setTimeout(() => toast.remove(), 5000);
     }
 
     // ─── Log ───
-    const logContainer = document.getElementById(&#039;log-container&#039;);
-    function addLog(msg, type = &#039;info&#039;) {
-        const entry = document.createElement(&#039;div&#039;);
+    const logContainer = document.getElementById('log-container');
+    function addLog(msg, type = 'info') {
+        const entry = document.createElement('div');
         entry.className = `log-entry log-${type}`;
-        const time = new Date().toLocaleTimeString(&#039;ar-EG&#039;, { hour: &#039;2-digit&#039;, minute: &#039;2-digit&#039;, second: &#039;2-digit&#039; });
-        entry.innerHTML = `&lt;span class=&quot;log-time&quot;&gt;${time}&lt;/span&gt;&lt;span class=&quot;log-content&quot;&gt;${msg}&lt;/span&gt;`;
+        const time = new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        entry.innerHTML = `<span class="log-time">${time}</span><span class="log-content">${msg}</span>`;
         logContainer.appendChild(entry);
-        entry.scrollIntoView({ behavior: &#039;smooth&#039;, block: &#039;nearest&#039; });
+        entry.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
-    document.getElementById(&#039;clear-log-btn&#039;).onclick = () =&gt; {
-        logContainer.innerHTML = &#039;&#039;;
-        addLog(&#039;✅ تم مسح السجل&#039;, &#039;info&#039;);
-        showToast(&#039;تم المسح&#039;, &#039;تم إفراغ السجل&#039;, &#039;info&#039;);
+    document.getElementById('clear-log-btn').onclick = () => {
+        logContainer.innerHTML = '';
+        addLog('✅ تم مسح السجل', 'info');
+        showToast('تم المسح', 'تم إفراغ السجل', 'info');
     };
 
     // ═══════════════════════════════════════════════════════
@@ -724,79 +724,79 @@
     let botConnected = false;
 
     // Load saved bot state
-    loadAllFields(&#039;bot&#039;, [&#039;bot-token&#039;, &#039;bot-activity-type&#039;, &#039;bot-activity-name&#039;, &#039;bot-status&#039;]);
+    loadAllFields('bot', ['bot-token', 'bot-activity-type', 'bot-activity-name', 'bot-status']);
     // Auto-reconnect if was connected
-    const wasBotConnected = loadState(&#039;bot_connected&#039;, false);
+    const wasBotConnected = loadState('bot_connected', false);
     if (wasBotConnected) {
-        setTimeout(() =&gt; {
-            document.getElementById(&#039;apply-bot-status&#039;).click();
+        setTimeout(() => {
+            document.getElementById('apply-bot-status').click();
         }, 800);
     }
 
     function disconnectBot() {
         if (botIntervalId) { clearInterval(botIntervalId); botIntervalId = null; }
-        if (botWs &amp;&amp; botWs.readyState === WebSocket.OPEN) { botWs.close(); }
+        if (botWs && botWs.readyState === WebSocket.OPEN) { botWs.close(); }
         botWs = null; botConnected = false;
-        document.getElementById(&#039;bot-status-pill&#039;).className = &#039;status-pill status-offline&#039;;
-        document.getElementById(&#039;bot-status-pill&#039;).textContent = &#039;غير متصل&#039;;
-        document.getElementById(&#039;bot-ws-info&#039;).classList.remove(&#039;active&#039;);
-        document.getElementById(&#039;apply-bot-status&#039;).disabled = false;
-        document.getElementById(&#039;stop-bot-status&#039;).disabled = true;
-        saveState(&#039;bot_connected&#039;, false);
-        addLog(&#039;⏹️ تم إغلاق اتصال البوت&#039;, &#039;warn&#039;);
+        document.getElementById('bot-status-pill').className = 'status-pill status-offline';
+        document.getElementById('bot-status-pill').textContent = 'غير متصل';
+        document.getElementById('bot-ws-info').classList.remove('active');
+        document.getElementById('apply-bot-status').disabled = false;
+        document.getElementById('stop-bot-status').disabled = true;
+        saveState('bot_connected', false);
+        addLog('⏹️ تم إغلاق اتصال البوت', 'warn');
     }
-    document.getElementById(&#039;stop-bot-status&#039;).onclick = disconnectBot;
+    document.getElementById('stop-bot-status').onclick = disconnectBot;
 
-    document.getElementById(&#039;apply-bot-status&#039;).onclick = async function() {
+    document.getElementById('apply-bot-status').onclick = async function() {
         const btn = this;
-        const token = document.getElementById(&#039;bot-token&#039;).value.trim();
-        const type = document.getElementById(&#039;bot-activity-type&#039;).value;
-        const name = document.getElementById(&#039;bot-activity-name&#039;).value.trim();
-        const status = document.getElementById(&#039;bot-status&#039;).value;
-        const statusPill = document.getElementById(&#039;bot-status-pill&#039;);
-        const wsInfo = document.getElementById(&#039;bot-ws-info&#039;);
-        const stopBtn = document.getElementById(&#039;stop-bot-status&#039;);
+        const token = document.getElementById('bot-token').value.trim();
+        const type = document.getElementById('bot-activity-type').value;
+        const name = document.getElementById('bot-activity-name').value.trim();
+        const status = document.getElementById('bot-status').value;
+        const statusPill = document.getElementById('bot-status-pill');
+        const wsInfo = document.getElementById('bot-ws-info');
+        const stopBtn = document.getElementById('stop-bot-status');
 
-        saveAllFields(&#039;bot&#039;, [&#039;bot-token&#039;, &#039;bot-activity-type&#039;, &#039;bot-activity-name&#039;, &#039;bot-status&#039;]);
+        saveAllFields('bot', ['bot-token', 'bot-activity-type', 'bot-activity-name', 'bot-status']);
 
-        if (!token) { addLog(&#039;❌ أدخل Bot Token&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;Bot Token مطلوب&#039;, &#039;error&#039;); return; }
-        if (!name) { addLog(&#039;❌ أدخل النص&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;النص مطلوب&#039;, &#039;error&#039;); return; }
+        if (!token) { addLog('❌ أدخل Bot Token', 'error'); showToast('خطأ', 'Bot Token مطلوب', 'error'); return; }
+        if (!name) { addLog('❌ أدخل النص', 'error'); showToast('خطأ', 'النص مطلوب', 'error'); return; }
         if (botConnected) disconnectBot();
 
-        addLog(&#039;🤖 جاري الاتصال بالـ Gateway...&#039;, &#039;info&#039;);
-        statusPill.className = &#039;status-pill status-idle&#039;;
-        statusPill.textContent = &#039;جاري الاتصال...&#039;;
+        addLog('🤖 جاري الاتصال بالـ Gateway...', 'info');
+        statusPill.className = 'status-pill status-idle';
+        statusPill.textContent = 'جاري الاتصال...';
         btn.disabled = true;
         stopBtn.disabled = false;
 
         try {
-            const meRes = await fetch(&#039;https://discord.com/api/v10/users/@me&#039;, { headers: { &#039;Authorization&#039;: &#039;Bot &#039; + token } });
+            const meRes = await fetch('https://discord.com/api/v10/users/@me', { headers: { 'Authorization': 'Bot ' + token } });
             if (!meRes.ok) {
-                addLog(&#039;❌ Bot Token غير صالح&#039;, &#039;error&#039;);
-                showToast(&#039;خطأ&#039;, &#039;Bot Token غير صالح&#039;, &#039;error&#039;);
-                statusPill.className = &#039;status-pill status-offline&#039;;
-                statusPill.textContent = &#039;غير متصل&#039;;
+                addLog('❌ Bot Token غير صالح', 'error');
+                showToast('خطأ', 'Bot Token غير صالح', 'error');
+                statusPill.className = 'status-pill status-offline';
+                statusPill.textContent = 'غير متصل';
                 btn.disabled = false; stopBtn.disabled = true;
                 return;
             }
             const me = await meRes.json();
-            addLog(`✅ تم التحقق من البوت: ${me.username}`, &#039;success&#039;);
+            addLog(`✅ تم التحقق من البوت: ${me.username}`, 'success');
 
-            botWs = new WebSocket(&quot;wss://gateway.discord.gg/?v=10&amp;encoding=json&quot;);
-            botWs.onopen = () =&gt; { addLog(&#039;🔌 متصل بـ Gateway&#039;, &#039;info&#039;); };
-            botWs.onmessage = (e) =&gt; {
+            botWs = new WebSocket("wss://gateway.discord.gg/?v=10&encoding=json");
+            botWs.onopen = () => { addLog('🔌 متصل بـ Gateway', 'info'); };
+            botWs.onmessage = (e) => {
                 const data = JSON.parse(e.data);
                 if (data.op === 10) {
                     const interval = data.d.heartbeat_interval;
-                    botIntervalId = setInterval(() =&gt; {
-                        if (botWs &amp;&amp; botWs.readyState === WebSocket.OPEN) { botWs.send(JSON.stringify({ op: 1, d: null })); }
+                    botIntervalId = setInterval(() => {
+                        if (botWs && botWs.readyState === WebSocket.OPEN) { botWs.send(JSON.stringify({ op: 1, d: null })); }
                     }, interval);
                     botWs.send(JSON.stringify({
                         op: 2,
                         d: {
-                            token: &#039;Bot &#039; + token,
+                            token: 'Bot ' + token,
                             intents: 0,
-                            properties: { $os: &quot;linux&quot;, $browser: &quot;ALVEX Bot&quot;, $device: &quot;ALVEX Bot&quot; },
+                            properties: { $os: "linux", $browser: "ALVEX Bot", $device: "ALVEX Bot" },
                             presence: {
                                 status: status,
                                 afk: false,
@@ -804,48 +804,48 @@
                             }
                         }
                     }));
-                } else if (data.t === &quot;READY&quot;) {
-                    addLog(`✅ البوت جاهز: ${data.d.user.username}`, &#039;success&#039;);
-                    statusPill.className = &#039;status-pill status-online&#039;;
+                } else if (data.t === "READY") {
+                    addLog(`✅ البوت جاهز: ${data.d.user.username}`, 'success');
+                    statusPill.className = 'status-pill status-online';
                     statusPill.textContent = `متصل: ${data.d.user.username}`;
-                    wsInfo.classList.add(&#039;active&#039;);
+                    wsInfo.classList.add('active');
                     botConnected = true;
-                    saveState(&#039;bot_connected&#039;, true);
-                    showToast(&#039;تم&#039;, `تم تفعيل حالة البوت: ${data.d.user.username}`, &#039;success&#039;);
-                    addLog(`📤 الحالة: ${name} (${status})`, &#039;info&#039;);
-                    addLog(&#039;🔌 الاتصال مفتوح — الحالة نشطة&#039;, &#039;info&#039;);
+                    saveState('bot_connected', true);
+                    showToast('تم', `تم تفعيل حالة البوت: ${data.d.user.username}`, 'success');
+                    addLog(`📤 الحالة: ${name} (${status})`, 'info');
+                    addLog('🔌 الاتصال مفتوح — الحالة نشطة', 'info');
                 } else if (data.op === 9) {
-                    addLog(&#039;❌ فشل الاتصال&#039;, &#039;error&#039;);
-                    statusPill.className = &#039;status-pill status-offline&#039;;
-                    showToast(&#039;خطأ&#039;, &#039;فشل الاتصال بالـ Gateway&#039;, &#039;error&#039;);
+                    addLog('❌ فشل الاتصال', 'error');
+                    statusPill.className = 'status-pill status-offline';
+                    showToast('خطأ', 'فشل الاتصال بالـ Gateway', 'error');
                     if (botIntervalId) { clearInterval(botIntervalId); botIntervalId = null; }
                     btn.disabled = false; stopBtn.disabled = true;
-                    saveState(&#039;bot_connected&#039;, false);
+                    saveState('bot_connected', false);
                 }
             };
-            botWs.onerror = () =&gt; {
-                addLog(&#039;❌ خطأ WebSocket&#039;, &#039;error&#039;);
-                statusPill.className = &#039;status-pill status-offline&#039;;
-                showToast(&#039;خطأ&#039;, &#039;فشل الاتصال&#039;, &#039;error&#039;);
+            botWs.onerror = () => {
+                addLog('❌ خطأ WebSocket', 'error');
+                statusPill.className = 'status-pill status-offline';
+                showToast('خطأ', 'فشل الاتصال', 'error');
                 if (botIntervalId) { clearInterval(botIntervalId); botIntervalId = null; }
                 btn.disabled = false; stopBtn.disabled = true;
-                wsInfo.classList.remove(&#039;active&#039;);
-                saveState(&#039;bot_connected&#039;, false);
+                wsInfo.classList.remove('active');
+                saveState('bot_connected', false);
             };
-            botWs.onclose = () =&gt; {
+            botWs.onclose = () => {
                 if (botConnected) {
-                    addLog(&#039;⚠️ تم إغلاق الاتصال&#039;, &#039;warn&#039;);
-                    statusPill.className = &#039;status-pill status-offline&#039;;
-                    statusPill.textContent = &#039;غير متصل&#039;;
-                    wsInfo.classList.remove(&#039;active&#039;);
+                    addLog('⚠️ تم إغلاق الاتصال', 'warn');
+                    statusPill.className = 'status-pill status-offline';
+                    statusPill.textContent = 'غير متصل';
+                    wsInfo.classList.remove('active');
                     btn.disabled = false; stopBtn.disabled = true;
-                    saveState(&#039;bot_connected&#039;, false);
+                    saveState('bot_connected', false);
                 }
             };
         } catch (e) {
-            addLog(`🔥 خطأ: ${e.message}`, &#039;error&#039;);
-            showToast(&#039;خطأ&#039;, e.message, &#039;error&#039;);
-            statusPill.className = &#039;status-pill status-offline&#039;;
+            addLog(`🔥 خطأ: ${e.message}`, 'error');
+            showToast('خطأ', e.message, 'error');
+            statusPill.className = 'status-pill status-offline';
             btn.disabled = false; stopBtn.disabled = true;
         }
     };
@@ -857,118 +857,118 @@
     let dmDeletedCount = 0;
     let dmTotalMessages = 0;
 
-    loadAllFields(&#039;dm&#039;, [&#039;dm-token&#039;, &#039;dm-target-id&#039;, &#039;dm-delay&#039;]);
+    loadAllFields('dm', ['dm-token', 'dm-target-id', 'dm-delay']);
 
     async function fetchDMChannel(token, targetId) {
-        const res = await fetch(&#039;https://discord.com/api/v10/users/@me/channels&#039;, { headers: { &#039;Authorization&#039;: token, &#039;Content-Type&#039;: &#039;application/json&#039; } });
-        if (!res.ok) throw new Error(&#039;فشل جلب القنوات: &#039; + res.status);
+        const res = await fetch('https://discord.com/api/v10/users/@me/channels', { headers: { 'Authorization': token, 'Content-Type': 'application/json' } });
+        if (!res.ok) throw new Error('فشل جلب القنوات: ' + res.status);
         const channels = await res.json();
-        const dmChannel = channels.find(ch =&gt; ch.type === 1 &amp;&amp; ch.recipients &amp;&amp; ch.recipients.some(r =&gt; r.id === targetId));
-        if (!dmChannel) throw new Error(&#039;لم يتم العثور على محادثة خاصة مع هذا المستخدم&#039;);
+        const dmChannel = channels.find(ch => ch.type === 1 && ch.recipients && ch.recipients.some(r => r.id === targetId));
+        if (!dmChannel) throw new Error('لم يتم العثور على محادثة خاصة مع هذا المستخدم');
         return dmChannel.id;
     }
     async function fetchMessages(token, channelId, before = null) {
         let url = `https://discord.com/api/v10/channels/${channelId}/messages?limit=100`;
-        if (before) url += `&amp;before=${before}`;
-        const res = await fetch(url, { headers: { &#039;Authorization&#039;: token } });
-        if (!res.ok) throw new Error(&#039;فشل جلب الرسائل: &#039; + res.status);
+        if (before) url += `&before=${before}`;
+        const res = await fetch(url, { headers: { 'Authorization': token } });
+        if (!res.ok) throw new Error('فشل جلب الرسائل: ' + res.status);
         return await res.json();
     }
     async function deleteMessage(token, channelId, messageId) {
-        const res = await fetch(`https://discord.com/api/v10/channels/${channelId}/messages/${messageId}`, { method: &#039;DELETE&#039;, headers: { &#039;Authorization&#039;: token } });
+        const res = await fetch(`https://discord.com/api/v10/channels/${channelId}/messages/${messageId}`, { method: 'DELETE', headers: { 'Authorization': token } });
         return res.ok;
     }
 
-    document.getElementById(&#039;start-dm-delete&#039;).onclick = async function() {
+    document.getElementById('start-dm-delete').onclick = async function() {
         const btn = this;
-        const token = document.getElementById(&#039;dm-token&#039;).value.trim();
-        const targetId = document.getElementById(&#039;dm-target-id&#039;).value.trim();
-        const delay = parseInt(document.getElementById(&#039;dm-delay&#039;).value) || 800;
-        const progressDiv = document.getElementById(&#039;dm-progress&#039;);
-        const progressFill = document.getElementById(&#039;dm-progress-fill&#039;);
-        const progressText = document.getElementById(&#039;dm-progress-text&#039;);
-        const counter = document.getElementById(&#039;dm-deleted-count&#039;);
+        const token = document.getElementById('dm-token').value.trim();
+        const targetId = document.getElementById('dm-target-id').value.trim();
+        const delay = parseInt(document.getElementById('dm-delay').value) || 800;
+        const progressDiv = document.getElementById('dm-progress');
+        const progressFill = document.getElementById('dm-progress-fill');
+        const progressText = document.getElementById('dm-progress-text');
+        const counter = document.getElementById('dm-deleted-count');
 
-        saveAllFields(&#039;dm&#039;, [&#039;dm-token&#039;, &#039;dm-target-id&#039;, &#039;dm-delay&#039;]);
+        saveAllFields('dm', ['dm-token', 'dm-target-id', 'dm-delay']);
 
-        if (!token) { addLog(&#039;❌ أدخل التوكن&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;التوكن مطلوب&#039;, &#039;error&#039;); return; }
-        if (!targetId) { addLog(&#039;❌ أدخل ID الشخص&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;ID الشخص مطلوب&#039;, &#039;error&#039;); return; }
-        if (delay &lt; 200) { addLog(&#039;⚠️ الحد الأدنى 200ms&#039;, &#039;warn&#039;); showToast(&#039;تحذير&#039;, &#039;الحد الأدنى 200ms&#039;, &#039;warn&#039;); return; }
+        if (!token) { addLog('❌ أدخل التوكن', 'error'); showToast('خطأ', 'التوكن مطلوب', 'error'); return; }
+        if (!targetId) { addLog('❌ أدخل ID الشخص', 'error'); showToast('خطأ', 'ID الشخص مطلوب', 'error'); return; }
+        if (delay < 200) { addLog('⚠️ الحد الأدنى 200ms', 'warn'); showToast('تحذير', 'الحد الأدنى 200ms', 'warn'); return; }
 
         dmDeleteActive = true;
         dmDeletedCount = 0;
         dmTotalMessages = 0;
-        counter.innerText = &#039;0&#039;;
-        progressDiv.classList.add(&#039;active&#039;);
-        progressFill.style.width = &#039;0%&#039;;
-        progressText.innerText = &#039;جاري البحث...&#039;;
+        counter.innerText = '0';
+        progressDiv.classList.add('active');
+        progressFill.style.width = '0%';
+        progressText.innerText = 'جاري البحث...';
         btn.disabled = true;
-        btn.innerHTML = &#039;&lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; جاري...&#039;;
-        addLog(&#039;🔍 جاري البحث عن المحادثة...&#039;, &#039;info&#039;);
+        btn.innerHTML = '<span class="spinner"></span> جاري...';
+        addLog('🔍 جاري البحث عن المحادثة...', 'info');
 
         try {
             const channelId = await fetchDMChannel(token, targetId);
-            addLog(`✅ تم العثور على المحادثة: ${channelId}`, &#039;success&#039;);
+            addLog(`✅ تم العثور على المحادثة: ${channelId}`, 'success');
 
             let allMessages = [];
             let before = null;
             let batchCount = 0;
             const maxBatches = 50;
 
-            while (dmDeleteActive &amp;&amp; batchCount &lt; maxBatches) {
+            while (dmDeleteActive && batchCount < maxBatches) {
                 const messages = await fetchMessages(token, channelId, before);
                 if (messages.length === 0) break;
                 allMessages = allMessages.concat(messages);
                 before = messages[messages.length - 1].id;
                 batchCount++;
-                addLog(`📥 تم جلب ${messages.length} رسالة (الدفعة ${batchCount})`, &#039;info&#039;);
+                addLog(`📥 تم جلب ${messages.length} رسالة (الدفعة ${batchCount})`, 'info');
             }
 
-            const meRes = await fetch(&#039;https://discord.com/api/v10/users/@me&#039;, { headers: { &#039;Authorization&#039;: token } });
+            const meRes = await fetch('https://discord.com/api/v10/users/@me', { headers: { 'Authorization': token } });
             const me = await meRes.json();
             const myId = me.id;
-            const myMessages = allMessages.filter(m =&gt; m.author &amp;&amp; m.author.id === myId);
+            const myMessages = allMessages.filter(m => m.author && m.author.id === myId);
             dmTotalMessages = myMessages.length;
 
             if (dmTotalMessages === 0) {
-                addLog(&#039;ℹ️ لا توجد رسائل منك في هذه المحادثة&#039;, &#039;info&#039;);
-                showToast(&#039;انتهى&#039;, &#039;لا توجد رسائل لحذفها&#039;, &#039;info&#039;);
+                addLog('ℹ️ لا توجد رسائل منك في هذه المحادثة', 'info');
+                showToast('انتهى', 'لا توجد رسائل لحذفها', 'info');
                 btn.disabled = false;
-                btn.innerHTML = &#039;&lt;span&gt;🗑️&lt;/span&gt; حذف كل رسائلي&#039;;
-                progressDiv.classList.remove(&#039;active&#039;);
+                btn.innerHTML = '<span>🗑️</span> حذف كل رسائلي';
+                progressDiv.classList.remove('active');
                 return;
             }
 
-            addLog(`🗑️ جاري حذف ${dmTotalMessages} رسالة...`, &#039;info&#039;);
-            showToast(&#039;بدء&#039;, `جاري حذف ${dmTotalMessages} رسالة`, &#039;info&#039;);
+            addLog(`🗑️ جاري حذف ${dmTotalMessages} رسالة...`, 'info');
+            showToast('بدء', `جاري حذف ${dmTotalMessages} رسالة`, 'info');
 
             let deleted = 0;
             for (const msg of myMessages) {
-                if (!dmDeleteActive) { addLog(&#039;⏹️ تم الإيقاف من المستخدم&#039;, &#039;warn&#039;); break; }
+                if (!dmDeleteActive) { addLog('⏹️ تم الإيقاف من المستخدم', 'warn'); break; }
                 const ok = await deleteMessage(token, channelId, msg.id);
                 if (ok) {
                     deleted++;
                     dmDeletedCount++;
                     counter.innerText = dmDeletedCount;
                     const pct = Math.round((deleted / dmTotalMessages) * 100);
-                    progressFill.style.width = pct + &#039;%&#039;;
+                    progressFill.style.width = pct + '%';
                     progressText.innerText = `${deleted} / ${dmTotalMessages} رسالة`;
-                    if (deleted % 10 === 0) addLog(`🗑️ تم حذف ${deleted} / ${dmTotalMessages}`, &#039;info&#039;);
+                    if (deleted % 10 === 0) addLog(`🗑️ تم حذف ${deleted} / ${dmTotalMessages}`, 'info');
                 } else {
-                    addLog(`⚠️ فشل حذف رسالة ${msg.id}`, &#039;error&#039;);
+                    addLog(`⚠️ فشل حذف رسالة ${msg.id}`, 'error');
                 }
                 await sleep(delay);
             }
-            addLog(`✅ تم حذف ${deleted} من ${dmTotalMessages} رسالة`, &#039;success&#039;);
-            showToast(&#039;تم&#039;, `تم حذف ${deleted} رسالة`, &#039;success&#039;);
+            addLog(`✅ تم حذف ${deleted} من ${dmTotalMessages} رسالة`, 'success');
+            showToast('تم', `تم حذف ${deleted} رسالة`, 'success');
         } catch (e) {
-            addLog(`🔥 خطأ: ${e.message}`, &#039;error&#039;);
-            showToast(&#039;خطأ&#039;, e.message, &#039;error&#039;);
+            addLog(`🔥 خطأ: ${e.message}`, 'error');
+            showToast('خطأ', e.message, 'error');
         }
         dmDeleteActive = false;
         btn.disabled = false;
-        btn.innerHTML = &#039;&lt;span&gt;🗑️&lt;/span&gt; حذف كل رسائلي&#039;;
-        progressDiv.classList.remove(&#039;active&#039;);
+        btn.innerHTML = '<span>🗑️</span> حذف كل رسائلي';
+        progressDiv.classList.remove('active');
     };
 
     // ═══════════════════════════════════════════════════════
@@ -978,144 +978,144 @@
     let userIntervalId = null;
     let userConnected = false;
 
-    loadAllFields(&#039;ws&#039;, [&#039;ws-token&#039;, &#039;ws-activity-type&#039;, &#039;ws-activity-name&#039;, &#039;ws-stream-url&#039;, &#039;ws-details&#039;, &#039;ws-state&#039;, &#039;ws-large-image&#039;, &#039;ws-large-text&#039;, &#039;ws-small-image&#039;, &#039;ws-small-text&#039;]);
+    loadAllFields('ws', ['ws-token', 'ws-activity-type', 'ws-activity-name', 'ws-stream-url', 'ws-details', 'ws-state', 'ws-large-image', 'ws-large-text', 'ws-small-image', 'ws-small-text']);
 
-    const wasUserConnected = loadState(&#039;ws_connected&#039;, false);
+    const wasUserConnected = loadState('ws_connected', false);
     if (wasUserConnected) {
-        setTimeout(() =&gt; {
-            document.getElementById(&#039;apply-ws-status&#039;).click();
+        setTimeout(() => {
+            document.getElementById('apply-ws-status').click();
         }, 1000);
     }
 
     function disconnectUser() {
         if (userIntervalId) { clearInterval(userIntervalId); userIntervalId = null; }
-        if (userWs &amp;&amp; userWs.readyState === WebSocket.OPEN) { userWs.close(); }
+        if (userWs && userWs.readyState === WebSocket.OPEN) { userWs.close(); }
         userWs = null; userConnected = false;
-        document.getElementById(&#039;ws-status&#039;).className = &#039;status-pill status-offline&#039;;
-        document.getElementById(&#039;ws-status&#039;).textContent = &#039;غير متصل&#039;;
-        document.getElementById(&#039;ws-connected-info&#039;).classList.remove(&#039;active&#039;);
-        document.getElementById(&#039;apply-ws-status&#039;).disabled = false;
-        document.getElementById(&#039;stop-ws-status&#039;).disabled = true;
-        saveState(&#039;ws_connected&#039;, false);
-        addLog(&#039;⏹️ تم إغلاق اتصال Rich Presence&#039;, &#039;warn&#039;);
+        document.getElementById('ws-status').className = 'status-pill status-offline';
+        document.getElementById('ws-status').textContent = 'غير متصل';
+        document.getElementById('ws-connected-info').classList.remove('active');
+        document.getElementById('apply-ws-status').disabled = false;
+        document.getElementById('stop-ws-status').disabled = true;
+        saveState('ws_connected', false);
+        addLog('⏹️ تم إغلاق اتصال Rich Presence', 'warn');
     }
-    document.getElementById(&#039;stop-ws-status&#039;).onclick = disconnectUser;
+    document.getElementById('stop-ws-status').onclick = disconnectUser;
 
-    const typeSelect = document.getElementById(&#039;ws-activity-type&#039;);
-    const streamDiv = document.getElementById(&#039;ws-stream-url-group&#039;);
-    typeSelect.addEventListener(&#039;change&#039;, () =&gt; {
-        streamDiv.style.display = typeSelect.value === &#039;1&#039; ? &#039;block&#039; : &#039;none&#039;;
+    const typeSelect = document.getElementById('ws-activity-type');
+    const streamDiv = document.getElementById('ws-stream-url-group');
+    typeSelect.addEventListener('change', () => {
+        streamDiv.style.display = typeSelect.value === '1' ? 'block' : 'none';
     });
-    if (typeSelect.value === &#039;1&#039;) streamDiv.style.display = &#039;block&#039;;
+    if (typeSelect.value === '1') streamDiv.style.display = 'block';
 
-    document.getElementById(&#039;apply-ws-status&#039;).onclick = async function() {
+    document.getElementById('apply-ws-status').onclick = async function() {
         const btn = this;
-        const token = document.getElementById(&#039;ws-token&#039;).value.trim();
-        const type = document.getElementById(&#039;ws-activity-type&#039;).value;
-        const name = document.getElementById(&#039;ws-activity-name&#039;).value.trim();
-        const details = document.getElementById(&#039;ws-details&#039;).value.trim();
-        const state = document.getElementById(&#039;ws-state&#039;).value.trim();
-        const streamUrl = document.getElementById(&#039;ws-stream-url&#039;).value.trim();
-        const largeImage = document.getElementById(&#039;ws-large-image&#039;).value.trim();
-        const largeText = document.getElementById(&#039;ws-large-text&#039;).value.trim();
-        const smallImage = document.getElementById(&#039;ws-small-image&#039;).value.trim();
-        const smallText = document.getElementById(&#039;ws-small-text&#039;).value.trim();
-        const stopBtn = document.getElementById(&#039;stop-ws-status&#039;);
-        const wsInfo = document.getElementById(&#039;ws-connected-info&#039;);
+        const token = document.getElementById('ws-token').value.trim();
+        const type = document.getElementById('ws-activity-type').value;
+        const name = document.getElementById('ws-activity-name').value.trim();
+        const details = document.getElementById('ws-details').value.trim();
+        const state = document.getElementById('ws-state').value.trim();
+        const streamUrl = document.getElementById('ws-stream-url').value.trim();
+        const largeImage = document.getElementById('ws-large-image').value.trim();
+        const largeText = document.getElementById('ws-large-text').value.trim();
+        const smallImage = document.getElementById('ws-small-image').value.trim();
+        const smallText = document.getElementById('ws-small-text').value.trim();
+        const stopBtn = document.getElementById('stop-ws-status');
+        const wsInfo = document.getElementById('ws-connected-info');
 
-        saveAllFields(&#039;ws&#039;, [&#039;ws-token&#039;, &#039;ws-activity-type&#039;, &#039;ws-activity-name&#039;, &#039;ws-stream-url&#039;, &#039;ws-details&#039;, &#039;ws-state&#039;, &#039;ws-large-image&#039;, &#039;ws-large-text&#039;, &#039;ws-small-image&#039;, &#039;ws-small-text&#039;]);
+        saveAllFields('ws', ['ws-token', 'ws-activity-type', 'ws-activity-name', 'ws-stream-url', 'ws-details', 'ws-state', 'ws-large-image', 'ws-large-text', 'ws-small-image', 'ws-small-text']);
 
-        if (!token) { addLog(&#039;❌ أدخل التوكن&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;التوكن مطلوب&#039;, &#039;error&#039;); return; }
-        if (!name) { addLog(&#039;❌ أدخل النشاط&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;النشاط مطلوب&#039;, &#039;error&#039;); return; }
-        if (type === &#039;1&#039; &amp;&amp; !streamUrl) { addLog(&#039;❌ رابط البث مطلوب&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;رابط البث مطلوب&#039;, &#039;error&#039;); return; }
+        if (!token) { addLog('❌ أدخل التوكن', 'error'); showToast('خطأ', 'التوكن مطلوب', 'error'); return; }
+        if (!name) { addLog('❌ أدخل النشاط', 'error'); showToast('خطأ', 'النشاط مطلوب', 'error'); return; }
+        if (type === '1' && !streamUrl) { addLog('❌ رابط البث مطلوب', 'error'); showToast('خطأ', 'رابط البث مطلوب', 'error'); return; }
         if (userConnected) disconnectUser();
 
-        addLog(&#039;🔄 جاري الاتصال بـ Gateway...&#039;, &#039;info&#039;);
-        document.getElementById(&#039;ws-status&#039;).className = &#039;status-pill status-idle&#039;;
-        document.getElementById(&#039;ws-status&#039;).textContent = &#039;جاري الاتصال...&#039;;
+        addLog('🔄 جاري الاتصال بـ Gateway...', 'info');
+        document.getElementById('ws-status').className = 'status-pill status-idle';
+        document.getElementById('ws-status').textContent = 'جاري الاتصال...';
         btn.disabled = true;
         stopBtn.disabled = false;
 
-        userWs = new WebSocket(&quot;wss://gateway.discord.gg/?v=10&amp;encoding=json&quot;);
-        userWs.onopen = () =&gt; { addLog(&#039;🔌 متصل بـ Gateway&#039;, &#039;info&#039;); };
-        userWs.onmessage = (e) =&gt; {
+        userWs = new WebSocket("wss://gateway.discord.gg/?v=10&encoding=json");
+        userWs.onopen = () => { addLog('🔌 متصل بـ Gateway', 'info'); };
+        userWs.onmessage = (e) => {
             const data = JSON.parse(e.data);
             if (data.op === 10) {
                 const interval = data.d.heartbeat_interval;
-                userIntervalId = setInterval(() =&gt; {
-                    if (userWs &amp;&amp; userWs.readyState === WebSocket.OPEN) { userWs.send(JSON.stringify({ op: 1, d: null })); }
+                userIntervalId = setInterval(() => {
+                    if (userWs && userWs.readyState === WebSocket.OPEN) { userWs.send(JSON.stringify({ op: 1, d: null })); }
                 }, interval);
                 userWs.send(JSON.stringify({
                     op: 2,
                     d: {
                         token,
-                        properties: { $os: &quot;windows&quot;, $browser: &quot;chrome&quot;, $device: &quot;pc&quot; },
-                        presence: { status: &quot;online&quot;, afk: false, activities: [] }
+                        properties: { $os: "windows", $browser: "chrome", $device: "pc" },
+                        presence: { status: "online", afk: false, activities: [] }
                     }
                 }));
-            } else if (data.t === &quot;READY&quot;) {
-                addLog(`✅ متصل كـ ${data.d.user.username}`, &#039;success&#039;);
-                document.getElementById(&#039;ws-status&#039;).className = &#039;status-pill status-online&#039;;
-                document.getElementById(&#039;ws-status&#039;).textContent = `متصل: ${data.d.user.username}`;
-                wsInfo.classList.add(&#039;active&#039;);
+            } else if (data.t === "READY") {
+                addLog(`✅ متصل كـ ${data.d.user.username}`, 'success');
+                document.getElementById('ws-status').className = 'status-pill status-online';
+                document.getElementById('ws-status').textContent = `متصل: ${data.d.user.username}`;
+                wsInfo.classList.add('active');
                 userConnected = true;
-                saveState(&#039;ws_connected&#039;, true);
-                showToast(&#039;متصل&#039;, `تم الدخول كـ ${data.d.user.username}`, &#039;success&#039;);
+                saveState('ws_connected', true);
+                showToast('متصل', `تم الدخول كـ ${data.d.user.username}`, 'success');
 
                 let activity = { name, type: parseInt(type) };
-                if (type === &#039;1&#039;) {
+                if (type === '1') {
                     if (!streamUrl || !streamUrl.match(/^https?:\/\//)) {
-                        addLog(&#039;❌ رابط بث غير صالح&#039;, &#039;error&#039;);
-                        document.getElementById(&#039;ws-status&#039;).className = &#039;status-pill status-offline&#039;;
-                        showToast(&#039;خطأ&#039;, &#039;رابط البث غير صالح&#039;, &#039;error&#039;);
+                        addLog('❌ رابط بث غير صالح', 'error');
+                        document.getElementById('ws-status').className = 'status-pill status-offline';
+                        showToast('خطأ', 'رابط البث غير صالح', 'error');
                         disconnectUser();
                         return;
                     }
                     activity.url = streamUrl;
                 }
-                if (details &amp;&amp; details.trim()) activity.details = details;
-                if (state &amp;&amp; state.trim()) activity.state = state;
+                if (details && details.trim()) activity.details = details;
+                if (state && state.trim()) activity.state = state;
                 if (largeImage || smallImage || largeText || smallText) {
                     activity.assets = {};
                     if (largeImage) activity.assets.large_image = largeImage;
                     if (largeText) activity.assets.large_text = largeText;
                     if (smallImage) activity.assets.small_image = smallImage;
                     if (smallText) activity.assets.small_text = smallText;
-                    addLog(&#039;🖼️ تم إضافة الصور&#039;, &#039;info&#039;);
+                    addLog('🖼️ تم إضافة الصور', 'info');
                 }
                 userWs.send(JSON.stringify({
                     op: 3,
-                    d: { since: null, activities: [activity], status: &quot;online&quot;, afk: false }
+                    d: { since: null, activities: [activity], status: "online", afk: false }
                 }));
-                addLog(`📤 تم إرسال الحالة: ${name}`, &#039;info&#039;);
-                addLog(&#039;🔌 الاتصال مفتوح — الحالة نشطة&#039;, &#039;info&#039;);
+                addLog(`📤 تم إرسال الحالة: ${name}`, 'info');
+                addLog('🔌 الاتصال مفتوح — الحالة نشطة', 'info');
             } else if (data.op === 9) {
-                addLog(&#039;❌ توكن غير صالح&#039;, &#039;error&#039;);
-                document.getElementById(&#039;ws-status&#039;).className = &#039;status-pill status-offline&#039;;
-                showToast(&#039;خطأ&#039;, &#039;توكن غير صالح&#039;, &#039;error&#039;);
+                addLog('❌ توكن غير صالح', 'error');
+                document.getElementById('ws-status').className = 'status-pill status-offline';
+                showToast('خطأ', 'توكن غير صالح', 'error');
                 if (userIntervalId) { clearInterval(userIntervalId); userIntervalId = null; }
                 btn.disabled = false; stopBtn.disabled = true;
-                wsInfo.classList.remove(&#039;active&#039;);
-                saveState(&#039;ws_connected&#039;, false);
+                wsInfo.classList.remove('active');
+                saveState('ws_connected', false);
             }
         };
-        userWs.onerror = () =&gt; {
-            addLog(&#039;❌ خطأ WebSocket&#039;, &#039;error&#039;);
-            document.getElementById(&#039;ws-status&#039;).className = &#039;status-pill status-offline&#039;;
-            showToast(&#039;خطأ&#039;, &#039;فشل الاتصال&#039;, &#039;error&#039;);
+        userWs.onerror = () => {
+            addLog('❌ خطأ WebSocket', 'error');
+            document.getElementById('ws-status').className = 'status-pill status-offline';
+            showToast('خطأ', 'فشل الاتصال', 'error');
             if (userIntervalId) { clearInterval(userIntervalId); userIntervalId = null; }
             btn.disabled = false; stopBtn.disabled = true;
-            wsInfo.classList.remove(&#039;active&#039;);
-            saveState(&#039;ws_connected&#039;, false);
+            wsInfo.classList.remove('active');
+            saveState('ws_connected', false);
         };
-        userWs.onclose = () =&gt; {
+        userWs.onclose = () => {
             if (userConnected) {
-                addLog(&#039;⚠️ تم إغلاق الاتصال&#039;, &#039;warn&#039;);
-                document.getElementById(&#039;ws-status&#039;).className = &#039;status-pill status-offline&#039;;
-                document.getElementById(&#039;ws-status&#039;).textContent = &#039;غير متصل&#039;;
-                wsInfo.classList.remove(&#039;active&#039;);
+                addLog('⚠️ تم إغلاق الاتصال', 'warn');
+                document.getElementById('ws-status').className = 'status-pill status-offline';
+                document.getElementById('ws-status').textContent = 'غير متصل';
+                wsInfo.classList.remove('active');
                 btn.disabled = false; stopBtn.disabled = true;
-                saveState(&#039;ws_connected&#039;, false);
+                saveState('ws_connected', false);
             }
         };
     };
@@ -1123,29 +1123,29 @@
     // ═══════════════════════════════════════════════════════
     // TOOL: 4 - HYPESQUAD
     // ═══════════════════════════════════════════════════════
-    loadAllFields(&#039;hs&#039;, [&#039;hs-token&#039;]);
+    loadAllFields('hs', ['hs-token']);
 
     async function setHype(token, houseId, name) {
         const btn = event.target;
         const originalText = btn.innerHTML;
-        btn.innerHTML = &#039;&lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; جاري...&#039;;
+        btn.innerHTML = '<span class="spinner"></span> جاري...';
         btn.disabled = true;
         try {
-            const r = await fetch(&#039;https://discord.com/api/v9/hypesquad/online&#039;, {
-                method: &#039;POST&#039;,
-                headers: { &#039;Authorization&#039;: token, &#039;Content-Type&#039;: &#039;application/json&#039; },
+            const r = await fetch('https://discord.com/api/v9/hypesquad/online', {
+                method: 'POST',
+                headers: { 'Authorization': token, 'Content-Type': 'application/json' },
                 body: JSON.stringify({ house_id: houseId })
             });
             if (r.ok) {
-                addLog(`✅ تم تعيين ${name}`, &#039;success&#039;);
-                showToast(&#039;تم&#039;, `تم تعيين ${name}`, &#039;success&#039;);
+                addLog(`✅ تم تعيين ${name}`, 'success');
+                showToast('تم', `تم تعيين ${name}`, 'success');
             } else {
-                addLog(`❌ فشل (${r.status})`, &#039;error&#039;);
-                showToast(&#039;فشل&#039;, `خطأ ${r.status}`, &#039;error&#039;);
+                addLog(`❌ فشل (${r.status})`, 'error');
+                showToast('فشل', `خطأ ${r.status}`, 'error');
             }
         } catch (e) {
-            addLog(`🔥 خطأ: ${e.message}`, &#039;error&#039;);
-            showToast(&#039;خطأ&#039;, e.message, &#039;error&#039;);
+            addLog(`🔥 خطأ: ${e.message}`, 'error');
+            showToast('خطأ', e.message, 'error');
         }
         btn.innerHTML = originalText;
         btn.disabled = false;
@@ -1153,86 +1153,86 @@
     async function removeHype(token) {
         const btn = event.target;
         const originalText = btn.innerHTML;
-        btn.innerHTML = &#039;&lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; جاري...&#039;;
+        btn.innerHTML = '<span class="spinner"></span> جاري...';
         btn.disabled = true;
         try {
-            const r = await fetch(&#039;https://discord.com/api/v9/hypesquad/online&#039;, {
-                method: &#039;DELETE&#039;,
-                headers: { &#039;Authorization&#039;: token }
+            const r = await fetch('https://discord.com/api/v9/hypesquad/online', {
+                method: 'DELETE',
+                headers: { 'Authorization': token }
             });
             if (r.ok) {
-                addLog(&#039;✅ تم الإزالة&#039;, &#039;success&#039;);
-                showToast(&#039;تم&#039;, &#039;تم إزالة HypeSquad&#039;, &#039;success&#039;);
+                addLog('✅ تم الإزالة', 'success');
+                showToast('تم', 'تم إزالة HypeSquad', 'success');
             } else {
-                addLog(`❌ فشل (${r.status})`, &#039;error&#039;);
-                showToast(&#039;فشل&#039;, `خطأ ${r.status}`, &#039;error&#039;);
+                addLog(`❌ فشل (${r.status})`, 'error');
+                showToast('فشل', `خطأ ${r.status}`, 'error');
             }
         } catch (e) {
-            addLog(`🔥 خطأ: ${e.message}`, &#039;error&#039;);
-            showToast(&#039;خطأ&#039;, e.message, &#039;error&#039;);
+            addLog(`🔥 خطأ: ${e.message}`, 'error');
+            showToast('خطأ', e.message, 'error');
         }
         btn.innerHTML = originalText;
         btn.disabled = false;
     }
 
-    document.getElementById(&#039;set-bravery&#039;).onclick = async () =&gt; {
-        const t = document.getElementById(&#039;hs-token&#039;).value.trim();
-        if (!t) { addLog(&#039;❌ أدخل التوكن&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;التوكن مطلوب&#039;, &#039;error&#039;); return; }
-        saveAllFields(&#039;hs&#039;, [&#039;hs-token&#039;]);
-        await setHype(t, 1, &#039;Bravery&#039;);
+    document.getElementById('set-bravery').onclick = async () => {
+        const t = document.getElementById('hs-token').value.trim();
+        if (!t) { addLog('❌ أدخل التوكن', 'error'); showToast('خطأ', 'التوكن مطلوب', 'error'); return; }
+        saveAllFields('hs', ['hs-token']);
+        await setHype(t, 1, 'Bravery');
     };
-    document.getElementById(&#039;set-brilliance&#039;).onclick = async () =&gt; {
-        const t = document.getElementById(&#039;hs-token&#039;).value.trim();
-        if (!t) { addLog(&#039;❌ أدخل التوكن&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;التوكن مطلوب&#039;, &#039;error&#039;); return; }
-        saveAllFields(&#039;hs&#039;, [&#039;hs-token&#039;]);
-        await setHype(t, 2, &#039;Brilliance&#039;);
+    document.getElementById('set-brilliance').onclick = async () => {
+        const t = document.getElementById('hs-token').value.trim();
+        if (!t) { addLog('❌ أدخل التوكن', 'error'); showToast('خطأ', 'التوكن مطلوب', 'error'); return; }
+        saveAllFields('hs', ['hs-token']);
+        await setHype(t, 2, 'Brilliance');
     };
-    document.getElementById(&#039;set-balance&#039;).onclick = async () =&gt; {
-        const t = document.getElementById(&#039;hs-token&#039;).value.trim();
-        if (!t) { addLog(&#039;❌ أدخل التوكن&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;التوكن مطلوب&#039;, &#039;error&#039;); return; }
-        saveAllFields(&#039;hs&#039;, [&#039;hs-token&#039;]);
-        await setHype(t, 3, &#039;Balance&#039;);
+    document.getElementById('set-balance').onclick = async () => {
+        const t = document.getElementById('hs-token').value.trim();
+        if (!t) { addLog('❌ أدخل التوكن', 'error'); showToast('خطأ', 'التوكن مطلوب', 'error'); return; }
+        saveAllFields('hs', ['hs-token']);
+        await setHype(t, 3, 'Balance');
     };
-    document.getElementById(&#039;remove-hypesquad&#039;).onclick = async () =&gt; {
-        const t = document.getElementById(&#039;hs-token&#039;).value.trim();
-        if (!t) { addLog(&#039;❌ أدخل التوكن&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;التوكن مطلوب&#039;, &#039;error&#039;); return; }
-        saveAllFields(&#039;hs&#039;, [&#039;hs-token&#039;]);
+    document.getElementById('remove-hypesquad').onclick = async () => {
+        const t = document.getElementById('hs-token').value.trim();
+        if (!t) { addLog('❌ أدخل التوكن', 'error'); showToast('خطأ', 'التوكن مطلوب', 'error'); return; }
+        saveAllFields('hs', ['hs-token']);
         await removeHype(t);
     };
 
     // ═══════════════════════════════════════════════════════
     // TOOL: 5 - TOKEN CHECKER
     // ═══════════════════════════════════════════════════════
-    loadAllFields(&#039;check&#039;, [&#039;check-token&#039;]);
+    loadAllFields('check', ['check-token']);
 
-    document.getElementById(&#039;check-token-btn&#039;).onclick = async function() {
+    document.getElementById('check-token-btn').onclick = async function() {
         const btn = this;
         const originalText = btn.innerHTML;
-        btn.innerHTML = &#039;&lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; جاري...&#039;;
+        btn.innerHTML = '<span class="spinner"></span> جاري...';
         btn.disabled = true;
-        const token = document.getElementById(&#039;check-token&#039;).value.trim();
-        saveAllFields(&#039;check&#039;, [&#039;check-token&#039;]);
-        if (!token) { addLog(&#039;❌ أدخل التوكن&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;التوكن مطلوب&#039;, &#039;error&#039;); btn.innerHTML = originalText; btn.disabled = false; return; }
-        addLog(&#039;🔍 جاري الفحص...&#039;, &#039;info&#039;);
+        const token = document.getElementById('check-token').value.trim();
+        saveAllFields('check', ['check-token']);
+        if (!token) { addLog('❌ أدخل التوكن', 'error'); showToast('خطأ', 'التوكن مطلوب', 'error'); btn.innerHTML = originalText; btn.disabled = false; return; }
+        addLog('🔍 جاري الفحص...', 'info');
         try {
-            const res = await fetch(&#039;https://discord.com/api/v10/users/@me&#039;, { headers: { &#039;Authorization&#039;: token } });
+            const res = await fetch('https://discord.com/api/v10/users/@me', { headers: { 'Authorization': token } });
             if (!res.ok) {
-                addLog(`❌ توكن غير صالح (${res.status})`, &#039;error&#039;);
-                showToast(&#039;غير صالح&#039;, &#039;توكن غير صالح&#039;, &#039;error&#039;);
+                addLog(`❌ توكن غير صالح (${res.status})`, 'error');
+                showToast('غير صالح', 'توكن غير صالح', 'error');
                 btn.innerHTML = originalText; btn.disabled = false; return;
             }
             const user = await res.json();
-            document.getElementById(&#039;token-username&#039;).textContent = `${user.username || &#039;غير معروف&#039;}#${user.discriminator || &#039;0&#039;}`;
-            document.getElementById(&#039;token-id&#039;).textContent = user.id || &#039;غير معروف&#039;;
-            document.getElementById(&#039;token-email&#039;).textContent = user.email || &#039;غير متاح&#039;;
-            document.getElementById(&#039;token-mfa&#039;).textContent = user.mfa_enabled ? &#039;✅ مفعل&#039; : &#039;❌ غير مفعل&#039;;
-            document.getElementById(&#039;token-avatar&#039;).textContent = user.avatar ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` : &#039;لا يوجد&#039;;
-            document.getElementById(&#039;token-info&#039;).style.display = &#039;block&#039;;
-            addLog(`✅ تم التحقق: ${user.username}`, &#039;success&#039;);
-            showToast(&#039;تم&#039;, `الحساب: ${user.username}`, &#039;success&#039;);
+            document.getElementById('token-username').textContent = `${user.username || 'غير معروف'}#${user.discriminator || '0'}`;
+            document.getElementById('token-id').textContent = user.id || 'غير معروف';
+            document.getElementById('token-email').textContent = user.email || 'غير متاح';
+            document.getElementById('token-mfa').textContent = user.mfa_enabled ? '✅ مفعل' : '❌ غير مفعل';
+            document.getElementById('token-avatar').textContent = user.avatar ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png` : 'لا يوجد';
+            document.getElementById('token-info').style.display = 'block';
+            addLog(`✅ تم التحقق: ${user.username}`, 'success');
+            showToast('تم', `الحساب: ${user.username}`, 'success');
         } catch (e) {
-            addLog(`🔥 خطأ: ${e.message}`, &#039;error&#039;);
-            showToast(&#039;خطأ&#039;, e.message, &#039;error&#039;);
+            addLog(`🔥 خطأ: ${e.message}`, 'error');
+            showToast('خطأ', e.message, 'error');
         }
         btn.innerHTML = originalText;
         btn.disabled = false;
@@ -1241,73 +1241,73 @@
     // ═══════════════════════════════════════════════════════
     // TOOL: 6 - CHANGE NICKNAME (NEW)
     // ═══════════════════════════════════════════════════════
-    loadAllFields(&#039;nick&#039;, [&#039;nick-token&#039;, &#039;nick-guild-id&#039;, &#039;nick-new-name&#039;]);
+    loadAllFields('nick', ['nick-token', 'nick-guild-id', 'nick-new-name']);
 
-    document.getElementById(&#039;change-nickname-btn&#039;).onclick = async function() {
+    document.getElementById('change-nickname-btn').onclick = async function() {
         const btn = this;
-        const token = document.getElementById(&#039;nick-token&#039;).value.trim();
-        const guildId = document.getElementById(&#039;nick-guild-id&#039;).value.trim();
-        const newName = document.getElementById(&#039;nick-new-name&#039;).value.trim();
-        saveAllFields(&#039;nick&#039;, [&#039;nick-token&#039;, &#039;nick-guild-id&#039;, &#039;nick-new-name&#039;]);
+        const token = document.getElementById('nick-token').value.trim();
+        const guildId = document.getElementById('nick-guild-id').value.trim();
+        const newName = document.getElementById('nick-new-name').value.trim();
+        saveAllFields('nick', ['nick-token', 'nick-guild-id', 'nick-new-name']);
 
-        if (!token) { addLog(&#039;❌ أدخل التوكن&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;التوكن مطلوب&#039;, &#039;error&#039;); return; }
-        if (!guildId) { addLog(&#039;❌ أدخل معرف السيرفر&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;معرف السيرفر مطلوب&#039;, &#039;error&#039;); return; }
-        if (!newName) { addLog(&#039;❌ أدخل الاسم الجديد&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;الاسم الجديد مطلوب&#039;, &#039;error&#039;); return; }
+        if (!token) { addLog('❌ أدخل التوكن', 'error'); showToast('خطأ', 'التوكن مطلوب', 'error'); return; }
+        if (!guildId) { addLog('❌ أدخل معرف السيرفر', 'error'); showToast('خطأ', 'معرف السيرفر مطلوب', 'error'); return; }
+        if (!newName) { addLog('❌ أدخل الاسم الجديد', 'error'); showToast('خطأ', 'الاسم الجديد مطلوب', 'error'); return; }
 
-        btn.innerHTML = &#039;&lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; جاري...&#039;;
+        btn.innerHTML = '<span class="spinner"></span> جاري...';
         btn.disabled = true;
-        addLog(`🔄 جاري تغيير الاسم إلى &quot;${newName}&quot;...`, &#039;info&#039;);
+        addLog(`🔄 جاري تغيير الاسم إلى "${newName}"...`, 'info');
 
         try {
-            const meRes = await fetch(&#039;https://discord.com/api/v10/users/@me&#039;, { headers: { &#039;Authorization&#039;: token } });
-            if (!meRes.ok) { addLog(&#039;❌ توكن غير صالح&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;توكن غير صالح&#039;, &#039;error&#039;); btn.innerHTML = &#039;&lt;span&gt;🔄&lt;/span&gt; تغيير الاسم&#039;; btn.disabled = false; return; }
+            const meRes = await fetch('https://discord.com/api/v10/users/@me', { headers: { 'Authorization': token } });
+            if (!meRes.ok) { addLog('❌ توكن غير صالح', 'error'); showToast('خطأ', 'توكن غير صالح', 'error'); btn.innerHTML = '<span>🔄</span> تغيير الاسم'; btn.disabled = false; return; }
             const me = await meRes.json();
 
             const res = await fetch(`https://discord.com/api/v10/guilds/${guildId}/members/${me.id}`, {
-                method: &#039;PATCH&#039;,
-                headers: { &#039;Authorization&#039;: token, &#039;Content-Type&#039;: &#039;application/json&#039; },
+                method: 'PATCH',
+                headers: { 'Authorization': token, 'Content-Type': 'application/json' },
                 body: JSON.stringify({ nick: newName })
             });
             if (res.ok) {
-                addLog(`✅ تم تغيير الاسم إلى &quot;${newName}&quot;`, &#039;success&#039;);
-                showToast(&#039;تم&#039;, `تم تغيير الاسم إلى &quot;${newName}&quot;`, &#039;success&#039;);
+                addLog(`✅ تم تغيير الاسم إلى "${newName}"`, 'success');
+                showToast('تم', `تم تغيير الاسم إلى "${newName}"`, 'success');
             } else if (res.status === 403) {
-                addLog(&#039;❌ ليس لديك صلاحية تغيير الاسم في هذا السيرفر&#039;, &#039;error&#039;);
-                showToast(&#039;خطأ&#039;, &#039;ليس لديك صلاحية&#039;, &#039;error&#039;);
+                addLog('❌ ليس لديك صلاحية تغيير الاسم في هذا السيرفر', 'error');
+                showToast('خطأ', 'ليس لديك صلاحية', 'error');
             } else {
-                addLog(`❌ فشل (${res.status})`, &#039;error&#039;);
-                showToast(&#039;فشل&#039;, `خطأ ${res.status}`, &#039;error&#039;);
+                addLog(`❌ فشل (${res.status})`, 'error');
+                showToast('فشل', `خطأ ${res.status}`, 'error');
             }
         } catch (e) {
-            addLog(`🔥 خطأ: ${e.message}`, &#039;error&#039;);
-            showToast(&#039;خطأ&#039;, e.message, &#039;error&#039;);
+            addLog(`🔥 خطأ: ${e.message}`, 'error');
+            showToast('خطأ', e.message, 'error');
         }
-        btn.innerHTML = &#039;&lt;span&gt;🔄&lt;/span&gt; تغيير الاسم&#039;;
+        btn.innerHTML = '<span>🔄</span> تغيير الاسم';
         btn.disabled = false;
     };
 
     // ═══════════════════════════════════════════════════════
     // TOOL: 7 - CUSTOM STATUS (NEW)
     // ═══════════════════════════════════════════════════════
-    loadAllFields(&#039;custom&#039;, [&#039;custom-status-token&#039;, &#039;custom-status-text&#039;, &#039;custom-status-emoji&#039;]);
+    loadAllFields('custom', ['custom-status-token', 'custom-status-text', 'custom-status-emoji']);
 
-    document.getElementById(&#039;set-custom-status&#039;).onclick = async function() {
+    document.getElementById('set-custom-status').onclick = async function() {
         const btn = this;
-        const token = document.getElementById(&#039;custom-status-token&#039;).value.trim();
-        const text = document.getElementById(&#039;custom-status-text&#039;).value.trim();
-        const emoji = document.getElementById(&#039;custom-status-emoji&#039;).value.trim();
-        saveAllFields(&#039;custom&#039;, [&#039;custom-status-token&#039;, &#039;custom-status-text&#039;, &#039;custom-status-emoji&#039;]);
+        const token = document.getElementById('custom-status-token').value.trim();
+        const text = document.getElementById('custom-status-text').value.trim();
+        const emoji = document.getElementById('custom-status-emoji').value.trim();
+        saveAllFields('custom', ['custom-status-token', 'custom-status-text', 'custom-status-emoji']);
 
-        if (!token) { addLog(&#039;❌ أدخل التوكن&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;التوكن مطلوب&#039;, &#039;error&#039;); return; }
-        if (!text) { addLog(&#039;❌ أدخل النص&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;النص مطلوب&#039;, &#039;error&#039;); return; }
+        if (!token) { addLog('❌ أدخل التوكن', 'error'); showToast('خطأ', 'التوكن مطلوب', 'error'); return; }
+        if (!text) { addLog('❌ أدخل النص', 'error'); showToast('خطأ', 'النص مطلوب', 'error'); return; }
 
-        btn.innerHTML = &#039;&lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; جاري...&#039;;
+        btn.innerHTML = '<span class="spinner"></span> جاري...';
         btn.disabled = true;
-        addLog(`🎭 جاري تعيين الحالة: &quot;${text}&quot;`, &#039;info&#039;);
+        addLog(`🎭 جاري تعيين الحالة: "${text}"`, 'info');
 
         try {
-            const meRes = await fetch(&#039;https://discord.com/api/v10/users/@me&#039;, { headers: { &#039;Authorization&#039;: token } });
-            if (!meRes.ok) { addLog(&#039;❌ توكن غير صالح&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;توكن غير صالح&#039;, &#039;error&#039;); btn.innerHTML = &#039;&lt;span&gt;✨&lt;/span&gt; تعيين الحالة&#039;; btn.disabled = false; return; }
+            const meRes = await fetch('https://discord.com/api/v10/users/@me', { headers: { 'Authorization': token } });
+            if (!meRes.ok) { addLog('❌ توكن غير صالح', 'error'); showToast('خطأ', 'توكن غير صالح', 'error'); btn.innerHTML = '<span>✨</span> تعيين الحالة'; btn.disabled = false; return; }
 
             let body = { custom_status: { text: text } };
             if (emoji) {
@@ -1319,52 +1319,52 @@
                 }
             }
 
-            const res = await fetch(&#039;https://discord.com/api/v10/users/@me/settings&#039;, {
-                method: &#039;PATCH&#039;,
-                headers: { &#039;Authorization&#039;: token, &#039;Content-Type&#039;: &#039;application/json&#039; },
+            const res = await fetch('https://discord.com/api/v10/users/@me/settings', {
+                method: 'PATCH',
+                headers: { 'Authorization': token, 'Content-Type': 'application/json' },
                 body: JSON.stringify(body)
             });
             if (res.ok) {
-                addLog(`✅ تم تعيين الحالة: &quot;${text}&quot;`, &#039;success&#039;);
-                showToast(&#039;تم&#039;, `تم تعيين الحالة: &quot;${text}&quot;`, &#039;success&#039;);
+                addLog(`✅ تم تعيين الحالة: "${text}"`, 'success');
+                showToast('تم', `تم تعيين الحالة: "${text}"`, 'success');
             } else {
-                addLog(`❌ فشل (${res.status})`, &#039;error&#039;);
-                showToast(&#039;فشل&#039;, `خطأ ${res.status}`, &#039;error&#039;);
+                addLog(`❌ فشل (${res.status})`, 'error');
+                showToast('فشل', `خطأ ${res.status}`, 'error');
             }
         } catch (e) {
-            addLog(`🔥 خطأ: ${e.message}`, &#039;error&#039;);
-            showToast(&#039;خطأ&#039;, e.message, &#039;error&#039;);
+            addLog(`🔥 خطأ: ${e.message}`, 'error');
+            showToast('خطأ', e.message, 'error');
         }
-        btn.innerHTML = &#039;&lt;span&gt;✨&lt;/span&gt; تعيين الحالة&#039;;
+        btn.innerHTML = '<span>✨</span> تعيين الحالة';
         btn.disabled = false;
     };
 
     // ═══════════════════════════════════════════════════════
     // TOOL: 8 - SERVER STATS (NEW)
     // ═══════════════════════════════════════════════════════
-    loadAllFields(&#039;server&#039;, [&#039;server-stats-token&#039;, &#039;server-stats-guild&#039;]);
+    loadAllFields('server', ['server-stats-token', 'server-stats-guild']);
 
-    document.getElementById(&#039;get-server-stats&#039;).onclick = async function() {
+    document.getElementById('get-server-stats').onclick = async function() {
         const btn = this;
-        const token = document.getElementById(&#039;server-stats-token&#039;).value.trim();
-        const guildId = document.getElementById(&#039;server-stats-guild&#039;).value.trim();
-        saveAllFields(&#039;server&#039;, [&#039;server-stats-token&#039;, &#039;server-stats-guild&#039;]);
+        const token = document.getElementById('server-stats-token').value.trim();
+        const guildId = document.getElementById('server-stats-guild').value.trim();
+        saveAllFields('server', ['server-stats-token', 'server-stats-guild']);
 
-        if (!token) { addLog(&#039;❌ أدخل التوكن&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;التوكن مطلوب&#039;, &#039;error&#039;); return; }
-        if (!guildId) { addLog(&#039;❌ أدخل معرف السيرفر&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;معرف السيرفر مطلوب&#039;, &#039;error&#039;); return; }
+        if (!token) { addLog('❌ أدخل التوكن', 'error'); showToast('خطأ', 'التوكن مطلوب', 'error'); return; }
+        if (!guildId) { addLog('❌ أدخل معرف السيرفر', 'error'); showToast('خطأ', 'معرف السيرفر مطلوب', 'error'); return; }
 
-        btn.innerHTML = &#039;&lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; جاري...&#039;;
+        btn.innerHTML = '<span class="spinner"></span> جاري...';
         btn.disabled = true;
-        addLog(&#039;📊 جاري جلب إحصاءات السيرفر...&#039;, &#039;info&#039;);
+        addLog('📊 جاري جلب إحصاءات السيرفر...', 'info');
 
         try {
             const res = await fetch(`https://discord.com/api/v10/guilds/${guildId}?with_counts=true`, {
-                headers: { &#039;Authorization&#039;: token }
+                headers: { 'Authorization': token }
             });
             if (!res.ok) {
-                addLog(`❌ فشل (${res.status})`, &#039;error&#039;);
-                showToast(&#039;فشل&#039;, `خطأ ${res.status}`, &#039;error&#039;);
-                btn.innerHTML = &#039;&lt;span&gt;📈&lt;/span&gt; جلب الإحصاءات&#039;;
+                addLog(`❌ فشل (${res.status})`, 'error');
+                showToast('فشل', `خطأ ${res.status}`, 'error');
+                btn.innerHTML = '<span>📈</span> جلب الإحصاءات';
                 btn.disabled = false;
                 return;
             }
@@ -1372,93 +1372,93 @@
 
             // Get members
             const membersRes = await fetch(`https://discord.com/api/v10/guilds/${guildId}/members?limit=1000`, {
-                headers: { &#039;Authorization&#039;: token }
+                headers: { 'Authorization': token }
             });
             let members = [];
             if (membersRes.ok) members = await membersRes.json();
 
             // Get channels
             const channelsRes = await fetch(`https://discord.com/api/v10/guilds/${guildId}/channels`, {
-                headers: { &#039;Authorization&#039;: token }
+                headers: { 'Authorization': token }
             });
             let channels = [];
             if (channelsRes.ok) channels = await channelsRes.json();
 
-            const textChannels = channels.filter(c =&gt; c.type === 0).length;
-            const voiceChannels = channels.filter(c =&gt; c.type === 2).length;
+            const textChannels = channels.filter(c => c.type === 0).length;
+            const voiceChannels = channels.filter(c => c.type === 2).length;
 
             let online = 0, idle = 0, dnd = 0, offline = 0;
-            members.forEach(m =&gt; {
+            members.forEach(m => {
                 if (!m.presence) { offline++; return; }
                 const status = m.presence.status;
-                if (status === &#039;online&#039;) online++;
-                else if (status === &#039;idle&#039;) idle++;
-                else if (status === &#039;dnd&#039;) dnd++;
+                if (status === 'online') online++;
+                else if (status === 'idle') idle++;
+                else if (status === 'dnd') dnd++;
                 else offline++;
             });
 
-            document.getElementById(&#039;stat-members&#039;).textContent = guild.approximate_member_count || members.length;
-            document.getElementById(&#039;stat-online&#039;).textContent = online;
-            document.getElementById(&#039;stat-idle&#039;).textContent = idle;
-            document.getElementById(&#039;stat-dnd&#039;).textContent = dnd;
-            document.getElementById(&#039;stat-offline&#039;).textContent = offline;
-            document.getElementById(&#039;stat-text-channels&#039;).textContent = textChannels;
-            document.getElementById(&#039;stat-voice-channels&#039;).textContent = voiceChannels;
-            document.getElementById(&#039;server-stats-result&#039;).style.display = &#039;block&#039;;
+            document.getElementById('stat-members').textContent = guild.approximate_member_count || members.length;
+            document.getElementById('stat-online').textContent = online;
+            document.getElementById('stat-idle').textContent = idle;
+            document.getElementById('stat-dnd').textContent = dnd;
+            document.getElementById('stat-offline').textContent = offline;
+            document.getElementById('stat-text-channels').textContent = textChannels;
+            document.getElementById('stat-voice-channels').textContent = voiceChannels;
+            document.getElementById('server-stats-result').style.display = 'block';
 
-            addLog(`✅ تم جلب إحصاءات السيرفر: ${guild.name}`, &#039;success&#039;);
-            showToast(&#039;تم&#039;, `إحصاءات السيرفر: ${guild.name}`, &#039;success&#039;);
+            addLog(`✅ تم جلب إحصاءات السيرفر: ${guild.name}`, 'success');
+            showToast('تم', `إحصاءات السيرفر: ${guild.name}`, 'success');
         } catch (e) {
-            addLog(`🔥 خطأ: ${e.message}`, &#039;error&#039;);
-            showToast(&#039;خطأ&#039;, e.message, &#039;error&#039;);
+            addLog(`🔥 خطأ: ${e.message}`, 'error');
+            showToast('خطأ', e.message, 'error');
         }
-        btn.innerHTML = &#039;&lt;span&gt;📈&lt;/span&gt; جلب الإحصاءات&#039;;
+        btn.innerHTML = '<span>📈</span> جلب الإحصاءات';
         btn.disabled = false;
     };
 
     // ═══════════════════════════════════════════════════════
     // TOOL: 9 - ACCOUNT STATS (NEW)
     // ═══════════════════════════════════════════════════════
-    loadAllFields(&#039;acc&#039;, [&#039;account-stats-token&#039;]);
+    loadAllFields('acc', ['account-stats-token']);
 
-    document.getElementById(&#039;get-account-stats&#039;).onclick = async function() {
+    document.getElementById('get-account-stats').onclick = async function() {
         const btn = this;
-        const token = document.getElementById(&#039;account-stats-token&#039;).value.trim();
-        saveAllFields(&#039;acc&#039;, [&#039;account-stats-token&#039;]);
+        const token = document.getElementById('account-stats-token').value.trim();
+        saveAllFields('acc', ['account-stats-token']);
 
-        if (!token) { addLog(&#039;❌ أدخل التوكن&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;التوكن مطلوب&#039;, &#039;error&#039;); return; }
+        if (!token) { addLog('❌ أدخل التوكن', 'error'); showToast('خطأ', 'التوكن مطلوب', 'error'); return; }
 
-        btn.innerHTML = &#039;&lt;span class=&quot;spinner&quot;&gt;&lt;/span&gt; جاري...&#039;;
+        btn.innerHTML = '<span class="spinner"></span> جاري...';
         btn.disabled = true;
-        addLog(&#039;👤 جاري جلب إحصاءات الحساب...&#039;, &#039;info&#039;);
+        addLog('👤 جاري جلب إحصاءات الحساب...', 'info');
 
         try {
-            const res = await fetch(&#039;https://discord.com/api/v10/users/@me&#039;, {
-                headers: { &#039;Authorization&#039;: token }
+            const res = await fetch('https://discord.com/api/v10/users/@me', {
+                headers: { 'Authorization': token }
             });
             if (!res.ok) {
-                addLog(`❌ فشل (${res.status})`, &#039;error&#039;);
-                showToast(&#039;فشل&#039;, `خطأ ${res.status}`, &#039;error&#039;);
-                btn.innerHTML = &#039;&lt;span&gt;📊&lt;/span&gt; جلب الإحصاءات&#039;;
+                addLog(`❌ فشل (${res.status})`, 'error');
+                showToast('فشل', `خطأ ${res.status}`, 'error');
+                btn.innerHTML = '<span>📊</span> جلب الإحصاءات';
                 btn.disabled = false;
                 return;
             }
             const user = await res.json();
 
-            document.getElementById(&#039;acc-username&#039;).textContent = `${user.username}#${user.discriminator}`;
-            document.getElementById(&#039;acc-id&#039;).textContent = user.id;
-            document.getElementById(&#039;acc-created&#039;).textContent = new Date(user.created_at).toLocaleDateString(&#039;ar-EG&#039;);
-            document.getElementById(&#039;acc-email&#039;).textContent = user.email || &#039;غير متاح&#039;;
-            document.getElementById(&#039;acc-mfa&#039;).textContent = user.mfa_enabled ? &#039;✅ مفعل&#039; : &#039;❌ غير مفعل&#039;;
-            document.getElementById(&#039;account-stats-result&#039;).style.display = &#039;block&#039;;
+            document.getElementById('acc-username').textContent = `${user.username}#${user.discriminator}`;
+            document.getElementById('acc-id').textContent = user.id;
+            document.getElementById('acc-created').textContent = new Date(user.created_at).toLocaleDateString('ar-EG');
+            document.getElementById('acc-email').textContent = user.email || 'غير متاح';
+            document.getElementById('acc-mfa').textContent = user.mfa_enabled ? '✅ مفعل' : '❌ غير مفعل';
+            document.getElementById('account-stats-result').style.display = 'block';
 
-            addLog(`✅ تم جلب إحصاءات الحساب: ${user.username}`, &#039;success&#039;);
-            showToast(&#039;تم&#039;, `الحساب: ${user.username}`, &#039;success&#039;);
+            addLog(`✅ تم جلب إحصاءات الحساب: ${user.username}`, 'success');
+            showToast('تم', `الحساب: ${user.username}`, 'success');
         } catch (e) {
-            addLog(`🔥 خطأ: ${e.message}`, &#039;error&#039;);
-            showToast(&#039;خطأ&#039;, e.message, &#039;error&#039;);
+            addLog(`🔥 خطأ: ${e.message}`, 'error');
+            showToast('خطأ', e.message, 'error');
         }
-        btn.innerHTML = &#039;&lt;span&gt;📊&lt;/span&gt; جلب الإحصاءات&#039;;
+        btn.innerHTML = '<span>📊</span> جلب الإحصاءات';
         btn.disabled = false;
     };
 
@@ -1470,44 +1470,44 @@
     let voiceConnected = false;
     let voiceChannelId = null;
 
-    loadAllFields(&#039;voice&#039;, [&#039;voice-token&#039;, &#039;voice-channel-id&#039;]);
+    loadAllFields('voice', ['voice-token', 'voice-channel-id']);
 
     function disconnectVoice() {
         if (voiceIntervalId) { clearInterval(voiceIntervalId); voiceIntervalId = null; }
-        if (voiceWs &amp;&amp; voiceWs.readyState === WebSocket.OPEN) { voiceWs.close(); }
+        if (voiceWs && voiceWs.readyState === WebSocket.OPEN) { voiceWs.close(); }
         voiceWs = null; voiceConnected = false;
-        document.getElementById(&#039;voice-status&#039;).className = &#039;status-pill status-offline&#039;;
-        document.getElementById(&#039;voice-status&#039;).textContent = &#039;غير متصل&#039;;
-        addLog(&#039;🔇 تم مغادرة القناة الصوتية&#039;, &#039;warn&#039;);
-        showToast(&#039;مغادرة&#039;, &#039;تم مغادرة القناة الصوتية&#039;, &#039;info&#039;);
+        document.getElementById('voice-status').className = 'status-pill status-offline';
+        document.getElementById('voice-status').textContent = 'غير متصل';
+        addLog('🔇 تم مغادرة القناة الصوتية', 'warn');
+        showToast('مغادرة', 'تم مغادرة القناة الصوتية', 'info');
     }
 
     async function joinVoice(token, channelId) {
         if (voiceConnected) disconnectVoice();
 
-        const statusPill = document.getElementById(&#039;voice-status&#039;);
-        statusPill.className = &#039;status-pill status-idle&#039;;
-        statusPill.textContent = &#039;جاري الاتصال...&#039;;
-        addLog(`🎤 جاري الانضمام إلى القناة: ${channelId}`, &#039;info&#039;);
+        const statusPill = document.getElementById('voice-status');
+        statusPill.className = 'status-pill status-idle';
+        statusPill.textContent = 'جاري الاتصال...';
+        addLog(`🎤 جاري الانضمام إلى القناة: ${channelId}`, 'info');
 
         try {
             // Get the channel info
             const chRes = await fetch(`https://discord.com/api/v10/channels/${channelId}`, {
-                headers: { &#039;Authorization&#039;: token }
+                headers: { 'Authorization': token }
             });
             if (!chRes.ok) {
-                addLog(&#039;❌ قناة غير صالحة أو لا تملك صلاحية&#039;, &#039;error&#039;);
-                showToast(&#039;خطأ&#039;, &#039;قناة غير صالحة&#039;, &#039;error&#039;);
-                statusPill.className = &#039;status-pill status-offline&#039;;
-                statusPill.textContent = &#039;غير متصل&#039;;
+                addLog('❌ قناة غير صالحة أو لا تملك صلاحية', 'error');
+                showToast('خطأ', 'قناة غير صالحة', 'error');
+                statusPill.className = 'status-pill status-offline';
+                statusPill.textContent = 'غير متصل';
                 return;
             }
             const channel = await chRes.json();
             if (channel.type !== 2) {
-                addLog(&#039;❌ هذه ليست قناة صوتية&#039;, &#039;error&#039;);
-                showToast(&#039;خطأ&#039;, &#039;هذه ليست قناة صوتية&#039;, &#039;error&#039;);
-                statusPill.className = &#039;status-pill status-offline&#039;;
-                statusPill.textContent = &#039;غير متصل&#039;;
+                addLog('❌ هذه ليست قناة صوتية', 'error');
+                showToast('خطأ', 'هذه ليست قناة صوتية', 'error');
+                statusPill.className = 'status-pill status-offline';
+                statusPill.textContent = 'غير متصل';
                 return;
             }
 
@@ -1515,21 +1515,21 @@
             const guildId = channel.guild_id;
 
             // Get voice regions
-            const regionsRes = await fetch(&#039;https://discord.com/api/v10/voice/regions&#039;, {
-                headers: { &#039;Authorization&#039;: token }
+            const regionsRes = await fetch('https://discord.com/api/v10/voice/regions', {
+                headers: { 'Authorization': token }
             });
             const regions = await regionsRes.json();
-            const region = regions.find(r =&gt; r.optimal) || regions[0];
+            const region = regions.find(r => r.optimal) || regions[0];
 
             // Connect via WebSocket
-            voiceWs = new WebSocket(&quot;wss://gateway.discord.gg/?v=10&amp;encoding=json&quot;);
-            voiceWs.onopen = () =&gt; { addLog(&#039;🔌 متصل بـ Gateway الصوتي&#039;, &#039;info&#039;); };
-            voiceWs.onmessage = (e) =&gt; {
+            voiceWs = new WebSocket("wss://gateway.discord.gg/?v=10&encoding=json");
+            voiceWs.onopen = () => { addLog('🔌 متصل بـ Gateway الصوتي', 'info'); };
+            voiceWs.onmessage = (e) => {
                 const data = JSON.parse(e.data);
                 if (data.op === 10) {
                     const interval = data.d.heartbeat_interval;
-                    voiceIntervalId = setInterval(() =&gt; {
-                        if (voiceWs &amp;&amp; voiceWs.readyState === WebSocket.OPEN) {
+                    voiceIntervalId = setInterval(() => {
+                        if (voiceWs && voiceWs.readyState === WebSocket.OPEN) {
                             voiceWs.send(JSON.stringify({ op: 1, d: null }));
                         }
                     }, interval);
@@ -1537,95 +1537,95 @@
                         op: 2,
                         d: {
                             token: token,
-                            properties: { $os: &quot;windows&quot;, $browser: &quot;chrome&quot;, $device: &quot;pc&quot; },
-                            presence: { status: &quot;online&quot;, afk: false, activities: [] }
+                            properties: { $os: "windows", $browser: "chrome", $device: "pc" },
+                            presence: { status: "online", afk: false, activities: [] }
                         }
                     }));
-                } else if (data.t === &quot;READY&quot;) {
-                    addLog(`✅ متصل كـ ${data.d.user.username}`, &#039;success&#039;);
-                    statusPill.className = &#039;status-pill status-online&#039;;
+                } else if (data.t === "READY") {
+                    addLog(`✅ متصل كـ ${data.d.user.username}`, 'success');
+                    statusPill.className = 'status-pill status-online';
                     statusPill.textContent = `متصل: ${data.d.user.username}`;
                     voiceConnected = true;
 
                     // Send voice state update to join channel
                     // Note: This is a simplified version. Full voice connection requires UDP and RTP.
-                    // This will update the user&#039;s voice state but won&#039;t actually stream audio.
+                    // This will update the user's voice state but won't actually stream audio.
                     fetch(`https://discord.com/api/v10/guilds/${guildId}/voice-states/@me`, {
-                        method: &#039;PATCH&#039;,
-                        headers: { &#039;Authorization&#039;: token, &#039;Content-Type&#039;: &#039;application/json&#039; },
+                        method: 'PATCH',
+                        headers: { 'Authorization': token, 'Content-Type': 'application/json' },
                         body: JSON.stringify({ channel_id: channelId, self_mute: false, self_deaf: false })
-                    }).then(r =&gt; {
+                    }).then(r => {
                         if (r.ok) {
-                            addLog(`✅ تم الانضمام إلى القناة الصوتية: ${channel.name}`, &#039;success&#039;);
-                            showToast(&#039;انضمام&#039;, `تم الانضمام إلى ${channel.name}`, &#039;success&#039;);
-                            statusPill.className = &#039;status-pill status-online&#039;;
+                            addLog(`✅ تم الانضمام إلى القناة الصوتية: ${channel.name}`, 'success');
+                            showToast('انضمام', `تم الانضمام إلى ${channel.name}`, 'success');
+                            statusPill.className = 'status-pill status-online';
                             statusPill.textContent = `متصل: ${channel.name}`;
                         } else {
-                            addLog(`❌ فشل الانضمام (${r.status})`, &#039;error&#039;);
-                            showToast(&#039;فشل&#039;, `خطأ ${r.status}`, &#039;error&#039;);
+                            addLog(`❌ فشل الانضمام (${r.status})`, 'error');
+                            showToast('فشل', `خطأ ${r.status}`, 'error');
                         }
                     });
                 } else if (data.op === 9) {
-                    addLog(&#039;❌ توكن غير صالح&#039;, &#039;error&#039;);
-                    statusPill.className = &#039;status-pill status-offline&#039;;
-                    showToast(&#039;خطأ&#039;, &#039;توكن غير صالح&#039;, &#039;error&#039;);
+                    addLog('❌ توكن غير صالح', 'error');
+                    statusPill.className = 'status-pill status-offline';
+                    showToast('خطأ', 'توكن غير صالح', 'error');
                     if (voiceIntervalId) { clearInterval(voiceIntervalId); voiceIntervalId = null; }
                 }
             };
-            voiceWs.onerror = () =&gt; {
-                addLog(&#039;❌ خطأ WebSocket&#039;, &#039;error&#039;);
-                statusPill.className = &#039;status-pill status-offline&#039;;
-                showToast(&#039;خطأ&#039;, &#039;فشل الاتصال&#039;, &#039;error&#039;);
+            voiceWs.onerror = () => {
+                addLog('❌ خطأ WebSocket', 'error');
+                statusPill.className = 'status-pill status-offline';
+                showToast('خطأ', 'فشل الاتصال', 'error');
                 if (voiceIntervalId) { clearInterval(voiceIntervalId); voiceIntervalId = null; }
             };
-            voiceWs.onclose = () =&gt; {
+            voiceWs.onclose = () => {
                 if (voiceConnected) {
-                    addLog(&#039;⚠️ تم إغلاق الاتصال الصوتي&#039;, &#039;warn&#039;);
-                    statusPill.className = &#039;status-pill status-offline&#039;;
-                    statusPill.textContent = &#039;غير متصل&#039;;
+                    addLog('⚠️ تم إغلاق الاتصال الصوتي', 'warn');
+                    statusPill.className = 'status-pill status-offline';
+                    statusPill.textContent = 'غير متصل';
                 }
             };
         } catch (e) {
-            addLog(`🔥 خطأ: ${e.message}`, &#039;error&#039;);
-            showToast(&#039;خطأ&#039;, e.message, &#039;error&#039;);
-            statusPill.className = &#039;status-pill status-offline&#039;;
-            statusPill.textContent = &#039;غير متصل&#039;;
+            addLog(`🔥 خطأ: ${e.message}`, 'error');
+            showToast('خطأ', e.message, 'error');
+            statusPill.className = 'status-pill status-offline';
+            statusPill.textContent = 'غير متصل';
         }
     }
 
-    document.getElementById(&#039;voice-join&#039;).onclick = async function() {
-        const token = document.getElementById(&#039;voice-token&#039;).value.trim();
-        const channelId = document.getElementById(&#039;voice-channel-id&#039;).value.trim();
-        saveAllFields(&#039;voice&#039;, [&#039;voice-token&#039;, &#039;voice-channel-id&#039;]);
+    document.getElementById('voice-join').onclick = async function() {
+        const token = document.getElementById('voice-token').value.trim();
+        const channelId = document.getElementById('voice-channel-id').value.trim();
+        saveAllFields('voice', ['voice-token', 'voice-channel-id']);
 
-        if (!token) { addLog(&#039;❌ أدخل التوكن&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;التوكن مطلوب&#039;, &#039;error&#039;); return; }
-        if (!channelId) { addLog(&#039;❌ أدخل معرف القناة الصوتية&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;معرف القناة مطلوب&#039;, &#039;error&#039;); return; }
+        if (!token) { addLog('❌ أدخل التوكن', 'error'); showToast('خطأ', 'التوكن مطلوب', 'error'); return; }
+        if (!channelId) { addLog('❌ أدخل معرف القناة الصوتية', 'error'); showToast('خطأ', 'معرف القناة مطلوب', 'error'); return; }
 
         await joinVoice(token, channelId);
     };
 
-    document.getElementById(&#039;voice-leave&#039;).onclick = function() {
-        const token = document.getElementById(&#039;voice-token&#039;).value.trim();
-        if (!token) { addLog(&#039;❌ أدخل التوكن&#039;, &#039;error&#039;); showToast(&#039;خطأ&#039;, &#039;التوكن مطلوب&#039;, &#039;error&#039;); return; }
+    document.getElementById('voice-leave').onclick = function() {
+        const token = document.getElementById('voice-token').value.trim();
+        if (!token) { addLog('❌ أدخل التوكن', 'error'); showToast('خطأ', 'التوكن مطلوب', 'error'); return; }
 
         // Leave voice channel
-        fetch(&#039;https://discord.com/api/v10/guilds/@me/voice-states/@me&#039;, {
-            method: &#039;DELETE&#039;,
-            headers: { &#039;Authorization&#039;: token }
-        }).then(r =&gt; {
+        fetch('https://discord.com/api/v10/guilds/@me/voice-states/@me', {
+            method: 'DELETE',
+            headers: { 'Authorization': token }
+        }).then(r => {
             if (r.ok) {
-                addLog(&#039;✅ تم مغادرة القناة الصوتية&#039;, &#039;success&#039;);
-                showToast(&#039;مغادرة&#039;, &#039;تم مغادرة القناة الصوتية&#039;, &#039;success&#039;);
+                addLog('✅ تم مغادرة القناة الصوتية', 'success');
+                showToast('مغادرة', 'تم مغادرة القناة الصوتية', 'success');
                 disconnectVoice();
-                document.getElementById(&#039;voice-status&#039;).className = &#039;status-pill status-offline&#039;;
-                document.getElementById(&#039;voice-status&#039;).textContent = &#039;غير متصل&#039;;
+                document.getElementById('voice-status').className = 'status-pill status-offline';
+                document.getElementById('voice-status').textContent = 'غير متصل';
             } else {
-                addLog(`❌ فشل المغادرة (${r.status})`, &#039;error&#039;);
-                showToast(&#039;فشل&#039;, `خطأ ${r.status}`, &#039;error&#039;);
+                addLog(`❌ فشل المغادرة (${r.status})`, 'error');
+                showToast('فشل', `خطأ ${r.status}`, 'error');
             }
-        }).catch(e =&gt; {
-            addLog(`🔥 خطأ: ${e.message}`, &#039;error&#039;);
-            showToast(&#039;خطأ&#039;, e.message, &#039;error&#039;);
+        }).catch(e => {
+            addLog(`🔥 خطأ: ${e.message}`, 'error');
+            showToast('خطأ', e.message, 'error');
         });
     };
 
@@ -1633,92 +1633,92 @@
     // PROTECTION (Anti-DevTools)
     // ═══════════════════════════════════════════════════════
     function isInputField(el) {
-        return el &amp;&amp; (el.tagName === &#039;INPUT&#039; || el.tagName === &#039;TEXTAREA&#039; || el.isContentEditable);
+        return el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable);
     }
-    const isTouchDevice = &#039;ontouchstart&#039; in window || navigator.maxTouchPoints &gt; 0;
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     function isInputOrAncestor(el) {
         if (!el) return false;
-        if (el.tagName === &#039;INPUT&#039; || el.tagName === &#039;TEXTAREA&#039; || el.isContentEditable) return true;
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable) return true;
         let parent = el.parentElement;
         while (parent) {
-            if (parent.tagName === &#039;INPUT&#039; || parent.tagName === &#039;TEXTAREA&#039; || parent.isContentEditable) return true;
+            if (parent.tagName === 'INPUT' || parent.tagName === 'TEXTAREA' || parent.isContentEditable) return true;
             parent = parent.parentElement;
         }
         return false;
     }
-    document.addEventListener(&#039;contextmenu&#039;, function(e) {
-        if (isTouchDevice &amp;&amp; isInputOrAncestor(e.target)) return;
+    document.addEventListener('contextmenu', function(e) {
+        if (isTouchDevice && isInputOrAncestor(e.target)) return;
         e.preventDefault();
-        showToast(&#039;🚫&#039;, &#039;النقر بزر الماوس الأيمن معطل&#039;, &#039;warn&#039;);
+        showToast('🚫', 'النقر بزر الماوس الأيمن معطل', 'warn');
         return false;
     });
-    document.addEventListener(&#039;paste&#039;, function(e) {
+    document.addEventListener('paste', function(e) {
         if (isInputField(e.target)) return;
         e.preventDefault();
-        showToast(&#039;🚫&#039;, &#039;لصق (Paste) معطل&#039;, &#039;warn&#039;);
+        showToast('🚫', 'لصق (Paste) معطل', 'warn');
         return false;
     });
-    document.addEventListener(&#039;copy&#039;, function(e) {
-        if (isInputField(e.target)) return;
-        e.preventDefault();
-        return false;
-    });
-    document.addEventListener(&#039;cut&#039;, function(e) {
+    document.addEventListener('copy', function(e) {
         if (isInputField(e.target)) return;
         e.preventDefault();
         return false;
     });
-    document.addEventListener(&#039;selectstart&#039;, function(e) {
+    document.addEventListener('cut', function(e) {
+        if (isInputField(e.target)) return;
+        e.preventDefault();
+        return false;
+    });
+    document.addEventListener('selectstart', function(e) {
         if (isInputOrAncestor(e.target)) return;
         e.preventDefault();
         return false;
     });
-    document.addEventListener(&#039;drop&#039;, function(e) {
+    document.addEventListener('drop', function(e) {
         if (isInputField(e.target)) return;
         e.preventDefault();
         return false;
     });
-    document.addEventListener(&#039;dragstart&#039;, function(e) {
+    document.addEventListener('dragstart', function(e) {
         if (isInputField(e.target)) return;
         e.preventDefault();
         return false;
     });
-    document.addEventListener(&#039;keydown&#039;, function(e) {
+    document.addEventListener('keydown', function(e) {
         if (isInputField(e.target)) return;
-        if (e.key === &#039;F12&#039;) { e.preventDefault(); showToast(&#039;🚫&#039;, &#039;F12 معطل&#039;, &#039;warn&#039;); return false; }
-        if (e.key === &#039;F5&#039;) { e.preventDefault(); showToast(&#039;🚫&#039;, &#039;تحديث الصفحة (F5) معطل&#039;, &#039;warn&#039;); return false; }
-        if (e.ctrlKey &amp;&amp; e.shiftKey &amp;&amp; (e.key === &#039;I&#039; || e.key === &#039;J&#039; || e.key === &#039;C&#039;)) { e.preventDefault(); showToast(&#039;🚫&#039;, &#039;اختصار Developer Tools معطل&#039;, &#039;warn&#039;); return false; }
-        if (e.ctrlKey &amp;&amp; e.key === &#039;u&#039;) { e.preventDefault(); showToast(&#039;🚫&#039;, &#039;عرض المصدر معطل&#039;, &#039;warn&#039;); return false; }
-        if (e.ctrlKey &amp;&amp; e.key === &#039;r&#039;) { e.preventDefault(); showToast(&#039;🚫&#039;, &#039;تحديث الصفحة (Ctrl+R) معطل&#039;, &#039;warn&#039;); return false; }
-        if (e.ctrlKey &amp;&amp; e.shiftKey &amp;&amp; e.key === &#039;R&#039;) { e.preventDefault(); showToast(&#039;🚫&#039;, &#039;تحديث قوي معطل&#039;, &#039;warn&#039;); return false; }
-        if (e.ctrlKey &amp;&amp; e.key === &#039;v&#039;) { e.preventDefault(); showToast(&#039;🚫&#039;, &#039;لصق (Ctrl+V) معطل&#039;, &#039;warn&#039;); return false; }
-        if (e.ctrlKey &amp;&amp; e.key === &#039;a&#039;) { e.preventDefault(); return false; }
-        if (e.ctrlKey &amp;&amp; e.key === &#039;c&#039;) { e.preventDefault(); return false; }
-        if (e.ctrlKey &amp;&amp; e.key === &#039;s&#039;) { e.preventDefault(); showToast(&#039;🚫&#039;, &#039;حفظ الصفحة معطل&#039;, &#039;warn&#039;); return false; }
-        if (e.ctrlKey &amp;&amp; e.key === &#039;p&#039;) { e.preventDefault(); showToast(&#039;🚫&#039;, &#039;طباعة معطلة&#039;, &#039;warn&#039;); return false; }
-        if (e.ctrlKey &amp;&amp; e.shiftKey &amp;&amp; e.key === &#039;Delete&#039;) { e.preventDefault(); showToast(&#039;🚫&#039;, &#039;مسح البيانات معطل&#039;, &#039;warn&#039;); return false; }
-        if (e.altKey &amp;&amp; (e.key === &#039;ArrowLeft&#039; || e.key === &#039;ArrowRight&#039;)) { e.preventDefault(); showToast(&#039;🚫&#039;, &#039;تصفح السجل معطل&#039;, &#039;warn&#039;); return false; }
-        if (e.key === &#039;Escape&#039;) { e.preventDefault(); showToast(&#039;🚫&#039;, &#039;Escape معطل&#039;, &#039;warn&#039;); return false; }
+        if (e.key === 'F12') { e.preventDefault(); showToast('🚫', 'F12 معطل', 'warn'); return false; }
+        if (e.key === 'F5') { e.preventDefault(); showToast('🚫', 'تحديث الصفحة (F5) معطل', 'warn'); return false; }
+        if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) { e.preventDefault(); showToast('🚫', 'اختصار Developer Tools معطل', 'warn'); return false; }
+        if (e.ctrlKey && e.key === 'u') { e.preventDefault(); showToast('🚫', 'عرض المصدر معطل', 'warn'); return false; }
+        if (e.ctrlKey && e.key === 'r') { e.preventDefault(); showToast('🚫', 'تحديث الصفحة (Ctrl+R) معطل', 'warn'); return false; }
+        if (e.ctrlKey && e.shiftKey && e.key === 'R') { e.preventDefault(); showToast('🚫', 'تحديث قوي معطل', 'warn'); return false; }
+        if (e.ctrlKey && e.key === 'v') { e.preventDefault(); showToast('🚫', 'لصق (Ctrl+V) معطل', 'warn'); return false; }
+        if (e.ctrlKey && e.key === 'a') { e.preventDefault(); return false; }
+        if (e.ctrlKey && e.key === 'c') { e.preventDefault(); return false; }
+        if (e.ctrlKey && e.key === 's') { e.preventDefault(); showToast('🚫', 'حفظ الصفحة معطل', 'warn'); return false; }
+        if (e.ctrlKey && e.key === 'p') { e.preventDefault(); showToast('🚫', 'طباعة معطلة', 'warn'); return false; }
+        if (e.ctrlKey && e.shiftKey && e.key === 'Delete') { e.preventDefault(); showToast('🚫', 'مسح البيانات معطل', 'warn'); return false; }
+        if (e.altKey && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) { e.preventDefault(); showToast('🚫', 'تصفح السجل معطل', 'warn'); return false; }
+        if (e.key === 'Escape') { e.preventDefault(); showToast('🚫', 'Escape معطل', 'warn'); return false; }
     });
     window.onbeforeunload = function(e) {
         e.preventDefault();
-        e.returnValue = &#039;&#039;;
-        return &#039;&#039;;
+        e.returnValue = '';
+        return '';
     };
     history.pushState(null, null, location.href);
     window.onpopstate = function(e) {
         e.preventDefault();
         history.pushState(null, null, location.href);
-        showToast(&#039;🚫&#039;, &#039;الرجوع للخلف معطل&#039;, &#039;warn&#039;);
+        showToast('🚫', 'الرجوع للخلف معطل', 'warn');
     };
     let devtoolsOpen = false;
-    setInterval(() =&gt; {
-        const widthThreshold = window.outerWidth - window.innerWidth &gt; 160;
-        const heightThreshold = window.outerHeight - window.innerHeight &gt; 160;
+    setInterval(() => {
+        const widthThreshold = window.outerWidth - window.innerWidth > 160;
+        const heightThreshold = window.outerHeight - window.innerHeight > 160;
         if (widthThreshold || heightThreshold) {
             if (!devtoolsOpen) {
                 devtoolsOpen = true;
-                document.body.innerHTML = &#039;&lt;div style=&quot;display:flex;justify-content:center;align-items:center;height:100vh;background:#030508;color:#ef4444;font-family:Cairo,sans-serif;font-size:1.5rem;font-weight:700;&quot;&gt;🚫 Developer Tools مفتوح — تم حظر الوصول&lt;/div&gt;&#039;;
+                document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#030508;color:#ef4444;font-family:Cairo,sans-serif;font-size:1.5rem;font-weight:700;">🚫 Developer Tools مفتوح — تم حظر الوصول</div>';
             }
         } else { devtoolsOpen = false; }
     }, 500);
@@ -1726,21 +1726,21 @@
         const start = new Date();
         debugger;
         const end = new Date();
-        if (end - start &gt; 100) {
-            document.body.innerHTML = &#039;&lt;div style=&quot;display:flex;justify-content:center;align-items:center;height:100vh;background:#030508;color:#ef4444;font-family:Cairo,sans-serif;font-size:1.5rem;font-weight:700;&quot;&gt;🚫 Developer Tools مفتوح — تم حظر الوصول&lt;/div&gt;&#039;;
+        if (end - start > 100) {
+            document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#030508;color:#ef4444;font-family:Cairo,sans-serif;font-size:1.5rem;font-weight:700;">🚫 Developer Tools مفتوح — تم حظر الوصول</div>';
         }
     }, 100);
 
     // ─── Fade In Observer ───
-    const fadeElements = document.querySelectorAll(&#039;.fade-in&#039;);
-    const fadeObserver = new IntersectionObserver((entries) =&gt; {
-        entries.forEach(entry =&gt; { if (entry.isIntersecting) entry.target.classList.add(&#039;visible&#039;); });
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
     }, { threshold: 0.1 });
-    fadeElements.forEach(el =&gt; fadeObserver.observe(el));
+    fadeElements.forEach(el => fadeObserver.observe(el));
 
     // ─── Initial Log ───
-    addLog(&#039;📋 سجل جاهز&#039;, &#039;info&#039;);
-    addLog(&#039;💾 تم استعادة الإعدادات المحفوظة&#039;, &#039;info&#039;);
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+    addLog('📋 سجل جاهز', 'info');
+    addLog('💾 تم استعادة الإعدادات المحفوظة', 'info');
+    </script>
+</body>
+    </html>
